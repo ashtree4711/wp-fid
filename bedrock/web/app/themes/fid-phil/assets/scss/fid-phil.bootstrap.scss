@@ -1,0 +1,22 @@
+@import "fid-phil._variables";
+
+.card-img-top {
+    height: 20vh;
+    width: 30vh;
+}
+
+
+.form-control {
+    border-color: $primary;
+}
+
+.form-control:focus {
+    border-color: $primary;
+    border-width: 1px;
+    box-shadow: unset;
+}
+
+.jumbotron {
+    margin-top: 5vh;
+    height: 40vh;
+}

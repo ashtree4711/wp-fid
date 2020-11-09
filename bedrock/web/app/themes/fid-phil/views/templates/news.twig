@@ -1,0 +1,40 @@
+{% extends "base.twig" %}
+
+
+{% block content %}
+
+
+
+    <main class="container-fluid d-flex flex-column" >
+        <div class="jumbotron bg-light">
+            <h1 class="text-center">FID Philosophie</h1>
+            <p class="text-dark text-justify">
+                Non eram nescius, Brute, cum, quae summis ingeniis exquisitaque doctrina philosophi Graeco sermone tractavissent, ea Latinis litteris mandaremus, fore ut hic noster labor in varias reprehensiones incurreret. nam quibusdam, et iis quidem non admodum indoctis, totum hoc displicet philosophari. quidam autem non tam id reprehendunt, si remissius agatur, sed tantum studium tamque multam operam ponendam in eo non arbitrantur. erunt etiam, et ii quidem eruditi Graecis litteris, contemnentes Latinas, qui se dicant in Graecis legendis operam malle consumere. postremo aliquos futuros suspicor, qui me ad alias litteras vocent, genus hoc scribendi, etsi sit elegans, personae tamen et dignitatis esse negent
+            </p>
+
+
+        </div>
+
+        <div id="result_wrapper" class="d-flex flex-column" >
+            {% if context.posts|length > 0 %}
+
+                {% for post in context.posts %}
+                    <div class="media border p-3">
+                        <img src="img_avatar3.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+                        <div class="media-body">
+                            <h4>{{ post.title }} <small><br>
+                                    <i>Beitrag vom {{ post.post_date|date("d.m.Y H:m")}} Uhr</i></small></h4>
+                            <p>{{ post.content|raw }}</p>
+
+                        </div>
+                    </div>
+                {% endfor %}
+                {% endif %}
+
+
+        </div>
+
+
+    </main>
+
+{% endblock %}

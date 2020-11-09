@@ -1,0 +1,199 @@
+<nav class="navbar navbar-expand-md bg-light navbar-light shadow-sm fixed-top">
+    <!-- Brand -->
+    <a class="navbar-brand" href="/">
+        <div class="row ml-1">
+            <img src="{{ webInfo.baseurl }}app/themes/fid-phil/assets/img/fid_logo.png" alt="Logo" style="height:30px;">
+            <span class="text-uppercase p-1 d-none d-md-inline-flex flex-md-column" style="font-size: 12px; line-height: 12px">
+                <span>Fachinformationsdienst</span>
+                <span>Philosophie</span>
+            </span>
+
+        </div>
+        </a>
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <div class="d-flex flex-column flex-md-row justify-content-md-between  w-100">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link nav-link-fid" href="/news">Aktuelles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-fid-secondary" href="#">Partner</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-fid-tertiary" href="#">Über uns</a>
+                </li>
+
+            </ul>
+            <ul class="navbar-nav btn-group">
+                {% if userInfo.login==true %}
+                    <button class="btn btn-fid">
+                        Hallo {{ userInfo.user.firstname }}
+                    </button>
+
+                    <button class="btn btn-secondary" hx-post="{{ webInfo.baseurl }}/logout">
+                        Abmelden
+                    </button>
+
+                {% else %}
+                    <button class="btn btn-fid" data-toggle="modal" data-target="#registerModal">
+                        Registrieren
+                    </button>
+                    <button id="loginButton" class="btn btn-secondary" data-toggle="modal" data-target="#loginModal">
+                        Anmelden
+                    </button>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+</nav>
+
+{% if webInfo.login == true %}
+{% else %}
+    <div class="modal" id="registerModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Registrieren <i class="fas fa-user-plus"></i></h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body" id="signup_wrapper">
+                    <form class="was-validated" hx-post="{{ webInfo.baseurl }}signup" hx-target="#signup_wrapper">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-fid text-white"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input type="email" class="form-control" name="email" placeholder="E-Mail-Adresse" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-fid text-white"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input id="password1" type="password" class="form-control pwd"  name="pwd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Passwort eingeben" required>
+                            <input id="password2" type="password" class="form-control pwd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Passwort wiederholen" required>
+                        </div>
+
+                        <div class="mb-2" id="message" style="display: none">
+                            <span id="letter" class="badge badge-secondary invalid">min. 1 Großbuchstabe</span>
+                            <span id="capital" class="badge badge-secondary invalid">min. 1 Kleinbuchstabe</span>
+                            <span id="number" class="badge badge-secondary invalid">min. 1 Zahl</span>
+                            <span id="length" class="badge badge-secondary invalid">min. 8 Zeichen</span>
+                        </div>
+                        <div class="mb-2" id="message2" style="display: none">
+                            <span  id="wrongPassword" class="badge badge-secondary invalid">Passwörter nicht identisch</span>
+                        </div>
+                        <button id="submitter" type="submit" class="btn btn-fid btn-block disabled-cursor" disabled>Abschicken</button>
+                        <script>
+                            var myInput = document.getElementById("password1");
+                            var myInput2 = document.getElementById("password2");
+                            var letter = document.getElementById("letter");
+                            var capital = document.getElementById("capital");
+                            var number = document.getElementById("number");
+                            var length = document.getElementById("length");
+                            var wrongPassword = document.getElementById("wrongPassword");
+
+                            // When the user clicks on the password field, show the message box
+                            myInput.onfocus = function() {
+                                document.getElementById("message").style.display = "block";
+                            };
+
+                            // When the user clicks outside of the password field, hide the message box
+                            myInput.onblur = function() {
+                                document.getElementById("message").style.display = "none";
+                            };
+
+                            myInput2.onfocus = function() {
+                                document.getElementById("message2").style.display = "block";
+                            };
+
+                            myInput2.onblur = function() {
+                                document.getElementById("message2").style.display = "none";
+                            };
+
+                            // When the user starts to type something inside the password field
+                            myInput.onkeyup = function() {
+                                // Validate lowercase letters
+                                var lowerCaseLetters = /[a-z]/g;
+                                if(myInput.value.match(lowerCaseLetters)) {
+                                    letter.classList.add("bg-fid");
+                                } else {
+                                    letter.classList.remove("bg-fid");
+                                }
+
+                                // Validate capital letters
+                                var upperCaseLetters = /[A-Z]/g;
+                                if(myInput.value.match(upperCaseLetters)) {
+                                    capital.classList.add("bg-fid");
+                                } else {
+                                    capital.classList.remove("bg-fid");
+                                }
+
+                                // Validate numbers
+                                var numbers = /[0-9]/g;
+                                if(myInput.value.match(numbers)) {
+                                    number.classList.add("bg-fid");
+                                } else {
+                                    number.classList.remove("bg-fid");
+                                }
+                                // Validate length
+                                if(myInput.value.length >= 8) {
+                                    length.classList.add("bg-fid");
+                                } else {
+                                    length.classList.remove("bg-fid");
+                                }
+                            }
+
+                            myInput2.onkeyup = function() {
+                                if(myInput.value===myInput2.value){
+                                    wrongPassword.classList.add("bg-fid");
+                                } else {
+                                    wrongPassword.classList.remove("bg-fid");
+                                }
+
+                            }
+                            $('.pwd').on('input', function () {
+                                if ($('#password1').val()!==$('#password2').val()){
+                                    $('#wrongPassword').removeAttr("hidden");
+                                    $('#submitter').attr("disabled", "disabled");
+                                    $('#submitter').addClass("disabled-cursor")
+                                } else {
+                                    $('#wrongPassword').attr("hidden", "hidden");
+                                    $('#submitter').removeAttr("disabled");
+                                    $('#submitter').removeClass("disabled-cursor");
+                                }
+                            })
+
+                            $(document).on('click', '#loginButton', function () {
+                                //$.cookie("currentUrl", $("#currentURL").val())
+                                document.cookie = "currentUrl="+$("#currentURL").val();
+                                //$('#redirectTo').val($("#currentURL").val())
+                            } )
+                        </script>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="loginModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Anmelden <i class="fas fa-sign-in-alt"></i></h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body" id="signin_wrapper">
+                    {% include 'templates/auth/signin.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endif %}

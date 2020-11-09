@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html {{ site.language_attributes }}>
+
+
+    {% include 'html-header.twig' %}
+
+    <body id="body_wrapper">
+    {% include "navbar.twig" %}
+        {% block content %}
+            <p>Sorry, no content</p>
+        {% endblock %}
+    <div class="mt-5"></div>
+    {% include "footer.twig" %}
+    </body>
+</html>

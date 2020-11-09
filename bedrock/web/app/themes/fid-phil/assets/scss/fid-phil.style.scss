@@ -1,0 +1,282 @@
+@import "fid-phil._variables";
+@import url('https://fonts.googleapis.com/css2?family=Piazzolla:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+  font-family: Piazzolla, serif;
+}
+h1 {
+  font-family: Raleway, sans-serif;
+}
+
+hr {
+  background: linear-gradient(to right, pink, $primary, $secondary, $tertiary, pink);
+  padding: 0;
+  margin: 0;
+  height: 1.5px;
+}
+main {
+  min-height: 100vh;
+}
+nav {
+  font-family: Raleway, sans-serif;
+}
+
+::-webkit-scrollbar {
+  background-color: rgba(128, 128, 128, 0.16);
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background-color: rgba(81, 21, 0, 0.12);
+}
+::-webkit-scrollbar-thumb {
+  background-color: $primary;
+}
+
+.animate__slideInRight{
+  width: 88px!important;
+  min-width: 88px!important;
+
+
+
+}
+
+.badge-fid {
+  background-color: white;
+  color: $primary;
+  border: solid;
+  border-width: 1px;
+  border-color: $primary;
+}
+
+.bg-fid {
+  background-color: $primary;
+}
+
+.bg-fid-secondary {
+  background-color: $secondary;
+}
+
+.bg-fid-secondary-brighter {
+  background-color: lighten($secondary, 20);
+}
+
+.bg-fid-secondary-brightest {
+  background-color: lighten($secondary, 40);
+}
+
+.bg-fid-tertiary {
+  background-color: $tertiary;
+}
+
+
+.border-fid {
+  border-color: $primary!important;
+}
+
+.btn-fid {
+  color: white;
+  background-color: $primary;
+  border-color: $primary;
+}
+
+.btn-fid:hover {
+  color: white;
+  background-color: lighten($primary, 15%);
+  border-color: lighten($primary, 15%);
+}
+.btn-outline-fid {
+  color: $primary;
+  border-color: $primary;
+}
+
+.btn-outline-fid-secondary {
+  color: $secondary;
+  border-color: $secondary;
+}
+
+.btn-outline-fid-secondary-brighter {
+  color: lighten($secondary, 40);
+  border-color: lighten($secondary, 40);
+}
+
+.btn-outline-fid-secondary-brightest {
+  color: lighten($secondary, 40);
+  border-color: lighten($secondary, 40);
+}
+
+.disabled-cursor {
+  cursor: not-allowed;
+}
+
+.facet-box{
+  border-color: $primary;
+  font-family: Raleway, sans-serif;
+}
+.facet-box:hover {
+
+  border-width: 2px;
+}
+
+.facet-box-header {
+  cursor: pointer;
+}
+
+.facet-entry-selected {
+   border: solid 1px $primary;
+   background-color: lighten($primary, 50);
+}
+
+.facet-entry-selected:hover {
+  border: solid 1px $primary;
+  background-color: lighten($primary, 25)!important;
+}
+
+.footer-logo-box {
+  padding: 2px;
+  width: 100%;
+}
+
+
+.home-card  {
+  width: 30vh;
+  height: 20vh;
+  max-height: 20vh;
+}
+
+.icon-fid {
+  font-size: 25px;
+}
+
+.icon-fid-md {
+  font-size: 20px;
+  padding-left: 2px;
+  padding-right: 2px;
+  position: relative;
+  top: 35%;
+}
+
+.icon-lg {
+  font-size: 16vh;
+}
+
+.landing-card {
+  height: 300px!important;
+
+}
+
+.list-group-facet-item-fid:hover {
+  background-color: #f5f5f5;
+  border-right: solid 2px $tertiary;
+  border-left: solid 2px $tertiary;
+  cursor: pointer;
+}
+
+.list-group-result-item-fid:hover{
+  background-color: #f5f5f5;
+  border-right: solid 3px $tertiary;
+  cursor: pointer;
+}
+
+.nav-link-fid {
+  color: $primary!important;
+
+}
+.nav-link-fid:hover {
+  border-bottom: solid 1px $primary;
+}
+
+.nav-link-fid-secondary {
+  color: $secondary!important;
+
+}
+.nav-link-fid-secondary:hover {
+  border-bottom: solid 1px $secondary;
+}
+
+.nav-link-fid-tertiary {
+  color: $tertiary!important;
+
+}
+.nav-link-fid-tertiary:hover {
+  border-bottom: solid 1px $tertiary;
+}
+
+.opacity-100 {
+  opacity: 1!important;
+}
+.opacity-50 {
+  opacity: 0.5!important;
+}
+
+
+
+.pointer {
+  cursor: pointer;
+}
+
+.result-content-box {
+  min-width: 100%;
+  height: 80px
+}
+
+.scrollbar-fid{
+  overflow-y: scroll;
+  scrollbar-color: $primary;
+  scrollbar-width: 2px;
+
+}
+
+.search_box {
+  //background-color: rgba(0, 0, 0, 0.4);
+  font-family: Piazzolla, serif;
+  padding: 5px;
+  width:  75vw;
+  border-radius: .25rem;
+}
+
+.search-box-sm {
+  padding: 0 0 2vh 0;
+}
+
+.slide-element:hover {
+  filter: brightness(80%);
+}
+
+.slide-menu {
+
+}
+
+.text-fid {
+  color: $primary!important;
+}
+
+.text-fid-secondary {
+  color: $secondary!important;
+}
+
+.text-fid-tertiary {
+  color: $tertiary!important;
+}
+
+.under-search {
+  width: 60vw;
+}
+
+@media (max-width: 768px){
+  .strong-fid {
+    font-size: 12px;
+  }
+
+  .landing-card {
+    height: 200px!important;
+  }
+
+
+  .welcome-box {
+    font-size: 14px;
+  }
+
+}
+
+
+
