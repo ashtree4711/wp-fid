@@ -72,6 +72,14 @@ nav {
   border-color: #5a2e62 !important;
 }
 
+.border-fid-secondary {
+  border-color: #385a71 !important;
+}
+
+.border-fid-tertiary {
+  border-color: #1e3a4b !important;
+}
+
 .btn-fid {
   color: white;
   background-color: #5a2e62;

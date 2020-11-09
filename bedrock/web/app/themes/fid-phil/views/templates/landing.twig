@@ -24,7 +24,95 @@
                             <div id="extendedSearch" class="collapse ">
                                 <div  class="card-body border-fid d-md-block d-none">
                                     <div class="d-flex justify-content-center" style="width: 100%">
-                                        <div  class=" bg-white" style="height: 150px!important; width: 95%">FILTER KRASS</div>
+                                        <div class="d-flex justify-content-between bg-white" style="height: 150px!important; width: 95%">
+                                            <div class="card border-fid-secondary" style="width: 20%">
+                                                <div class="card-header p-1 bg-white">
+                                                    <h6 class="text-center">Suchbereich:</h6>
+                                                </div>
+                                                <div class="card-body p-1">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                                        <label class="custom-control-label" for="customCheck">KUG/BVB</label>
+                                                    </div>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                                        <label class="custom-control-label" for="customCheck">Philosophers Index</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card border-fid-tertiary" style="width: 20%">
+                                                <div class="card-header p-1 bg-white">
+                                                    <h6 class="text-center">Zugriff:</h6>
+                                                </div>
+                                                <div class="card-body p-1">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                                        <label class="custom-control-label" for="customCheck">Volltextzugriff</label>
+                                                    </div>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                                        <label class="custom-control-label" for="customCheck">kein Volltextzugriff</label>
+                                                    </div>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                                        <label class="custom-control-label" for="customCheck">beides</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card border-fid-secondary" style="width: 20%">
+                                                <div class="card-header p-1 bg-white">
+                                                    <h6 class="text-center">Medientyp:</h6>
+                                                </div>
+                                                <div class="card-body p-1">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                                        <label class="custom-control-label" for="customCheck">Monografien</label>
+                                                    </div>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                                        <label class="custom-control-label" for="customCheck">Zeitungsartikel</label>
+                                                    </div>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                                        <label class="custom-control-label" for="customCheck">Online</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card border-fid-tertiary" style="width: 20%">
+                                                <div class="card-header p-1 bg-white">
+                                                    <h6 class="text-center">Erscheinungsjahr:</h6>
+                                                </div>
+                                                <div class="card-body p-1">
+                                                    <div id="steps-slider"></div>
+                                                    <input type="number" id="input-with-keypress-0">
+                                                    <input type="number" id="input-with-keypress-1">
+                                                </div>
+                                                <script>
+                                                    var stepsSlider = document.getElementById('steps-slider');
+                                                    var input0 = document.getElementById('input-with-keypress-0');
+                                                    var input1 = document.getElementById('input-with-keypress-1');
+                                                    var inputs = [input0, input1];
+
+                                                    noUiSlider.create(stepsSlider, {
+                                                        start: [0, 2020],
+                                                        connect: true,
+                                                        tooltips: [true, wNumb({decimals: 0})],
+                                                        range: {
+                                                            'min': [0, 100],
+                                                            '40%': [1900, 10],
+                                                            '75%':[2010, 1],
+                                                            'max': 2020
+                                                        }
+                                                    });
+
+                                                    stepsSlider.noUiSlider.on('update', function (values, handle) {
+                                                        inputs[handle].value = values[handle];
+                                                    });
+                                                </script>
+                                            </div>
+
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -34,7 +122,7 @@
                     <div class="d-md-flex justify-content-end d-none bg-transparent" style="width: 95%">
                         <div class="align-self-end">
                             <button type="button" class="input-group-text bg-fid border-fid text-white" style="border-top-right-radius: 0!important; border-top-left-radius: 0!important;" data-toggle="collapse" data-target="#extendedSearch">
-                                <small><i class="fas fa-sliders-h"></i> Erweiterte Suche</small>
+                                <small><i class="fas fa-cog"></i> Sucheinstellungen</small>
                             </button>
                         </div>
                     </div>
