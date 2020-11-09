@@ -10,8 +10,10 @@ class WebInfo
     public static function get(ServerRequest $request){
         $webInfo["login"]=false;
         $webInfo["baseurl"]=$request->getServerParams()["WP_HOME"]."/";
-        $webInfo["currentUrl"]=$request->getServerParams()["HTTP_REFERER"];
-        setcookie("currentUrl", $request->getServerParams()["HTTP_REFERER"]);
+        if (isset($request->getServerParams()["HTTP_REFERER"])){
+            $webInfo["currentUrl"]=$request->getServerParams()["HTTP_REFERER"];
+            setcookie("currentUrl", $request->getServerParams()["HTTP_REFERER"]);
+        }
         return $webInfo;
     }
 }

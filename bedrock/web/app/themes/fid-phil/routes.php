@@ -19,7 +19,7 @@ Router::get('/news', 'SiteController@showNews');
 /**
  * User Routes
  */
-Router::get('/me', 'UserConstroller:getProfile');
+#Router::get('/me', 'UserConstroller:getProfile');
 
 
 /**
