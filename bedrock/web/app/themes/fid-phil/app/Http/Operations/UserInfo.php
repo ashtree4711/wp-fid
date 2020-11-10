@@ -12,7 +12,7 @@ class UserInfo
     public static function get(ServerRequest $request){
         $userInfo=array();
         if (isset($_COOKIE["fidsession"]) && isset($_COOKIE["fiduser"])){
-            $userInfo["user"]=self::getUser($_COOKIE["fidsession"], $_COOKIE["fiduser"]);
+            $userInfo["user"]=self::getUser($_COOKIE["fidsession"], $_COOKIE["fiduser"], $request->getServerParams()["KUG_HOME"]);
             $userInfo["login"]=true;
         } else {
             $userInfo["login"]=false;
@@ -21,7 +21,7 @@ class UserInfo
     }
 
 
-    private static function getUser($sessionId, $userId){
+    private static function getUser($sessionId, $userId, $kugUrl){
         $client = new Client();
         $jar = \GuzzleHttp\Cookie\CookieJar::fromArray(
             [
@@ -30,7 +30,7 @@ class UserInfo
             'localhost'
         );
         try {
-            $res = $client->request("GET", "http://localhost:20445/portal/fidphil/users/id/".$userId.".json?l=de", ['cookies' => $jar]);
+            $res = $client->request("GET", $kugUrl."/portal/fidphil/users/id/".$userId.".json?l=de", ['cookies' => $jar]);
             $user=json_decode($res->getBody()->getContents());
             $user->login=true;
             $user->status_code=$res->getStatusCode();

@@ -13,6 +13,9 @@ class WebInfo
         if (isset($request->getServerParams()["HTTP_REFERER"])){
             $webInfo["currentUrl"]=$request->getServerParams()["HTTP_REFERER"];
             setcookie("currentUrl", $request->getServerParams()["HTTP_REFERER"]);
+        } else {
+            $webInfo["currentUrl"]=$request->getServerParams()["WP_HOME"].$request->getServerParams()["REQUEST_URI"];
+            setcookie("currentUrl", $request->getServerParams()["WP_HOME"].$request->getServerParams()["REQUEST_URI"]);
         }
         return $webInfo;
     }

@@ -6,13 +6,13 @@ use GuzzleHttp\Psr7\Request;
 
 class KugCatalog
 {
-    public static function getResults($params, $kugUrl){
+    public static function getResults($params, $kugUrl, $baseurl){
         $results=array();
         if (isset($params["freetext"])){
             $results=self::search($params, $kugUrl);
         }
         if ($results!=null){
-            $results->facets=FacetManager::convert($results->facets, $params, $kugUrl);
+            $results->facets=FacetManager::convert($results->facets, $params, $baseurl);
         }
         return $results;
     }

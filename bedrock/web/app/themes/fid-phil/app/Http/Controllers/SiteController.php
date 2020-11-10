@@ -30,7 +30,7 @@ class SiteController extends BaseController
         }
         $params=$request->query();
 
-        $data=KugCatalog::getResults($params, $request->getServerParams()["KUG_FID"]);
+        $data=KugCatalog::getResults($params, $request->getServerParams()["KUG_FID"], $webInfo["baseurl"]);
         $data = json_decode(json_encode($data), true);
         $data["params"]=$params;
         error_log(print_r($userInfo, true));
