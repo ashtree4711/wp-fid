@@ -6,10 +6,10 @@ use GuzzleHttp\Psr7\Request;
 
 class KugCatalog
 {
-    public static function getResults($params){
+    public static function getResults($params, $kugUrl){
         $results=array();
         if (isset($params["freetext"])){
-            $results=self::search($params);
+            $results=self::search($params, $kugUrl);
         }
         if ($results!=null){
             $results->facets=FacetManager::convert($results->facets, $params);
@@ -28,8 +28,8 @@ class KugCatalog
         return json_decode($res->getBody()->getContents());
     }
 
-    private static function buildQueryUrl($params){
-        $url="http://localhost:20445/portal/fidphil/search.json?l=de;db=eds";
+    private static function buildQueryUrl($params, $kugUrl){
+        $url=$kugUrl."search.json?l=de;db=eds";
         $url=$url."&fs=".$params["freetext"];
         if (isset($params["mediatype"])){
             foreach ($params["mediatype"] as $mediatype){
@@ -62,8 +62,8 @@ class KugCatalog
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    private static function search($params){
-        $url=self::buildQueryUrl($params);
+    private static function search($params, $kugUrl){
+        $url=self::buildQueryUrl($params, $kugUrl);
         $client = new Client();
         $res = $client->request("GET", $url);
         return json_decode($res->getBody()->getContents());

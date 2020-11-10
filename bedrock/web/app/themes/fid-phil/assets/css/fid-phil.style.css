@@ -170,6 +170,11 @@ nav {
   height: 300px !important;
 }
 
+.landing-tile-font {
+  font-size: 12px !important;
+  text-align: center !important;
+}
+
 .list-group-facet-item-fid:hover {
   background-color: #f5f5f5;
   border-right: solid 2px #1e3a4b;

@@ -12,13 +12,13 @@
 
         </div-->
         <div class="sticky-top">
-            <div class="jumbotron jumbotron-fluid pt-4 mb-0" style="background-image: url('{{ webInfo.baeurl }}app/themes/fid-phil/assets/img/a_school.jpg'); background-position: center; height: 50px">
+            <div class="jumbotron jumbotron-fluid pt-4 mb-0" style="background-image: url('{{ webInfo.baseurl }}app/themes/fid-phil/assets/img/a_school.jpg'); background-position: center; height: 50px">
                 <div class="container d-flex justify-content-center">
                     <div class="search_box p-0" >
                         <form hx-get="/" hx-target="#result_wrapper" hx-select="#result_wrapper "hx-swap="outerHTML" hx-push-url="true">
                             <div id="search_wrapper" class="input-group input-group-lg shadow-sm" >
                                 <div class="input-group-prepend">
-                                    <button type="submit" class="input-group-text bg-fid border-fid" >
+                                    <button type="submit" class="input-group-text bg-fid border-fid">
                                         <i class="fas fa-search text-white"></i>
                                     </button>
                                 </div>
@@ -115,7 +115,7 @@
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" hx-get="{{ webInfo.currentUrl }}&hits=20" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt>20</a>
                                     <a class="dropdown-item" hx-get="{{ webInfo.currentUrl }}&hits=40" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt>40</a>
-                                    <a class="dropdown-item" hx-get="{{ webInfo.currentUrl }}&hits=40" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt>60</a>
+                                    <a class="dropdown-item" hx-get="{{ webInfo.currentUrl }}&hits=60" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt>60</a>
                                 </div>
                             </div>
                             <div class="btn-group">
