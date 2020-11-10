@@ -3,16 +3,16 @@ namespace App\Http\Operations;
 
 class FacetManager
 {
-    public static function convert($kugFacets, $params){
+    public static function convert($kugFacets, $params, $kugUrl){
 
-        $facets=self::convertToArray($kugFacets, $params);
+        $facets=self::convertToArray($kugFacets, $params, $kugUrl);
         error_log(print_r($params, true));
 
         return $facets;
     }
 
 
-    private static function convertToArray($kugFacets, $params){
+    private static function convertToArray($kugFacets, $params, $kugUrl){
         $kugArray= (array) $kugFacets;
         $newArray=array();
         foreach ($kugArray as $key => $value) {
@@ -20,7 +20,7 @@ class FacetManager
                 $facet["key"]=$key;
                 $facet["name_de"]="Medientypen";
                 $facet["name_en"]="Media Types";
-                $facet["selected"]=self::getSelected($key, $params);
+                $facet["selected"]=self::getSelected($key, $params, $kugUrl);
                 $facet["value"]=self::getFacetHits($key, $value, $params);
                 array_push($newArray, $facet);
             }
@@ -28,7 +28,7 @@ class FacetManager
                 $facet["key"]=$key;
                 $facet["name_de"]="Sprachen";
                 $facet["name_en"]="Languages";
-                $facet["selected"]=self::getSelected($key, $params);
+                $facet["selected"]=self::getSelected($key, $params, $kugUrl);
                 $facet["value"]=self::getFacetHits($key, $value, $params);
                 array_push($newArray, $facet);
             }
@@ -48,10 +48,10 @@ class FacetManager
 
     }
 
-    private static function getSelected($key, $params){
+    private static function getSelected($key, $params, $kugUrl){
         $selected=array();
         if (isset($params[$key])){
-            $selected=self::createDisableUrl($key, $params);
+            $selected=self::createDisableUrl($key, $params, $kugUrl);
         }
         return $selected;
 
@@ -107,7 +107,7 @@ class FacetManager
         return $values;
     }
 
-    private static function createDisableUrl($key, $params){
+    private static function createDisableUrl($key, $params, $kugUrl){
         $facetValues=array();
         //error_log(print_r($params, true));
         for ($i=0; $i<count($params[$key]); $i++ ){
@@ -116,7 +116,7 @@ class FacetManager
                     $paramsDuplicate=$params;
                     unset($paramsDuplicate[$key][$index]);
                     $facetValues[$i][0]=$params[$key][$i];
-                    $facetValues[$i][1]=self::buildFidUrl($paramsDuplicate);
+                    $facetValues[$i][1]=self::buildFidUrl($paramsDuplicate, $kugUrl);
                 }
             }
         }
@@ -140,8 +140,7 @@ class FacetManager
         return $facetValues;
     }
 
-    private static function buildFidUrl($params){
-        $url="http://localhost:8000/";
+    private static function buildFidUrl($params, $url){
         $url=$url."?freetext=".$params["freetext"];
         if (isset($params["mediatype"])){
             foreach ($params["mediatype"] as $mediatype){

@@ -52,6 +52,14 @@ nav {
   background-color: $primary;
 }
 
+.bg-fid-slightly-brighter {
+  background-color: lighten($primary, 5);
+}
+
+.bg-fid-slightly-brightest {
+  background-color: lighten($primary, 10);
+}
+
 .bg-fid-secondary {
   background-color: $secondary;
 }
@@ -64,8 +72,22 @@ nav {
   background-color: lighten($secondary, 40);
 }
 
+.bg-fid-secondary-slightly-brighter {
+  background-color: lighten($secondary, 5);
+}
+
+.bg-fid-secondary-slightly-brightest {
+  background-color: lighten($secondary, 10);
+}
+
 .bg-fid-tertiary {
   background-color: $tertiary;
+}
+.bg-fid-tertiary-slightly-brighter {
+  background-color: lighten($tertiary, 5);
+}
+.bg-fid-tertiary-slightly-brightest {
+  background-color: lighten($tertiary, 10);
 }
 
 
@@ -172,11 +194,13 @@ nav {
 
 .landing-card {
   height: 300px!important;
+  font-family: Raleway, sans-serif;
 }
 
 .landing-tile-font {
-  font-size: 12px!important;
+  font-size: 14px!important;
   text-align: center!important;
+  font-family: Piazzolla, serif;
 
 }
 

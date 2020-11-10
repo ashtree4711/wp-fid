@@ -12,7 +12,7 @@ class KugCatalog
             $results=self::search($params, $kugUrl);
         }
         if ($results!=null){
-            $results->facets=FacetManager::convert($results->facets, $params);
+            $results->facets=FacetManager::convert($results->facets, $params, $kugUrl);
         }
         return $results;
     }

@@ -52,6 +52,14 @@ nav {
   background-color: #5a2e62;
 }
 
+.bg-fid-slightly-brighter {
+  background-color: #6a3673;
+}
+
+.bg-fid-slightly-brightest {
+  background-color: #7a3e85;
+}
+
 .bg-fid-secondary {
   background-color: #385a71;
 }
@@ -64,8 +72,24 @@ nav {
   background-color: #a3bfd2;
 }
 
+.bg-fid-secondary-slightly-brighter {
+  background-color: #406882;
+}
+
+.bg-fid-secondary-slightly-brightest {
+  background-color: #497593;
+}
+
 .bg-fid-tertiary {
   background-color: #1e3a4b;
+}
+
+.bg-fid-tertiary-slightly-brighter {
+  background-color: #25485d;
+}
+
+.bg-fid-tertiary-slightly-brightest {
+  background-color: #2d566f;
 }
 
 .border-fid {
@@ -168,11 +192,13 @@ nav {
 
 .landing-card {
   height: 300px !important;
+  font-family: Raleway, sans-serif;
 }
 
 .landing-tile-font {
-  font-size: 12px !important;
+  font-size: 14px !important;
   text-align: center !important;
+  font-family: Piazzolla, serif;
 }
 
 .list-group-facet-item-fid:hover {
