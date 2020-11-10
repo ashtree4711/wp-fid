@@ -26,14 +26,15 @@ class SiteController extends BaseController
 
 
         if (isset($request->getServerParams()["HTTP_HX_CURRENT_URL"])){
+            error_log("CURRENT_HX_URL:");
             error_log(print_r($request->getServerParams()["HTTP_HX_CURRENT_URL"], true));
         }
         $params=$request->query();
-
+        error_log(print_r($params, true));
         $data=KugCatalog::getResults($params, $request->getServerParams()["KUG_FID"], $webInfo["baseurl"]);
         $data = json_decode(json_encode($data), true);
         $data["params"]=$params;
-        error_log(print_r($userInfo, true));
+        error_log(print_r($params, true));
         if (isset($request->getServerParams()["HTTP_HX_CURRENT_URL"]) or isset($params["freetext"])){
             return new TimberResponse('views/templates/home.twig', ["data"=>$data, "webInfo"=>$webInfo, "userInfo"=>$userInfo]);
         } else {

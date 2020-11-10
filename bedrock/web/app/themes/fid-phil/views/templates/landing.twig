@@ -30,14 +30,15 @@
                                                     <h6 class="text-center">Suchbereich:</h6>
                                                 </div>
                                                 <div class="card-body p-1">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
-                                                        <label class="custom-control-label" for="customCheck">KUG/BVB</label>
-                                                    </div>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
-                                                        <label class="custom-control-label" for="customCheck">Philosophers Index</label>
-                                                    </div>
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="dbKug" name="kug">
+                                                            <label class="custom-control-label" for="dbKug">KUG/BVB</label>
+                                                        </div>
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="dbPhiIndex" name="phi-index">
+                                                            <label class="custom-control-label" for="dbPhiIndex">Philosopher's Index</label>
+                                                        </div>
+
                                                 </div>
                                             </div>
                                             <div class="card border-fid-tertiary" style="width: 20%">
@@ -45,17 +46,17 @@
                                                     <h6 class="text-center">Zugriff:</h6>
                                                 </div>
                                                 <div class="card-body p-1">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
-                                                        <label class="custom-control-label" for="customCheck">Volltextzugriff</label>
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" class="custom-control-input" id="radioFulltextYes" name="ft-access" value="yes">
+                                                        <label class="custom-control-label" for="radioFulltextYes">Volltextzugriff</label>
                                                     </div>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
-                                                        <label class="custom-control-label" for="customCheck">kein Volltextzugriff</label>
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" class="custom-control-input" id="radioFulltextNo" name="ft-access" value="no">
+                                                        <label class="custom-control-label" for="radioFulltextNo">ohne Volltextzugriff</label>
                                                     </div>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
-                                                        <label class="custom-control-label" for="customCheck">beides</label>
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" class="custom-control-input" id="radioFulltextBoth" name="ft-access" value="both" checked>
+                                                        <label class="custom-control-label" for="radioFulltextBoth">beides</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -65,16 +66,16 @@
                                                 </div>
                                                 <div class="card-body p-1">
                                                     <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
-                                                        <label class="custom-control-label" for="customCheck">Monografien</label>
+                                                        <input type="checkbox" class="custom-control-input" id="typeBook" name="typeBook">
+                                                        <label class="custom-control-label" for="typeBook">Monografien</label>
                                                     </div>
                                                     <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
-                                                        <label class="custom-control-label" for="customCheck">Zeitungsartikel</label>
+                                                        <input type="checkbox" class="custom-control-input" id="typeArticle" name="typeArticle">
+                                                        <label class="custom-control-label" for="typeArticle">Zeitungsartikel</label>
                                                     </div>
                                                     <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
-                                                        <label class="custom-control-label" for="customCheck">Online</label>
+                                                        <input type="checkbox" class="custom-control-input" id="typeOnline" name="typeOnline">
+                                                        <label class="custom-control-label" for="typeOnline">Online</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -83,9 +84,24 @@
                                                     <h6 class="text-center">Erscheinungsjahr:</h6>
                                                 </div>
                                                 <div class="card-body p-1">
-                                                    <div id="steps-slider"></div>
-                                                    <input type="number" id="input-with-keypress-0">
-                                                    <input type="number" id="input-with-keypress-1">
+
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" class="custom-control-input" id="radioLastYear" name="years" value="1">
+                                                        <label class="custom-control-label" for="radioLastYear">letztes Jahr</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" class="custom-control-input" id="radioFiveYears" name="years" value="5">
+                                                        <label class="custom-control-label" for="radioFiveYears">letzten 5 Jahre</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" class="custom-control-input" id="radioTenYear" name="years" value="10">
+                                                        <label class="custom-control-label" for="radioTenYear">letzten 10 Jahre</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" class="custom-control-input" id="radioAllYears" name="years" value="all" checked>
+                                                        <label class="custom-control-label" for="radioAllYears">alle Jahre</label>
+                                                    </div>
+
                                                 </div>
                                                 <script>
                                                     var stepsSlider = document.getElementById('steps-slider');

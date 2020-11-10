@@ -15,7 +15,7 @@
             <div class="jumbotron jumbotron-fluid pt-4 mb-0" style="background-image: url('{{ webInfo.baseurl }}app/themes/fid-phil/assets/img/a_school.jpg'); background-position: center; height: 50px">
                 <div class="container d-flex justify-content-center">
                     <div class="search_box p-0" >
-                        <form hx-get="/" hx-target="#result_wrapper" hx-select="#result_wrapper "hx-swap="outerHTML" hx-push-url="true">
+                        <form hx-get="/" hx-target="#result_wrapper" hx-select="#result_wrapper "hx-swap="outerHTML" hx-push-url="true" hx-indicator="#spinner">
                             <div id="search_wrapper" class="input-group input-group-lg shadow-sm" >
                                 <div class="input-group-prepend">
                                     <button type="submit" class="input-group-text bg-fid border-fid">
@@ -38,10 +38,30 @@
             </div>
             <hr style="height: 3px; margin-top: 0!important; padding-top: 0!important;">
         </div>
+        <div id="spinner" class="cssload-loader-inner htmx-indicator">
+            <div class="cssload-cssload-loader-line-wrap-wrap">
+                <div class="cssload-loader-line-wrap"></div>
+            </div>
+            <div class="cssload-cssload-loader-line-wrap-wrap">
+                <div class="cssload-loader-line-wrap"></div>
+            </div>
+            <div class="cssload-cssload-loader-line-wrap-wrap">
+                <div class="cssload-loader-line-wrap"></div>
+            </div>
+            <div class="cssload-cssload-loader-line-wrap-wrap">
+                <div class="cssload-loader-line-wrap"></div>
+            </div>
+            <div class="cssload-cssload-loader-line-wrap-wrap">
+                <div class="cssload-loader-line-wrap"></div>
+            </div>
+        </div>
 
 
+
+        <div  class="spinner"></div>
 
         <div id="result_wrapper" class="flex-column" >
+
             <input type="hidden" id="currentURL" value="{{ webInfo.currentUrl }}">
             {% if data.records %}
             <div class="modal" id="filterModal">
@@ -113,9 +133,9 @@
                                     Treffer pro Seite
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" hx-get="{{ webInfo.currentUrl }}&hits=20" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt>20</a>
-                                    <a class="dropdown-item" hx-get="{{ webInfo.currentUrl }}&hits=40" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt>40</a>
-                                    <a class="dropdown-item" hx-get="{{ webInfo.currentUrl }}&hits=60" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt>60</a>
+                                    <a class="dropdown-item" hx-get="{{ webInfo.currentUrl }}&hits=20" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">20</a>
+                                    <a class="dropdown-item" hx-get="{{ webInfo.currentUrl }}&hits=40" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">40</a>
+                                    <a class="dropdown-item" hx-get="{{ webInfo.currentUrl }}&hits=60" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">60</a>
                                 </div>
                             </div>
                             <div class="btn-group">
@@ -123,9 +143,9 @@
                                     Sortierung
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" hx-get="{{ webInfo.currentUrl }}&sort=year_asc" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt>Jahr ASC</a>
-                                    <a class="dropdown-item" hx-get="{{ webInfo.currentUrl }}&sort=year_desc" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt>Jahr DESC</a>
-                                    <a class="dropdown-item" hx-get="{{ webInfo.currentUrl }}&sort=relevance_desc" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt>Relevanz</a>
+                                    <a class="dropdown-item" hx-get="{{ webInfo.currentUrl }}&sort=year_asc" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">Jahr ASC</a>
+                                    <a class="dropdown-item" hx-get="{{ webInfo.currentUrl }}&sort=year_desc" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">Jahr DESC</a>
+                                    <a class="dropdown-item" hx-get="{{ webInfo.currentUrl }}&sort=relevance_desc" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">Relevanz</a>
                                 </div>
                             </div>
                         </div>
@@ -221,6 +241,51 @@
 
                 </div>
                 <div id="facet_wrapper" class="col-md-3 d-none d-md-block pt-5">
+                    <div id="carddate" class="card facet-box mb-3 shadow-sm">
+                        <div class="card-body" >
+                            <span class="facet-box-header" >
+                                <h6 class="text-center text-fid" href="#facet-date" data-toggle="collapse">{% if webInfo.lang == "en" %}Publicaton Date{% else %}ERSCHEINUNGSJAHR{% endif %}</h6>
+                            </span>
+                            <div id="facet-date" class="collapse show">
+                                <div id="steps-slider"></div>
+                                <ul class="list-group mt-5">
+                                    <li class="list-group-item d-flex justify-content-center">
+                                        <input type="text" id="input-with-keypress-0" style="width: 50%" disabled>
+                                        <input type="text" id="input-with-keypress-1" style="width: 50%" disabled>
+                                    </li>
+
+                                </ul>
+
+
+                                <script type="text/javascript">
+                                    var stepsSlider = document.getElementById('steps-slider');
+                                    var input0 = document.getElementById('input-with-keypress-0');
+                                    var input1 = document.getElementById('input-with-keypress-1');
+                                    var inputs = [input0, input1];
+
+                                    noUiSlider.create(stepsSlider, {
+                                        start: [0, 2020],
+                                        connect: true,
+                                        pips: {
+                                            mode: 'range',
+                                            density: 3
+                                        },
+                                        range: {
+                                            'min': [0, 100],
+                                            '40%': [1900, 10],
+                                            '75%':[2010, 1],
+                                            'max': 2020
+                                        }
+
+                                    });
+                                    stepsSlider.noUiSlider.on('update', function (values, handle) {
+                                        inputs[handle].value = parseInt(values[handle]);
+                                    });
+                                </script>
+                            </div>
+
+                        </div>
+                    </div>
 
 
                     {% if data.facets %}
@@ -235,13 +300,13 @@
 
                                             <ul  class="list-group">
                                                 {% for s in facet.selected %}
-                                                    <li class="list-group-item list-group-facet-item-fid small text-center facet-entry-selected" hx-get="{{ s.1 }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt>
+                                                    <li class="list-group-item list-group-facet-item-fid small text-center facet-entry-selected" hx-get="{{ s.1 }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">
                                                         {{ s.0 }}<span class="ml-2 text-white"><i class="fas fa-times"></i></span>
                                                     </li>
                                                 {% endfor %}
 
                                                 {% for f in facet.value %}
-                                                    <li class="list-group-item list-group-facet-item-fid small text-center {% if f.2 %}facet-entry-selected{% endif %}" {% if loop.index > 5 %}hidden{% endif %} hx-get="{% if f.2 %}{{ f.2 }}{% else %}{{ webInfo.currentUrl }}&{{ facet.key }}[]={{ f.0 }}{% endif %}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt>
+                                                    <li class="list-group-item list-group-facet-item-fid small text-center {% if f.2 %}facet-entry-selected{% endif %}" {% if loop.index > 5 %}hidden{% endif %} hx-get="{% if f.2 %}{{ f.2 }}{% else %}{{ webInfo.currentUrl }}&{{ facet.key }}[]={{ f.0 }}{% endif %}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">
                                                         {{ f.0 }}<span class="ml-2 badge badge-primary bg-fid">{{ f.1 }}</span>
                                                     </li>
                                                 {% endfor %}
