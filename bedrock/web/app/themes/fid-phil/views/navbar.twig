@@ -31,7 +31,26 @@
                 </li>
 
             </ul>
-            <ul class="navbar-nav btn-group">
+            <ul class="d-none d-md-inline-flex navbar-nav btn-group">
+                {% if userInfo.login==true %}
+                    <button class="btn btn-fid">
+                        Hallo {{ userInfo.user.firstname }}
+                    </button>
+
+                    <button class="btn btn-secondary" hx-post="{{ webInfo.baseurl }}/logout">
+                        Abmelden
+                    </button>
+
+                {% else %}
+                    <button class="btn btn-fid" data-toggle="modal" data-target="#registerModal">
+                        Registrieren
+                    </button>
+                    <button id="loginButton" class="btn btn-secondary" data-toggle="modal" data-target="#loginModal">
+                        Anmelden
+                    </button>
+                {% endif %}
+            </ul>
+            <ul class="d-inline-flex d-md-none navbar-nav btn-group btn-group-vertical">
                 {% if userInfo.login==true %}
                     <button class="btn btn-fid">
                         Hallo {{ userInfo.user.firstname }}
