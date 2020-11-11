@@ -491,6 +491,24 @@ nav {
     transform: rotate(360deg);
   }
 }
+@media (max-width: 1920px) {
+  .landing-page-img {
+    height: 400px !important;
+    background-image: url("../img/a_school.jpg");
+    background-size: 1920px;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+@media (min-width: 1921px) {
+  .landing-page-img {
+    height: 400px !important;
+    background-image: url("../img/a_school_xl.jpg");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
 @media (max-width: 768px) {
   .strong-fid {
     font-size: 12px;
