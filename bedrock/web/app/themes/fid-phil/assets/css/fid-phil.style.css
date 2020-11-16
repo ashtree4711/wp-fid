@@ -136,6 +136,16 @@ nav {
   border-color: #a3bfd2;
 }
 
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #5a2e62 !important;
+  border-color: #5a2e62;
+}
+
+.custom-radio .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #5a2e62 !important;
+  border-color: #5a2e62;
+}
+
 .disabled-cursor {
   cursor: not-allowed;
 }
@@ -214,6 +224,10 @@ nav {
   cursor: pointer;
 }
 
+.list-search-setting-item {
+  min-width: 25% !important;
+}
+
 .nav-link-fid {
   color: #5a2e62 !important;
 }
@@ -278,6 +292,11 @@ nav {
 
 .slide-element:hover {
   filter: brightness(80%);
+}
+
+.story-content {
+  font-size: 22px;
+  text-align: justify;
 }
 
 .text-fid {
@@ -509,6 +528,11 @@ nav {
     background-repeat: no-repeat;
   }
 }
+@media (max-width: 1280px) {
+  .story-content {
+    font-size: 2.3vh;
+  }
+}
 @media (max-width: 768px) {
   .strong-fid {
     font-size: 12px;
@@ -516,6 +540,10 @@ nav {
 
   .landing-card {
     height: 200px !important;
+  }
+
+  .landing-tile-header {
+    font-size: 1.5rem;
   }
 
   .welcome-box {

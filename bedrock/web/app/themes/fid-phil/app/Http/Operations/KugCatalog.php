@@ -12,7 +12,6 @@ class KugCatalog
             $results=self::search($params, $kugUrl);
         }
         if ($results!=null){
-            error_log($baseurl);
             $results->facets=FacetManager::convert($results->facets, $params, $baseurl);
         }
         return $results;
@@ -54,6 +53,11 @@ class KugCatalog
         if (isset($params["sort"])){
             $url=$url.";srt=".$params["sort"];
         }
+        if (isset($params["fulltext"])){
+            $url=$url.";fulltext=".$params["fulltext"];
+        }
+
+        error_log(print_r($url, true));
 
         return $url;
     }

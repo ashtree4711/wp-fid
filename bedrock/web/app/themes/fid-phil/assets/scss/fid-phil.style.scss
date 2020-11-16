@@ -137,6 +137,16 @@ nav {
   border-color: lighten($secondary, 40);
 }
 
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: $primary!important;
+  border-color: $primary;
+}
+
+.custom-radio .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: $primary!important;
+  border-color: $primary;
+}
+
 .disabled-cursor {
   cursor: not-allowed;
 }
@@ -217,6 +227,10 @@ nav {
   cursor: pointer;
 }
 
+.list-search-setting-item {
+  min-width: 25%!important;
+}
+
 .nav-link-fid {
   color: $primary!important;
 
@@ -288,6 +302,15 @@ nav {
 
 .slide-menu {
 
+}
+
+.story-header {
+
+}
+
+.story-content {
+  font-size: 22px;
+  text-align: justify
 }
 
 .text-fid {
@@ -514,6 +537,12 @@ nav {
   }
 }
 
+@media (max-width: 1280px){
+
+  .story-content {
+    font-size: 2.3vh;
+  }
+}
 @media (max-width: 768px){
   .strong-fid {
     font-size: 12px;
@@ -523,6 +552,9 @@ nav {
     height: 200px!important;
   }
 
+  .landing-tile-header {
+    font-size: 1.5rem;
+  }
 
   .welcome-box {
     font-size: 14px;

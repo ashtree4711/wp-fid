@@ -8,11 +8,11 @@
     {% include "navbar.twig" %}
         {% block content %}
             <div class="jumbotron jumbotron-fluid mb-0 landing-page-img" style="">
-                <div class="container" style="margin-top: 50px!important;">
-                    <div class="card border-0">
-                        <form method="get" action="/">
+                <div class="container container-fluid" style="margin-top: 50px!important;">
+                    <div class="card border-0" style="min-width: 100%!important;">
+                        <form method="get" action="/search">
                             <div class="card-header p-0 border-0">
-                                <div id="search_wrapper" class="input-group input-group-lg shadow-sm" >
+                                <div id="search_wrapper" class="input-group input-group-lg shadow-sm" style="min-width: 100%">
                                     <div class="input-group-prepend">
                                         <button type="submit" class="input-group-text bg-fid border-fid" >
                                             <i class="fas fa-search text-white"></i>
@@ -21,111 +21,91 @@
                                     <input id="freetext-input" type="text" name="freetext" class="form-control" placeholder="Suche..." required>
                                 </div>
                             </div>
-                            <div id="extendedSearch" class="collapse ">
-                                <div  class="card-body border-fid d-md-block d-none">
+                            <div id="extendedSearch" class="collapse bg-light" style="border-bottom-left-radius: 1.25rem; border-bottom-right-radius: 1.25rem">
+                                <div  class="card-body border-fid d-md-block d-none" >
                                     <div class="d-flex justify-content-center" style="width: 100%">
-                                        <div class="d-flex justify-content-between bg-white" style="height: 150px!important; width: 95%">
-                                            <div class="card border-fid-secondary" style="width: 20%">
-                                                <div class="card-header p-1 bg-white">
-                                                    <h6 class="text-center">Suchbereich:</h6>
-                                                </div>
-                                                <div class="card-body p-1">
+                                        <div class="d-flex justify-content-between" style="height: 150px!important; width: 95%">
+                                            <ul class="list-group list-group-horizontal" style="min-width: 100%!important;">
+                                                <li class="list-group-item list-search-setting-item">
+                                                    <div class="card-header p-1 bg-white">
+                                                        <h6 class="text-center">Suchbereich:</h6>
+                                                    </div>
+                                                    <div class="card-body p-1">
                                                         <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" id="dbKug" name="kug">
-                                                            <label class="custom-control-label" for="dbKug">KUG/BVB</label>
+                                                            <input type="checkbox" class="custom-control-input" id="intern" name="db[]" value="intern" checked>
+                                                            <label class="custom-control-label search-setting-label" for="intern">FID-intern</label>
                                                         </div>
                                                         <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" id="dbPhiIndex" name="phi-index">
-                                                            <label class="custom-control-label" for="dbPhiIndex">Philosopher's Index</label>
+                                                            <input type="checkbox" class="custom-control-input" id="dbPhiIndex" name="db[]" value="phil-index" checked>
+                                                            <label class="custom-control-label search-setting-label" for="dbPhiIndex">Philosopher's Index</label>
                                                         </div>
 
-                                                </div>
-                                            </div>
-                                            <div class="card border-fid-tertiary" style="width: 20%">
-                                                <div class="card-header p-1 bg-white">
-                                                    <h6 class="text-center">Zugriff:</h6>
-                                                </div>
-                                                <div class="card-body p-1">
-                                                    <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input" id="radioFulltextYes" name="ft-access" value="yes">
-                                                        <label class="custom-control-label" for="radioFulltextYes">Volltextzugriff</label>
                                                     </div>
-                                                    <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input" id="radioFulltextNo" name="ft-access" value="no">
-                                                        <label class="custom-control-label" for="radioFulltextNo">ohne Volltextzugriff</label>
+                                                </li>
+                                                <li class="list-group-item list-search-setting-item">
+                                                    <div class="card-header p-1 bg-white">
+                                                        <h6 class="text-center">Zugriff:</h6>
                                                     </div>
-                                                    <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input" id="radioFulltextBoth" name="ft-access" value="both" checked>
-                                                        <label class="custom-control-label" for="radioFulltextBoth">beides</label>
+                                                    <div class="card-body p-1">
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input" id="radioFulltextYes" name="fulltext" value="yes">
+                                                            <label class="custom-control-label search-setting-label" for="radioFulltextYes">Volltextzugriff</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input" id="radioFulltextBoth" name="fulltext" checked>
+                                                            <label class="custom-control-label search-setting-label" for="radioFulltextBoth">alle</label>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="card border-fid-secondary" style="width: 20%">
-                                                <div class="card-header p-1 bg-white">
-                                                    <h6 class="text-center">Medientyp:</h6>
-                                                </div>
-                                                <div class="card-body p-1">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="typeBook" name="typeBook">
-                                                        <label class="custom-control-label" for="typeBook">Monografien</label>
+                                                </li>
+                                                <li class="list-group-item list-search-setting-item">
+                                                    <div class="card-header p-1 bg-white">
+                                                        <h6 class="text-center">Medientyp:</h6>
                                                     </div>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="typeArticle" name="typeArticle">
-                                                        <label class="custom-control-label" for="typeArticle">Zeitungsartikel</label>
+                                                    <div class="card-body p-1">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="typeBook" name="mediatype[]" value="Books" checked>
+                                                            <label class="custom-control-label search-setting-label" for="typeBook">Monografien</label>
+                                                        </div>
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="typeArticle" name="mediatype[]" value="Academic Journals" checked>
+                                                            <label class="custom-control-label search-setting-label" for="typeArticle">Zeitungsartikel</label>
+                                                        </div>
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="typeOnline" name="mediatype[]" value="Book Reviews" checked>
+                                                            <label class="custom-control-label search-setting-label" for="typeOnline">Reviews</label>
+                                                        </div>
                                                     </div>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="typeOnline" name="typeOnline">
-                                                        <label class="custom-control-label" for="typeOnline">Online</label>
+                                                </li>
+                                                <li class="list-group-item list-search-setting-item">
+                                                    <div class="card-header p-1 bg-white">
+                                                        <h6 class="text-center">Erscheinungsjahr:</h6>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="card border-fid-tertiary" style="width: 20%">
-                                                <div class="card-header p-1 bg-white">
-                                                    <h6 class="text-center">Erscheinungsjahr:</h6>
-                                                </div>
-                                                <div class="card-body p-1">
+                                                    <div class="card-body p-1">
 
-                                                    <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input" id="radioLastYear" name="years" value="1">
-                                                        <label class="custom-control-label" for="radioLastYear">letztes Jahr</label>
-                                                    </div>
-                                                    <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input" id="radioFiveYears" name="years" value="5">
-                                                        <label class="custom-control-label" for="radioFiveYears">letzten 5 Jahre</label>
-                                                    </div>
-                                                    <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input" id="radioTenYear" name="years" value="10">
-                                                        <label class="custom-control-label" for="radioTenYear">letzten 10 Jahre</label>
-                                                    </div>
-                                                    <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input" id="radioAllYears" name="years" value="all" checked>
-                                                        <label class="custom-control-label" for="radioAllYears">alle Jahre</label>
-                                                    </div>
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input" id="radioLastYear" name="years" value="1">
+                                                            <label class="custom-control-label search-setting-label" for="radioLastYear">letztes Jahr</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input" id="radioFiveYears" name="years" value="5">
+                                                            <label class="custom-control-label search-setting-label" for="radioFiveYears">letzten 5 Jahre</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input" id="radioTenYear" name="years" value="10">
+                                                            <label class="custom-control-label search-setting-label" for="radioTenYear">letzten 10 Jahre</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input" id="radioAllYears" name="years" value="all" checked>
+                                                            <label class="custom-control-label search-setting-label" for="radioAllYears">alle Jahre</label>
+                                                        </div>
 
-                                                </div>
-                                                <script>
-                                                    var stepsSlider = document.getElementById('steps-slider');
-                                                    var input0 = document.getElementById('input-with-keypress-0');
-                                                    var input1 = document.getElementById('input-with-keypress-1');
-                                                    var inputs = [input0, input1];
+                                                    </div>
+                                                </li>
 
-                                                    noUiSlider.create(stepsSlider, {
-                                                        start: [0, 2020],
-                                                        connect: true,
-                                                        tooltips: [true, wNumb({decimals: 0})],
-                                                        range: {
-                                                            'min': [0, 100],
-                                                            '40%': [1900, 10],
-                                                            '75%':[2010, 1],
-                                                            'max': 2020
-                                                        }
-                                                    });
 
-                                                    stepsSlider.noUiSlider.on('update', function (values, handle) {
-                                                        inputs[handle].value = values[handle];
-                                                    });
-                                                </script>
-                                            </div>
+                                            </ul>
+
+
 
 
                                         </div>
@@ -173,25 +153,25 @@
             </div>
             <div id="short_desc" class="container p-5">
                 <div class="d-flex flex-column flex-md-row justify-content-md-around text-white">
-                    <div class="col-lg-3 mb-3">
+                    <div class="col-md-4 col-lg-3 mb-3">
                         <div class="card landing-card bg-fid border-0 shadow">
-                            <div class="card-header d-flex flex-column"><i class="fas fa-graduation-cap icon-fid align-self-center"></i><h3 class="align-self-center">Registrieren</h3></div>
+                            <div class="card-header d-flex flex-column"><i class="fas fa-graduation-cap icon-fid align-self-center"></i><h3 class="align-self-center landing-tile-header">Registrieren</h3></div>
                             <div class="card-body bg-fid-slightly-brighter pt-1 landing-tile-font">Kostenlos registrieren und Zugang zu über 5.000.000 Beständen (Monografien, Zeitungsartikel, Online-Ressourcen) zum Thema Philosophie erhalten.</div>
                             <div class="card-footer bg-fid-slightly-brightest text-center">Jetzt registrieren</div>
                         </div>
                     </div>
 
-                    <div class="col-lg-3 mb-3">
+                    <div class="col-md-4 col-lg-3 mb-3">
                         <div class="card landing-card bg-fid-secondary border-0 shadow" >
-                            <div class="card-header d-flex flex-column"><i class="fas fa-project-diagram align-self-center"></i><h3 class="align-self-center text-center">Premium</h3></div>
+                            <div class="card-header d-flex flex-column"><i class="fas fa-project-diagram align-self-center"></i><h3 class="align-self-center landing-tile-header">Premium</h3></div>
                             <div class="card-body bg-fid-secondary-slightly-brighter pt-1 landing-tile-font">Als Mitglied von ausgewählten Fachgesellschaften Zugang zum großen Philosopher's Index und dessen Volltexte erhalten</div>
                             <div class="card-footer bg-fid-secondary-slightly-brightest text-center">Mitgliedschaft bestätigen</div>
                         </div>
                     </div>
 
-                    <div class="col-lg-3 mb-3">
+                    <div class="col-md-4 col-lg-3 mb-3">
                         <div class="card landing-card bg-fid-tertiary border-0 shadow">
-                            <div class="card-header d-flex flex-column"><i class="fas fa-align-justify align-self-center"></i><h3 class="align-self-center">Kuratorium</h3></div>
+                            <div class="card-header d-flex flex-column"><i class="fas fa-align-justify align-self-center"></i><h3 class="align-self-center landing-tile-header">Kuratorium</h3></div>
                             <div class="card-body bg-fid-tertiary-slightly-brighter pt-1 landing-tile-font">Der FID Philosophie bietet zu ausgewählten Themen und AutorInnen einen kuratierten Zugang zur wichtigsten Primär- und Sekundärliteratur</div>
                             <div class="card-footer bg-fid-tertiary-slightly-brightest text-center">Jetzt entdecken</div>
                         </div>
@@ -200,22 +180,22 @@
             </div>
             <hr style="height: 3px; margin-bottom: 0!important; padding-bottom: 0!important;">
             <div id="long_desc"  style="width: 100%">
-                <div class="d-flex flex-column flex-md-row">
-                    <div class="col-md-6 bg-light p-5" style="height: 50vh">
-                        <h2 class="text-center">Fachinformationsdienst</h2>
-                        <p style="font-size: 20px; text-align: justify ">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <div class="d-flex flex-column flex-lg-row">
+                    <div class="col-lg-6 bg-light p-5" style="height: 50vh">
+                        <h2 class="text-center story-header">Fachinformationsdienst</h2>
+                        <p class="story-content" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     </div>
-                    <div class="col-md-6"  style="height: 50vh; background-image: url('{{ webInfo.baeurl }}app/themes/fid-phil/assets/img/book_reading.jpg'); background-position: center;  background-size: cover">
+                    <div class="col-lg-6"  style="height: 50vh; background-image: url('{{ webInfo.baeurl }}app/themes/fid-phil/assets/img/book_reading.jpg'); background-position: center;  background-size: cover">
 
                     </div>
                 </div>
-                <div class="d-flex flex-column-reverse flex-md-row">
-                    <div class="col-md-6 bg-warning" style="height: 50vh; background-image: url('{{ webInfo.baeurl }}app/themes/fid-phil/assets/img/usb.jpg'); background-position: center; background-size: cover">
+                <div class="d-flex flex-column-reverse flex-lg-row">
+                    <div class="col-lg-6 bg-warning" style="height: 50vh; background-image: url('{{ webInfo.baeurl }}app/themes/fid-phil/assets/img/usb.jpg'); background-position: center; background-size: cover">
 
                     </div>
-                    <div class="col-md-6 bg-light p-5" style="height: 50vh">
-                        <h2 class="text-center">DigiPhiD</h2>
-                        <p style="font-size: 20px; text-align: justify ">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <div class="col-lg-6 bg-light p-5" style="height: 50vh">
+                        <h2 class="text-center story-header">DigiPhiD</h2>
+                        <p class="story-content" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     </div>
 
                 </div>

@@ -17,14 +17,37 @@ class SiteController extends BaseController
 
 
 
-    public function showHome(ServerRequest $request){
+    public function showLandingPage(ServerRequest $request){
+        $webInfo=WebInfo::get($request);
+        $userInfo=UserInfo::get($request);
+        return new TimberResponse('views/templates/landing.twig', [ "webInfo"=>$webInfo, "userInfo"=>$userInfo]);
+    }
+
+
+    public function showResults(ServerRequest $request){
         //error_log(print_r($request, true));
         $webInfo=WebInfo::get($request);
         $userInfo=UserInfo::get($request);
+        if (isset($request->getServerParams()["HTTP_HX_CURRENT_URL"])){
+            error_log("CURRENT_HX_URL:");
+            error_log(print_r($request->getServerParams()["HTTP_HX_CURRENT_URL"], true));
+        }
+        $params=$request->query();
+        //error_log(print_r($params, true));
+        $data=KugCatalog::getResults($params, $request->getServerParams()["KUG_FID"], $webInfo["baseurl"]);
+        $data = json_decode(json_encode($data), true);
+        $data["params"]=$params;
+        //error_log(print_r($params, true));
+        return new TimberResponse('views/templates/home.twig', ["data"=>$data, "webInfo"=>$webInfo, "userInfo"=>$userInfo]);
 
 
 
 
+    }
+    /*public function showHome(ServerRequest $request){
+        error_log(print_r($request, true));
+        $webInfo=WebInfo::get($request);
+        $userInfo=UserInfo::get($request);
         if (isset($request->getServerParams()["HTTP_HX_CURRENT_URL"])){
             error_log("CURRENT_HX_URL:");
             error_log(print_r($request->getServerParams()["HTTP_HX_CURRENT_URL"], true));
@@ -43,7 +66,7 @@ class SiteController extends BaseController
 
 
 
-    }
+    }*/
 
     public function showRecord(ServerRequest $request, $recordId){
         $webInfo=WebInfo::get($request);

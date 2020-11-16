@@ -6,7 +6,7 @@ class FacetManager
     public static function convert($kugFacets, $params, $baseurl){
 
         $facets=self::convertToArray($kugFacets, $params, $baseurl);
-        error_log(print_r($params, true));
+
 
         return $facets;
     }
@@ -85,6 +85,7 @@ class FacetManager
 
     private static function createSelectUrl($key, $values, $params){
         # just start if values available
+        $selectionValues=$values;
         if ($values){
             for ($i=0; $i<count($values); $i++){
                 # $chosen is indicator of the facet as already a param --> is chosen
@@ -98,50 +99,36 @@ class FacetManager
                     }
                     # if chosen==true, unset it. It no longer a normal facet
                     if ($chosen){
-                        unset($values[$i]);
+                        unset($selectionValues[$i]);
                     }
                 }
             }
         }
 
-        return $values;
+        return $selectionValues;
     }
 
     private static function createDisableUrl($key, $params, $baseurl){
         $facetValues=array();
-        //error_log(print_r($params, true));
         for ($i=0; $i<count($params[$key]); $i++ ){
             if (isset($params[$key])){
                 foreach ($params[$key] as $index=>$paramValue){
                     $paramsDuplicate=$params;
-                    unset($paramsDuplicate[$key][$index]);
-                    $facetValues[$i][0]=$params[$key][$i];
-                    $facetValues[$i][1]=self::buildFidUrl($paramsDuplicate, $baseurl);
-                }
-            }
-        }
-
-       //error_log(print_r($facetValues, true));
-        return $facetValues;
-    }
-
-    private static function createDisableUrl2($key, $facetValues, $params){
-        for ($i=0; $i<count($facetValues); $i++ ){
-            if (isset($params[$key])){
-                foreach ($params[$key] as $index=>$paramValue){
-                    $paramsDuplicate=$params;
-                    if ($paramValue == $facetValues[$i][0]){
+                    if ($params[$key][$i]==$paramValue){
                         unset($paramsDuplicate[$key][$index]);
-                        $facetValues[$i][2]=self::buildFidUrl($paramsDuplicate);
+                        $facetValues[$i][0]=$params[$key][$i];
+                        $facetValues[$i][1]=self::buildFidUrl($paramsDuplicate, $baseurl);
                     }
+
                 }
             }
         }
         return $facetValues;
     }
+
 
     private static function buildFidUrl($params, $url){
-        $url=$url."?freetext=".$params["freetext"];
+        $url=$url."search?freetext=".$params["freetext"];
         if (isset($params["mediatype"])){
             foreach ($params["mediatype"] as $mediatype){
                 $url=$url."&mediatype[]=".$mediatype;

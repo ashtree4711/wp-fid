@@ -5,7 +5,8 @@ use Rareloop\Lumberjack\Facades\Router;
 /**
  *  Catalog Routes
  */
-Router::get('', 'SiteController@showHome');
+Router::get('', 'SiteController@showLandingPage');
+Router::get('/search', 'SiteController@showResults');
 Router::get('/portal', 'AuthController@forwardAfterLogin');
 Router::get('/records/{recordId}', 'SiteController@showRecord');
 

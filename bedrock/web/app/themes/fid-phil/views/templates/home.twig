@@ -3,19 +3,12 @@
 
 {% block content %}
     <main class="d-flex flex-column">
-        <!--div class="jumbotron bg-light welcome-box">
-            <h1 class="text-center">FID Philosophie</h1>
-            <p class="text-dark text-justify">
-                Non eram nescius, Brute, cum, quae summis ingeniis exquisitaque doctrina philosophi Graeco sermone tractavissent, ea Latinis litteris mandaremus, fore ut hic noster labor in varias reprehensiones incurreret. nam quibusdam, et iis quidem non admodum indoctis, totum hoc displicet philosophari. quidam autem non tam id reprehendunt, si remissius agatur, sed tantum studium tamque multam operam ponendam in eo non arbitrantur. erunt etiam, et ii quidem eruditi Graecis litteris, contemnentes Latinas, qui se dicant in Graecis legendis operam malle consumere. postremo aliquos futuros suspicor, qui me ad alias litteras vocent, genus hoc scribendi, etsi sit elegans, personae tamen et dignitatis esse negent
-            </p>
 
-
-        </div-->
         <div class="sticky-top">
-            <div class="jumbotron jumbotron-fluid pt-4 mb-0" style="background-image: url('{{ webInfo.baseurl }}app/themes/fid-phil/assets/img/a_school.jpg'); background-position: center; height: 50px">
-                <div class="container d-flex justify-content-center">
+            <div class="jumbotron jumbotron-fluid pt-4 mb-0" style="background-image: url('{{ webInfo.baseurl }}app/themes/fid-phil/assets/img/a_school.jpg'); background-position: center; min-height: 50px!important; height: 80px">
+                <div class="container d-flex justify-content-center" >
                     <div class="search_box p-0" >
-                        <form hx-get="/" hx-target="#result_wrapper" hx-select="#result_wrapper "hx-swap="outerHTML" hx-push-url="true" hx-indicator="#spinner">
+                        <form hx-get="/search" hx-target="#result_wrapper" hx-select="#result_wrapper "hx-swap="outerHTML" hx-push-url="true" hx-indicator="#spinner">
                             <div id="search_wrapper" class="input-group input-group-lg shadow-sm" >
                                 <div class="input-group-prepend">
                                     <button type="submit" class="input-group-text bg-fid border-fid">
