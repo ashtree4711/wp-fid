@@ -3,19 +3,19 @@
 use Rareloop\Lumberjack\Facades\Router;
 
 /**
- *  Catalog Routes
+ *  General Routes
  */
 Router::get('', 'SiteController@showLandingPage');
-Router::get('/search', 'SiteController@showResults');
-Router::get('/portal', 'AuthController@forwardAfterLogin');
-Router::get('/records/{recordId}', 'SiteController@showRecord');
-
-
+Router::get('/impressum', 'SiteController@showLandingPage');
+Router::get('/news', 'SiteController@showNews');
+Router::get('/partner', 'SiteController@showLandingPage');
 
 /**
- * Misc. Routes
+ * Index / Search
  */
-Router::get('/news', 'SiteController@showNews');
+Router::get('/search', 'SearchController@showResults');
+Router::get('/records/{recordId}', 'SearchController@showRecord');
+
 
 /**
  * User Routes
@@ -26,6 +26,7 @@ Router::get('/news', 'SiteController@showNews');
 /**
  * Authentication Routes
  */
+Router::get('/portal', 'AuthController@forwardAfterLogin');
 Router::post('/login', 'AuthController@login');
 Router::get('/portal/login', 'AuthController@login');
 Router::post('/logout', 'AuthController@logout');
