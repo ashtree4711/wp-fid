@@ -2,7 +2,6 @@
 namespace App\Http\Operations;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Request;
 
 class KugCatalog
 {
@@ -12,7 +11,9 @@ class KugCatalog
             $results=self::search($params, $kugUrl);
         }
         if ($results!=null){
-            $results->facets=FacetManager::convert($results->facets, $params, $baseurl);
+            $results->facets=Facets::convert($results->facets, $params, $baseurl);
+            $results->pagination=Pagination::create($results->meta, $baseurl);
+            $results->pagination["url"]=UrlBuilder::build($params, $baseurl, true, true, true, true, true, false)."&page=";
         }
         return $results;
     }
@@ -41,12 +42,12 @@ class KugCatalog
                 $url=$url.";f[flang]=".$language;
             }
         }
-        // 'Umlaute'-translation not good
-        if (isset($params["subject"])){
+        // conceptional ignoring
+        /*if (isset($params["subject"])){
             foreach ($params["subject"] as $subject){
                 $url=$url.";f[fsubj]=".$subject;
             }
-        }
+        }*/
         if (isset($params["hits"])){
             $url=$url.";num=".$params["hits"];
         }
@@ -55,6 +56,9 @@ class KugCatalog
         }
         if (isset($params["fulltext"])){
             $url=$url.";fulltext=".$params["fulltext"];
+        }
+        if (isset($params["page"])){
+            $url=$url.";page=".$params["page"];
         }
 
         error_log(print_r($url, true));

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Operations\KugCatalog;
+use App\Http\Operations\UrlBuilder;
 use App\Http\Operations\UserInfo;
 use App\Http\Operations\WebInfo;
 use GuzzleHttp\Client;
@@ -36,6 +37,7 @@ class SiteController extends BaseController
         //error_log(print_r($params, true));
         $data=KugCatalog::getResults($params, $request->getServerParams()["KUG_FID"], $webInfo["baseurl"]);
         $data = json_decode(json_encode($data), true);
+        $data["facets"]["noPageUrl"]=UrlBuilder::build($params, $webInfo["baseurl"], true, true, true, true, true, false);
         $data["params"]=$params;
         //error_log(print_r($params, true));
         return new TimberResponse('views/templates/home.twig', ["data"=>$data, "webInfo"=>$webInfo, "userInfo"=>$userInfo]);

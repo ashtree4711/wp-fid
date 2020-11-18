@@ -16,7 +16,7 @@
                                     </button>
                                 </div>
 
-                                <input id="freetext-input" type="text" name="freetext" class="form-control" placeholder="Suche..." required>
+                                <input id="freetext-input" type="text" name="freetext" class="form-control" placeholder="{% if data.params.freetext %}{{ data.params.freetext }}{% else %}Suche...{% endif %}" required>
                                 <div class="input-group-append d-md-none">
                                     <button  class="input-group-text bg-fid border-fid" data-toggle="modal" data-target="#filterModal">
                                         <i class="fas fa-filter text-white"></i>
@@ -31,7 +31,7 @@
             </div>
             <hr style="height: 3px; margin-top: 0!important; padding-top: 0!important;">
         </div>
-        <div id="spinner" class="cssload-loader-inner htmx-indicator">
+        <div id="spinner" class="cssload-loader-inner htmx-indicator position-fixed">
             <div class="cssload-cssload-loader-line-wrap-wrap">
                 <div class="cssload-loader-line-wrap"></div>
             </div>
@@ -54,9 +54,36 @@
         <div  class="spinner"></div>
 
         <div id="result_wrapper" class="flex-column" >
-
             <input type="hidden" id="currentURL" value="{{ webInfo.currentUrl }}">
             {% if data.records %}
+            <div id="pagination" class="fixed-bottom">
+                <div id="allPages" class="collapse bg-fid-secondary" style="margin-left: 96px; width: 40px; padding-top: 15px; border-top-left-radius: 0.25rem; border-top-right-radius: 0.25rem">
+                    <ul class="list-group list-group-flush  text-light" style="max-height: 50vh!important; overflow-y: auto; overflow-x: hidden;">
+                        {% for page in data.pagination.all %}
+                        <a hx-get="{{ data.pagination.url }}{{ page }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">
+                            <li class="list-group-item small bg-fid-secondary text-center pointer pagination-page" style="padding: 0" >{{ page }}</li>
+                        </a>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+                <ul class="pagination justify-md-content-start d-none d-md-flex" style="margin-left:20px;">
+                    <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary-slightly-brightest border-0 text-light" hx-get="{{ data.pagination.url }}{{ data.pagination.first }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner"><i class="fas fa-fast-backward"></i></a></li>
+                    <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary-slightly-brighter border-0 text-light" hx-get="{{ data.pagination.url }}{{ data.pagination.previous }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner"><i class="fas fa-step-backward"></i></a></li>
+                    <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary border-0 text-light" href="#allPages" data-toggle="collapse">{{ data.meta.page }}</a></li>
+                    <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary-slightly-brighter border-0 text-light" hx-get="{{ data.pagination.url }}{{ data.pagination.next }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner"><i class="fas fa-step-forward"></i></a></li>
+                    <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary-slightly-brightest border-0 text-light" hx-get="{{ data.pagination.url }}{{ data.pagination.last }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner"><i class="fas fa-fast-forward"></i></a></li>
+                </ul>
+                <ul class="pagination justify-content-center d-md-none" style="margin:20px">
+                    <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary-slightly-brightest border-0 text-light" href="#"><i class="fas fa-fast-backward"></i></a></li>
+                    <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary-slightly-brighter border-0 text-light" href="#"><i class="fas fa-step-backward"></i></a></li>
+                    <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary border-0 text-light" href="#">{{ data.meta.page }}</a></li>
+                    <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary-slightly-brighter border-0 text-light" href="#"><i class="fas fa-step-forward"></i></a></li>
+                    <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary-slightly-brightest border-0 text-light" href="#"><i class="fas fa-fast-forward"></i></a></li>
+                </ul>
+            </div>
+
+
             <div class="modal" id="filterModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -80,7 +107,7 @@
                                                     <div class="dropdown-menu" style="max-height: 25vh!important; overflow-y: auto">
                                                         <ul class="list-group" >
                                                             {% for f in facet.value %}
-                                                                <li class="list-group-item list-group-facet-item-fid small text-center {% if f.2 %}facet-entry-selected{% endif %}" hx-get="{{ webInfo.currentUrl }}&{{ facet.key }}[]={{ f.0 }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt>
+                                                                <li class="list-group-item list-group-facet-item-fid small text-center {% if f.2 %}facet-entry-selected{% endif %}" hx-get="{{ webInfo.facets.noPageUrl }}&{{ facet.key }}[]={{ f.0 }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt>
                                                                     {{ f.0 }}<span class="ml-2 badge badge-primary bg-fid">{{ f.1 }}</span>
                                                                 </li>
                                                             {% endfor %}
@@ -96,13 +123,10 @@
 
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
             <div class="d-flex justify-content-center">
-
                 <div class="under-search d-flex justify-content-center pt-2">
                     <div class="d-block d-md-none">
                         <div id="small_selected_wrapper" class="d-flex justify-content-center pb-1">
@@ -317,6 +341,15 @@
 
 
                 </div>
+                {% else %}
+                    <div class="jumbotron bg-light">
+                        <h1 class="text-center">Leider keine Ergebnisse</h1>
+                        <p class="text-dark text-center">
+                            Bitte versuchen Sie ein anderes Schlagwort oder passen Sie die Filter an
+                        </p>
+
+
+                    </div>
                 {% endif %}
             </div>
 
@@ -359,6 +392,8 @@
 
                 }
             })
+
+
         </script>
     </main>
 

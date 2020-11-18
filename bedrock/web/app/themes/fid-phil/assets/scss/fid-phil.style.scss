@@ -266,7 +266,13 @@ nav {
   opacity: 0.5!important;
 }
 
+.page-link:hover{
+  background-color: $primary;
+}
 
+.pagination-page:hover{
+  background-color: $primary;
+}
 
 .pointer {
   cursor: pointer;

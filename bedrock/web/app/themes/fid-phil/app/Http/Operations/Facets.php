@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Operations;
 
-class FacetManager
+class Facets
 {
     public static function convert($kugFacets, $params, $baseurl){
 
@@ -86,6 +86,9 @@ class FacetManager
     private static function createSelectUrl($key, $values, $params){
         # just start if values available
         $selectionValues=$values;
+        if (isset($params["page"])){
+            unset($params["page"]);
+        }
         if ($values){
             for ($i=0; $i<count($values); $i++){
                 # $chosen is indicator of the facet as already a param --> is chosen
@@ -110,6 +113,9 @@ class FacetManager
 
     private static function createDisableUrl($key, $params, $baseurl){
         $facetValues=array();
+        if (isset($params["page"])){
+            unset($params["page"]);
+        }
         for ($i=0; $i<count($params[$key]); $i++ ){
             if (isset($params[$key])){
                 foreach ($params[$key] as $index=>$paramValue){

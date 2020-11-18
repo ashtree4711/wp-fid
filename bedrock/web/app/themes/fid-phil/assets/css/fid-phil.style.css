@@ -264,6 +264,14 @@ nav {
   opacity: 0.5 !important;
 }
 
+.page-link:hover {
+  background-color: #5a2e62;
+}
+
+.pagination-page:hover {
+  background-color: #5a2e62;
+}
+
 .pointer {
   cursor: pointer;
 }
