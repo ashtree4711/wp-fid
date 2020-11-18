@@ -143,9 +143,9 @@
                                     Treffer pro Seite
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" hx-get="{{ webInfo.currentUrl }}&hits=20" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">20</a>
-                                    <a class="dropdown-item" hx-get="{{ webInfo.currentUrl }}&hits=40" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">40</a>
-                                    <a class="dropdown-item" hx-get="{{ webInfo.currentUrl }}&hits=60" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">60</a>
+                                    <a class="dropdown-item" hx-get="{{ webInfo.facets.noPageUrl }}&hits=20" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">20</a>
+                                    <a class="dropdown-item" hx-get="{{ webInfo.facets.noPageUrl }}&hits=40" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">40</a>
+                                    <a class="dropdown-item" hx-get="{{ webInfo.facets.noPageUrl }}&hits=60" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">60</a>
                                 </div>
                             </div>
                             <div class="btn-group">
@@ -153,9 +153,9 @@
                                     Sortierung
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" hx-get="{{ webInfo.currentUrl }}&sort=year_asc" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">Jahr ASC</a>
-                                    <a class="dropdown-item" hx-get="{{ webInfo.currentUrl }}&sort=year_desc" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">Jahr DESC</a>
-                                    <a class="dropdown-item" hx-get="{{ webInfo.currentUrl }}&sort=relevance_desc" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">Relevanz</a>
+                                    <a class="dropdown-item" hx-get="{{ webInfo.facets.noPageUrl }}&sort=year_asc" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">Jahr ASC</a>
+                                    <a class="dropdown-item" hx-get="{{ webInfo.facets.noPageUrl }}&sort=year_desc" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">Jahr DESC</a>
+                                    <a class="dropdown-item" hx-get="{{ webInfo.facets.noPageUrl }}&sort=relevance_desc" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">Relevanz</a>
                                 </div>
                             </div>
                         </div>

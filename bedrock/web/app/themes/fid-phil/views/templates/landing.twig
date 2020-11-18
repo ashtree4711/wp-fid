@@ -21,7 +21,7 @@
                                     <input id="freetext-input" type="text" name="freetext" class="form-control" placeholder="Suche..." required>
                                 </div>
                             </div>
-                            <div id="extendedSearch" class="collapse bg-light" style="border-bottom-left-radius: 1.25rem; border-bottom-right-radius: 1.25rem">
+                            <div id="extendedSearch" class="collapse bg-light" style="border-bottom-left-radius: 1.25rem; border-bottom-right-radius: 1.25rem; overflow-y: hidden">
                                 <div  class="card-body border-fid d-md-block d-none" >
                                     <div class="d-flex justify-content-center" style="width: 100%">
                                         <div class="d-flex justify-content-between" style="height: 150px!important; width: 95%">
@@ -101,13 +101,106 @@
 
                                                     </div>
                                                 </li>
-
-
                                             </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- EXTENDED SEARCH MODAL-->
+                            <div class="modal" id="extendedSearchModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title text-center">Schnellfilter</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="d-flex justify-content-center" style="width: 100%; height: 70vh">
+                                                <div class="flex-column justify-content-between" style="height: 150px!important; width: 95%">
+                                                    <ul class="list-group list-group" style="min-width: 100%!important;">
+                                                        <li class="list-group-item list-search-setting-item">
+                                                            <div class="card-header p-1 bg-white">
+                                                                <h6 class="text-center">Suchbereich:</h6>
+                                                            </div>
+                                                            <div class="card-body p-1">
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" class="custom-control-input" id="internsm" name="db[]" value="intern">
+                                                                    <label class="custom-control-label search-setting-label" for="internsm">FID-intern</label>
+                                                                </div>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" class="custom-control-input" id="dbPhiIndexsm" name="db[]" value="phil-index">
+                                                                    <label class="custom-control-label search-setting-label" for="dbPhiIndexsm">Philosopher's Index</label>
+                                                                </div>
+
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item list-search-setting-item">
+                                                            <div class="card-header p-1 bg-white">
+                                                                <h6 class="text-center">Zugriff:</h6>
+                                                            </div>
+                                                            <div class="card-body p-1">
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" class="custom-control-input" id="radioFulltextYessm" name="fulltext" value="yes">
+                                                                    <label class="custom-control-label search-setting-label" for="radioFulltextYessm">Volltextzugriff</label>
+                                                                </div>
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" class="custom-control-input" id="radioFulltextBoth" name="fulltext">
+                                                                    <label class="custom-control-label search-setting-label" for="radioFulltextBothsm">alle</label>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item list-search-setting-item">
+                                                            <div class="card-header p-1 bg-white">
+                                                                <h6 class="text-center">Medientyp:</h6>
+                                                            </div>
+                                                            <div class="card-body p-1">
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" class="custom-control-input" id="typeBooksm" name="mediatype[]" value="Books">
+                                                                    <label class="custom-control-label search-setting-label" for="typeBooksm">Monografien</label>
+                                                                </div>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" class="custom-control-input" id="typeArticlesm" name="mediatype[]" value="Academic Journals">
+                                                                    <label class="custom-control-label search-setting-label" for="typeArticlesm">Zeitungsartikel</label>
+                                                                </div>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" class="custom-control-input" id="typeOnlinesm" name="mediatype[]" value="Book Reviews">
+                                                                    <label class="custom-control-label search-setting-label" for="typeOnlinesm">Reviews</label>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item list-search-setting-item">
+                                                            <div class="card-header p-1 bg-white">
+                                                                <h6 class="text-center">Erscheinungsjahr:</h6>
+                                                            </div>
+                                                            <div class="card-body p-1">
+
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" class="custom-control-input" id="radioLastYearsm" name="years" value="1">
+                                                                    <label class="custom-control-label search-setting-label" for="radioLastYearsm">letztes Jahr</label>
+                                                                </div>
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" class="custom-control-input" id="radioFiveYearssm" name="years" value="5">
+                                                                    <label class="custom-control-label search-setting-label" for="radioFiveYearssm">letzten 5 Jahre</label>
+                                                                </div>
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" class="custom-control-input" id="radioTenYearsm" name="years" value="10">
+                                                                    <label class="custom-control-label search-setting-label" for="radioTenYearsm">letzten 10 Jahre</label>
+                                                                </div>
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" class="custom-control-input" id="radioAllYearssm" name="years" value="all">
+                                                                    <label class="custom-control-label search-setting-label" for="radioAllYearssm">alle Jahre</label>
+                                                                </div>
+
+                                                            </div>
+                                                        </li>
 
 
-
-
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger bg-fid" data-dismiss="modal">Schließen</button>
                                         </div>
                                     </div>
                                 </div>
@@ -126,34 +219,20 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-center d-md-none">
-                        <button class="btn btn-fid" data-toggle="modal" data-target="#extendedSearchModal" style="border-top-right-radius: 0!important; border-top-left-radius: 0!important;"><i class="fas fa-filter"></i> Schnellfilter</button>
+                        <div class="btn-group btn-group-sm">
+                            <button type="button" class="btn btn-sm bg-fid-secondary border-fid-secondary text-white" style="border-top-right-radius: 0!important; border-top-left-radius: 0!important; border-bottom-right-radius: 0!important;" >
+                                <i class="fas fa-search-plus"></i> Erweiterte Suche</small>
+                            </button>
+                            <button type="button" class="btn btn-sm bg-fid-tertiary border-fid-tertiary text-white" style="border-top-right-radius: 0!important; border-top-left-radius: 0!important; border-bottom-left-radius: 0!important;" data-toggle="modal" data-target="#extendedSearchModal">
+                                <i class="fas fa-filter"></i> Schnellfilter</small>
+                            </button>
+                        </div>
+                       
                     </div>
                 </div>
             </div>
             <hr style="height: 3px; margin-top: 0!important; padding-top: 0!important;">
-            <div class="modal" id="extendedSearchModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
 
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                            <h4 class="modal-title">Modal Heading</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            Modal body..
-                        </div>
-
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
             <div id="short_desc" class="container p-5">
                 <div class="d-flex flex-column flex-md-row justify-content-md-around text-white">
                     <div class="col-md-4 col-lg-3 mb-3">
