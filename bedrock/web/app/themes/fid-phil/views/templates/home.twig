@@ -75,11 +75,11 @@
                     <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary-slightly-brightest border-0 text-light" hx-get="{{ data.pagination.url }}{{ data.pagination.last }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner"><i class="fas fa-fast-forward"></i></a></li>
                 </ul>
                 <ul class="pagination justify-content-center d-md-none" style="margin:20px">
-                    <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary-slightly-brightest border-0 text-light" href="#"><i class="fas fa-fast-backward"></i></a></li>
-                    <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary-slightly-brighter border-0 text-light" href="#"><i class="fas fa-step-backward"></i></a></li>
-                    <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary border-0 text-light" href="#">{{ data.meta.page }}</a></li>
-                    <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary-slightly-brighter border-0 text-light" href="#"><i class="fas fa-step-forward"></i></a></li>
-                    <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary-slightly-brightest border-0 text-light" href="#"><i class="fas fa-fast-forward"></i></a></li>
+                    <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary-slightly-brightest border-0 text-light" hx-get="{{ data.pagination.url }}{{ data.pagination.first }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner"><i class="fas fa-fast-backward"></i></a></li>
+                    <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary-slightly-brighter border-0 text-light" hx-get="{{ data.pagination.url }}{{ data.pagination.previous }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner"><i class="fas fa-step-backward"></i></a></li>
+                    <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary border-0 text-light" href="#allPages" data-toggle="collapse">{{ data.meta.page }}</a></li>
+                    <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary-slightly-brighter border-0 text-light" hx-get="{{ data.pagination.url }}{{ data.pagination.next }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner"><i class="fas fa-step-forward"></i></a></li>
+                    <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary-slightly-brightest border-0 text-light" hx-get="{{ data.pagination.url }}{{ data.pagination.last }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner"><i class="fas fa-fast-forward"></i></a></li>
                 </ul>
             </div>
 
