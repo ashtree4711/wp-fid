@@ -4,15 +4,12 @@ namespace App\Http\Operations;
 class Pagination
 {
     public static function create($meta){
-        error_log(print_r($meta, true));
         $pagination["current"]=$meta->page;
         $pagination["first"]=self::firstPage();
         $pagination["last"]=self::lastPage($meta);
         $pagination["previous"]=self::previousPage($meta);
         $pagination["next"]=self::nextPage($meta);
         $pagination["all"]=self::allPages($meta);
-
-        error_log(print_r($pagination, true));
         return $pagination;
     }
 

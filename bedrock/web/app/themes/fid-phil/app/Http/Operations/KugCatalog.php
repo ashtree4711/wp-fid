@@ -2,6 +2,8 @@
 namespace App\Http\Operations;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
+use function Zend\Diactoros\parseCookieHeader;
 
 class KugCatalog
 {
@@ -73,9 +75,49 @@ class KugCatalog
      */
     private static function search($params, $kugUrl){
         $url=self::buildQueryUrl($params, $kugUrl);
-        $client = new Client();
+        /*$client = new Client();
         $res = $client->request("GET", $url);
-        return json_decode($res->getBody()->getContents());
+*/
+        session_start();
+        $client = new Client();
+        if (isset($_SESSION["kug"])){
+            $jar = \GuzzleHttp\Cookie\CookieJar::fromArray(
+                [
+                    'sessionID' => $_SESSION["kug"]
+                ],
+                'localhost'
+            );
+            //error_log(print_r("LOCAL COOKIE:" .$_COOKIE["sessionID"], true));
+            try {
+                $res = $client->request("GET", $url, ['cookies' => $jar]);
+                error_log("HAS_COOKIE: ".$_SESSION["kug"]);
+                error_log(print_r(parseCookieHeader($res->getHeaders()["Set-Cookie"][0]), true));
+                //setcookie("sessionID", parseCookieHeader($res->getHeaders()["Set-Cookie"][0])["sessionID"]);
+
+
+            } catch (ClientException $exception){
+
+                error_log(print_r($exception->getResponse()->getStatusCode(), true));
+            }
+            return json_decode($res->getBody()->getContents());
+            } else {
+           $jar=array();
+            try {
+                $res = $client->request("GET", $url, ['cookies' => $jar]);
+                error_log("HAS_NO_COOKIE");
+                error_log(print_r(parseCookieHeader($res->getHeaders()["Set-Cookie"][0]), true));
+                //setcookie("sessionID", parseCookieHeader($res->getHeaders()["Set-Cookie"][0])["sessionID"]);
+                $_SESSION["kug"]=parseCookieHeader($res->getHeaders()["Set-Cookie"][0])["sessionID"];
+
+            } catch (ClientException $exception){
+
+                error_log(print_r($exception->getResponse()->getStatusCode(), true));
+            }
+            return json_decode($res->getBody()->getContents());
+
+        }
+
+
 
     }
 }

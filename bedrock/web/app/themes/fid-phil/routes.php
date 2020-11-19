@@ -7,6 +7,8 @@ use Rareloop\Lumberjack\Facades\Router;
  */
 Router::get('', 'SiteController@showLandingPage');
 Router::get('/impressum', 'SiteController@showLandingPage');
+Router::get('/kuratorium', 'SiteController@showKuratorium');
+
 Router::get('/news', 'SiteController@showNews');
 Router::get('/partner', 'SiteController@showLandingPage');
 

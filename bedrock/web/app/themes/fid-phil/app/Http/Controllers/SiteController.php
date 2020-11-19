@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Authentication\Authenticator;
 use App\Http\Operations\KugCatalog;
 use App\Http\Operations\UrlBuilder;
 use App\Http\Operations\UserInfo;
@@ -20,15 +21,15 @@ class SiteController extends BaseController
 
     public function showLandingPage(ServerRequest $request){
         $webInfo=WebInfo::get($request);
-        $userInfo=UserInfo::get($request);
-        return new TimberResponse('views/templates/landing.twig', [ "webInfo"=>$webInfo, "userInfo"=>$userInfo]);
+        $user=Authenticator::auth($request->getServerParams()["KUG_FID"]);
+        return new TimberResponse('views/templates/landing.twig', [ "webInfo"=>$webInfo, "user"=>$user]);
     }
 
 
     public function showResults(ServerRequest $request){
         //error_log(print_r($request, true));
         $webInfo=WebInfo::get($request);
-        $userInfo=UserInfo::get($request);
+        $user=Authenticator::auth($request->getServerParams()["KUG_FID"]);
         if (isset($request->getServerParams()["HTTP_HX_CURRENT_URL"])){
             error_log("CURRENT_HX_URL:");
             error_log(print_r($request->getServerParams()["HTTP_HX_CURRENT_URL"], true));
@@ -40,41 +41,13 @@ class SiteController extends BaseController
         $data["facets"]["noPageUrl"]=UrlBuilder::build($params, $webInfo["baseurl"], true, true, true, true, true, false);
         $data["params"]=$params;
         //error_log(print_r($params, true));
-        return new TimberResponse('views/templates/home.twig', ["data"=>$data, "webInfo"=>$webInfo, "userInfo"=>$userInfo]);
-
-
-
+        return new TimberResponse('views/templates/home.twig', ["data"=>$data, "webInfo"=>$webInfo, "user"=>$user]);
 
     }
-    /*public function showHome(ServerRequest $request){
-        error_log(print_r($request, true));
-        $webInfo=WebInfo::get($request);
-        $userInfo=UserInfo::get($request);
-        if (isset($request->getServerParams()["HTTP_HX_CURRENT_URL"])){
-            error_log("CURRENT_HX_URL:");
-            error_log(print_r($request->getServerParams()["HTTP_HX_CURRENT_URL"], true));
-        }
-        $params=$request->query();
-        error_log(print_r($params, true));
-        $data=KugCatalog::getResults($params, $request->getServerParams()["KUG_FID"], $webInfo["baseurl"]);
-        $data = json_decode(json_encode($data), true);
-        $data["params"]=$params;
-        error_log(print_r($params, true));
-        if (isset($request->getServerParams()["HTTP_HX_CURRENT_URL"]) or isset($params["freetext"])){
-            return new TimberResponse('views/templates/home.twig', ["data"=>$data, "webInfo"=>$webInfo, "userInfo"=>$userInfo]);
-        } else {
-            return new TimberResponse('views/templates/landing.twig', ["data"=>$data, "webInfo"=>$webInfo, "userInfo"=>$userInfo]);
-        }
 
 
-
-    }*/
-
-    public function showRecord(ServerRequest $request, $recordId){
-        $webInfo=WebInfo::get($request);
-        $userInfo=UserInfo::get($request);
-        $data=KugCatalog::getResultByUrl($request->getQueryParams()["href"]);
-        return new TimberResponse('views/templates/single-record.twig', ["data"=>$data, "webInfo"=>$webInfo, "userInfo"=>$userInfo]);
+    public function showKuratorium(ServerRequest $request){
+        return new TimberResponse('views/templates/kuratorium.twig', array());
     }
 
 

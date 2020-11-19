@@ -23,6 +23,7 @@ class UserInfo
 
     private static function getUser($sessionId, $userId, $kugUrl){
         $client = new Client();
+        $user=null;
         $jar = \GuzzleHttp\Cookie\CookieJar::fromArray(
             [
                 'sessionID' => $sessionId
@@ -32,11 +33,9 @@ class UserInfo
         try {
             $res = $client->request("GET", $kugUrl."/portal/fidphil/users/id/".$userId.".json?l=de", ['cookies' => $jar]);
             $user=json_decode($res->getBody()->getContents());
-            $user->login=true;
-            $user->status_code=$res->getStatusCode();
+
         } catch (ClientException $exception){
-            $user->login=false;
-            $user->status_code=$exception->getResponse()->getStatusCode();
+
         }
         return $user;
     }

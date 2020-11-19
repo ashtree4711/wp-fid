@@ -100,7 +100,7 @@
                                                     <div class="dropdown-menu" style="max-height: 25vh!important; overflow-y: auto">
                                                         <ul class="list-group" >
                                                             {% for f in facet.value %}
-                                                                <li class="list-group-item list-group-facet-item-fid small text-center {% if f.2 %}facet-entry-selected{% endif %}" hx-get="{{ webInfo.facets.noPageUrl }}&{{ facet.key }}[]={{ f.0 }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt>
+                                                                <li class="list-group-item list-group-facet-item-fid small text-center {% if f.2 %}facet-entry-selected{% endif %}" hx-get="{{ webInfo.noPageUrl }}&{{ facet.key }}[]={{ f.0 }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt>
                                                                     {{ f.0 }}<span class="ml-2 badge badge-primary bg-fid">{{ f.1 }}</span>
                                                                 </li>
                                                             {% endfor %}
@@ -143,9 +143,9 @@
                                     Treffer pro Seite
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" hx-get="{{ webInfo.facets.noPageUrl }}&hits=20" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">20</a>
-                                    <a class="dropdown-item" hx-get="{{ webInfo.facets.noPageUrl }}&hits=40" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">40</a>
-                                    <a class="dropdown-item" hx-get="{{ webInfo.facets.noPageUrl }}&hits=60" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">60</a>
+                                    <a class="dropdown-item" hx-get="{{ webInfo.noPageUrl }}&hits=20" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">20</a>
+                                    <a class="dropdown-item" hx-get="{{ webInfo.noPageUrl }}&hits=40" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">40</a>
+                                    <a class="dropdown-item" hx-get="{{ webInfo.noPageUrl }}&hits=60" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">60</a>
                                 </div>
                             </div>
                             <div class="btn-group">
@@ -153,9 +153,9 @@
                                     Sortierung
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" hx-get="{{ webInfo.facets.noPageUrl }}&sort=year_asc" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">Jahr ASC</a>
-                                    <a class="dropdown-item" hx-get="{{ webInfo.facets.noPageUrl }}&sort=year_desc" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">Jahr DESC</a>
-                                    <a class="dropdown-item" hx-get="{{ webInfo.facets.noPageUrl }}&sort=relevance_desc" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">Relevanz</a>
+                                    <a class="dropdown-item" hx-get="{{ webInfo.noPageUrl }}&sort=year_asc" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">Jahr ASC</a>
+                                    <a class="dropdown-item" hx-get="{{ webInfo.noPageUrl }}&sort=year_desc" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">Jahr DESC</a>
+                                    <a class="dropdown-item" hx-get="{{ webInfo.noPageUrl }}&sort=relevance_desc" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">Relevanz</a>
                                 </div>
                             </div>
                         </div>
@@ -316,7 +316,7 @@
                                                 {% endfor %}
 
                                                 {% for f in facet.value %}
-                                                    <li class="list-group-item list-group-facet-item-fid small text-center {% if f.2 %}facet-entry-selected{% endif %}" {% if loop.index > 5 %}hidden{% endif %} hx-get="{% if f.2 %}{{ f.2 }}{% else %}{{ webInfo.currentUrl }}&{{ facet.key }}[]={{ f.0 }}{% endif %}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">
+                                                    <li class="list-group-item list-group-facet-item-fid small text-center {% if f.2 %}facet-entry-selected{% endif %}" {% if loop.index > 5 %}hidden{% endif %} hx-get="{% if f.2 %}{{ f.2 }}{% else %}{{ webInfo.noPageUrl }}&{{ facet.key }}[]={{ f.0 }}{% endif %}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">
                                                         {{ f.0 }}<span class="ml-2 badge badge-primary bg-fid">{{ f.1 }}</span>
                                                     </li>
                                                 {% endfor %}

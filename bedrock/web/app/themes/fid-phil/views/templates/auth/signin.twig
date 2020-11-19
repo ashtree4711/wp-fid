@@ -1,29 +1,37 @@
-<form  method="post" action="http://localhost:20445/portal/fidphil/login">
-    <div class="input-group mb-3">
-        <input id="redirectTo" type="hidden" name="redirect_to" value="http://localhost:8000/portal" hx-swap-oob="true">
-        <input type="hidden" name="authenticatorid" value="1">
+{% if status_code == 200 %}
+ {% include 'templates/auth/success-signin.twig' %}
+{% else %}
+    <form  method="post"  hx-post="{{ webInfo.baseurl }}login">
+        <!--action="http://localhost:20445/portal/fidphil/login"-->
+        <div class="input-group mb-3">
+            <input id="redirectTo" type="hidden" name="redirect_to" value="{{ webInfo.currentUrl }}" hx-swap-oob="true">
+            <input type="hidden" name="authenticatorid" value="1">
 
-        <div class="input-group-prepend">
-            <span class="input-group-text bg-fid text-white"><i class="fas fa-user"></i></span>
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-fid text-white"><i class="fas fa-user"></i></span>
+            </div>
+            <input type="email" name="username" class="form-control" placeholder="Benutzername / Email" required>
         </div>
-        <input type="email" name="username" class="form-control" placeholder="Benutzername / Email" required>
-    </div>
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text bg-fid text-white"><i class="fas fa-key"></i></span>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-fid text-white"><i class="fas fa-key"></i></span>
+            </div>
+            <input type="password" name="password" class="form-control" placeholder="Passwort" required>
         </div>
-        <input type="password" name="password" class="form-control" placeholder="Passwort" required>
-    </div>
-    <button id="login-submitter" type="submit" class="btn btn-fid btn-block">Abschicken</button>
-    {% if error_code %}
-    <div class="d-flex justify-content-center">
-        {% if error_code == 401 %}
-            <span class="badge badge-warning">Benutzername oder Passwort falsch</span>
-        {% endif %}
+        <button id="login-submitter" type="submit" class="btn btn-fid btn-block">Abschicken</button>
+        {% if status_code %}
+            <div class="d-flex justify-content-center">
+                {% if status_code == 401 %}
+                    <span class="badge badge-warning">Benutzername oder Passwort falsch. Versuche es nochmal.</span>
+                {% endif %}
 
-        {% if error_code == 404 %}
-            <span class="badge badge-danger">Server nicht erreichbar</span>
+                {% if status_code == 404 %}
+                    <span class="badge badge-danger">Server nicht erreichbar</span>
+                {% endif %}
+            </div>
         {% endif %}
-    </div>
-    {% endif %}
-</form>
+    </form>
+
+{% endif %}
+
+
