@@ -1,8 +1,8 @@
 <div class="text-center d-flex flex-column">
     <i class="far fa-check-circle text-success icon-lg"></i>
-    <h5>Hallo {{ user.firstname }} {{ user.lastname }}</h5>
+    <h5>Anmeldung erfolgreich ({{ user.user.username }})</h5>
     <div class="btn-group">
-        <button type="button" class="btn btn-outline-fid">Zum Profil</button>
-        <button type="button" class="btn btn-fid">Zurück zur Seite</button>
+        <button type="button" class="btn btn-outline-fid" hx-get="{{ webInfo.baseurl }}me" hx-target="#body_wrapper" hx-push-url="true">Zum Profil</button>
+        <button type="button" class="btn btn-fid" hx-get="{{ redirect_to }}" hx-target="#body_wrapper" hx-push-url="true">Zurück zur Seite</button>
     </div>
 </div>

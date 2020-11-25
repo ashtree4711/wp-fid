@@ -8,6 +8,8 @@ use Rareloop\Lumberjack\Facades\Router;
 Router::get('', 'SiteController@showLandingPage');
 Router::get('/impressum', 'SiteController@showLandingPage');
 Router::get('/kuratorium', 'SiteController@showKuratorium');
+Router::get('/kuratorium/{author}', 'SiteController@showKuratoriumEntry');
+
 
 Router::get('/news', 'SiteController@showNews');
 Router::get('/partner', 'SiteController@showLandingPage');
@@ -22,23 +24,24 @@ Router::get('/records/{recordId}', 'SearchController@showRecord');
 /**
  * User Routes
  */
-#Router::get('/me', 'UserConstroller:getProfile');
+Router::get('/me', 'UserController@showProfile');
 
 
 /**
  * Authentication Routes
  */
-Router::get('/portal', 'AuthController@forwardAfterLogin');
+//Router::get('/portal', 'AuthController@forwardAfterLogin');
 Router::post('/login', 'AuthController@login');
 Router::get('/portal/login', 'AuthController@login');
 Router::post('/logout', 'AuthController@logout');
 Router::post('/signup', 'AuthController@signup');
+Router::post('/confirm', 'AuthController@confirm');
 
 
 /**
  * Sandbox Routes
  */
-Router::get('/cookies', 'SiteController@showCookies');
+//Router::get('/cookies', 'SiteController@showCookies');
 
 
 

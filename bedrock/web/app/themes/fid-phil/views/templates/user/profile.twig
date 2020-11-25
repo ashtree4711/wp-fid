@@ -1,0 +1,77 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<main class="container-fluid d-flex flex-column mt-5">
+    <div class="d-flex justify-content-around mt-5">
+        {% if user.login %}
+            <div id="left-content">
+                <div id="profile">
+                    <h3>Mein Profil</h3>
+                    <form hx-put="">
+                        <ul class="list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between">
+                                <div><label for="email" class="mr-5">Email address:</label></div>
+                                <div><input type="email" class="form-control" placeholder="Enter email" id="email"></div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <div><label for="email" class="mr-5">Email address:</label></div>
+                                <div><input type="email" class="form-control" placeholder="Enter email" id="email"></div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <div><label for="email" class="mr-5">Email address:</label></div>
+                                <div><input type="email" class="form-control" placeholder="Enter email" id="email"></div>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+            <div id="right-content">
+                {{ user|json_encode }}
+            </div>
+
+
+
+
+        {% else %}
+            <div class="card">
+                <div class="card-header">
+                    Nicht angemeldet
+                </div>
+                <div class="card-body">
+                    <form  method="post"  hx-post="{{ webInfo.baseurl }}login">
+                        <!--action="http://localhost:20445/portal/fidphil/login"-->
+                        <div class="input-group mb-3">
+                            <input id="redirectTo" type="hidden" name="redirect_to" value="{{ webInfo.currentUrl }}" hx-swap-oob="true">
+                            <input type="hidden" name="authenticatorid" value="1">
+
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-fid text-white"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input type="email" name="username" class="form-control" placeholder="Benutzername / Email" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-fid text-white"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" name="password" class="form-control" placeholder="Passwort" required>
+                        </div>
+                        <button id="login-submitter" type="submit" class="btn btn-fid btn-block">Abschicken</button>
+                        {% if status_code %}
+                            <div class="d-flex justify-content-center">
+                                {% if status_code == 401 %}
+                                    <span class="badge badge-warning">Benutzername oder Passwort falsch. Versuche es nochmal.</span>
+                                {% endif %}
+
+                                {% if status_code == 404 %}
+                                    <span class="badge badge-danger">Server nicht erreichbar</span>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    </form>
+
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</main>
+{% endblock %}

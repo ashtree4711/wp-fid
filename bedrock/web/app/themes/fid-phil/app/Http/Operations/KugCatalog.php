@@ -75,22 +75,19 @@ class KugCatalog
      */
     private static function search($params, $kugUrl){
         $url=self::buildQueryUrl($params, $kugUrl);
-        /*$client = new Client();
-        $res = $client->request("GET", $url);
-*/
-        session_start();
+
         $client = new Client();
-        if (isset($_SESSION["kug"])){
+        if (isset($_SESSION["sessionID"])){
             $jar = \GuzzleHttp\Cookie\CookieJar::fromArray(
                 [
-                    'sessionID' => $_SESSION["kug"]
+                    'sessionID' => $_SESSION["sessionID"]
                 ],
                 'localhost'
             );
             //error_log(print_r("LOCAL COOKIE:" .$_COOKIE["sessionID"], true));
             try {
                 $res = $client->request("GET", $url, ['cookies' => $jar]);
-                error_log("HAS_COOKIE: ".$_SESSION["kug"]);
+                error_log("HAS_COOKIE: ".$_SESSION["sessionID"]);
                 error_log(print_r(parseCookieHeader($res->getHeaders()["Set-Cookie"][0]), true));
                 //setcookie("sessionID", parseCookieHeader($res->getHeaders()["Set-Cookie"][0])["sessionID"]);
 
@@ -106,8 +103,7 @@ class KugCatalog
                 $res = $client->request("GET", $url, ['cookies' => $jar]);
                 error_log("HAS_NO_COOKIE");
                 error_log(print_r(parseCookieHeader($res->getHeaders()["Set-Cookie"][0]), true));
-                //setcookie("sessionID", parseCookieHeader($res->getHeaders()["Set-Cookie"][0])["sessionID"]);
-                $_SESSION["kug"]=parseCookieHeader($res->getHeaders()["Set-Cookie"][0])["sessionID"];
+                $_SESSION["sessionID"]=parseCookieHeader($res->getHeaders()["Set-Cookie"][0])["sessionID"];
 
             } catch (ClientException $exception){
 

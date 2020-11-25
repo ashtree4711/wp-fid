@@ -5,9 +5,10 @@ namespace App\Http\Operations;
 
 use Rareloop\Lumberjack\Http\ServerRequest;
 
-class WebInfo
+class WebManager
 {
     public static function get(ServerRequest $request){
+        session_start();
         $webInfo["login"]=false;
         $webInfo["baseurl"]=$request->getServerParams()["WP_HOME"]."/";
         if (isset($request->getServerParams()["HTTP_REFERER"])){

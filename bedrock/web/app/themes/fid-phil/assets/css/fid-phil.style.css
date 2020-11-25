@@ -211,6 +211,15 @@ nav {
   font-family: Piazzolla, serif;
 }
 
+.link-fid {
+  color: #0a0a0a;
+}
+
+.link-fid:hover {
+  color: #5a2e62;
+  text-decoration: none;
+}
+
 .list-group-facet-item-fid:hover {
   background-color: #f5f5f5;
   border-right: solid 2px #1e3a4b;

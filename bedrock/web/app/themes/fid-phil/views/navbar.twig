@@ -34,13 +34,15 @@
                 </li>
 
             </ul>
-            <ul class="d-none d-md-inline-flex navbar-nav btn-group">
-                {% if userInfo.login==true %}
-                    <button class="btn btn-fid">
-                        Hallo {{ userInfo.user.firstname }}
+            <ul class="d-none d-md-inline-flex navbar-nav btn-group" >
+                {% if user.login==1 %}
+                    <button class="btn btn-fid" hx-get="{{ webInfo.baseurl }}/me" hx-target="#body_wrapper" hx-push-url="true">
+                        Profil ({{ user.user.username }})
                     </button>
 
-                    <button class="btn btn-secondary" hx-post="{{ webInfo.baseurl }}/logout">
+
+
+                    <button class="btn btn-secondary"  hx-post="{{ webInfo.baseurl }}/logout" hx-target="#body_wrapper" hx-push-url="true">
                         Abmelden
                     </button>
 
@@ -54,7 +56,7 @@
                 {% endif %}
             </ul>
             <ul class="d-inline-flex d-md-none navbar-nav btn-group btn-group-vertical">
-                {% if userInfo.login==true %}
+                {% if user.login==1 %}
                     <button class="btn btn-fid">
                         Hallo {{ userInfo.user.firstname }}
                     </button>
@@ -92,14 +94,15 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-fid text-white"><i class="fas fa-user"></i></span>
                             </div>
-                            <input type="email" class="form-control" name="email" placeholder="E-Mail-Adresse" required>
+                            <input type="email" class="form-control" name="username" placeholder="E-Mail-Adresse" required>
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-fid text-white"><i class="fas fa-key"></i></span>
                             </div>
-                            <input id="password1" type="password" class="form-control pwd"  name="pwd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Passwort eingeben" required>
-                            <input id="password2" type="password" class="form-control pwd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Passwort wiederholen" required>
+                            <input type="hidden" id="wp_home" name="wp_home" value="{{ webInfo.baseurl }}">
+                            <input id="password1" type="password" class="form-control pwd"  name="password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Passwort eingeben" required>
+                            <input id="password2" type="password" class="form-control pwd" name="password2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Passwort wiederholen" required>
                         </div>
 
                         <div class="mb-2" id="message" style="display: none">
@@ -110,6 +113,13 @@
                         </div>
                         <div class="mb-2" id="message2" style="display: none">
                             <span  id="wrongPassword" class="badge badge-secondary invalid">Passwörter nicht identisch</span>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="agb" name="agb" required>
+                            <label class="custom-control-label text-dark" for="agb">
+                                <small>
+                                    <a class="text-fid font-weight-bold" href="{{ webInfo.baseurl }}data-privacy" target="_blank">Datenschutzerklärung</a> und <a class="text-fid font-weight-bold" href="{{ webInfo.baseurl }}terms" target="_blank">Nutzungsbedingungen</a> akzeptiert.
+                                </small></label>
                         </div>
                         <button id="submitter" type="submit" class="btn btn-fid btn-block disabled-cursor" disabled>Abschicken</button>
                         <script>
