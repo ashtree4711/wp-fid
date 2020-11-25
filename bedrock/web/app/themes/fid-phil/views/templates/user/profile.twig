@@ -62,13 +62,13 @@
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend fid-prepend">
                                                 <div class="input-group-text w-50">
-                                                    <input type="radio" name="society" value="dgphil" {% if user.user.society == "dgphil"  %}checked{% endif %}>DG-Phil
+                                                    <input type="radio" name="bag_society" value="dgphil" {% if user.user.society == "dgphil"  %}checked{% endif %}>DG-Phil
                                                 </div>
                                                 <div class="input-group-text w-50">
-                                                    <input type="radio" name="society" value="gap" {% if user.user.society == "gap"  %}checked{% endif %}>GAP
+                                                    <input type="radio" name="bag_society" value="gap" {% if user.user.society == "gap"  %}checked{% endif %}>GAP
                                                 </div>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Mitgliedsnummer" name="society_no" value="{{ user.user.society_no }}">
+                                            <input type="text" class="form-control" placeholder="Mitgliedsnummer" name="bag_society_no" value="{{ user.user.society_no }}">
                                         </div>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between">

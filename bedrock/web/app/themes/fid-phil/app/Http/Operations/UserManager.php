@@ -29,19 +29,18 @@ class UserManager
             ],
             'localhost'
         );
+
+
         $client=new Client();
+
 
         try {
             error_log("TRY");
-            $res=$client->request('POST', $kugUrl.'users/id/'.$_SESSION["userID"], [
+            $res=$client->request('PUT', $kugUrl.'users/id/'.$_SESSION["userID"], [
                 'cookies' => $jar,
-                'multipart' => [
-                    [
-                        'name'     => 'vorname',
-                        'contents' => $params["vorname"]
-                    ]
+                'form_params' => $params
                 ]
-            ]);
+            );
 
             error_log(print_r($res, true));
             $user["status_code"]=$res->getStatusCode();
