@@ -219,6 +219,11 @@ nav {
   font-family: Raleway, sans-serif;
 }
 
+.landing-tile {
+  height: 240px;
+  width: 240px;
+}
+
 .landing-tile-font {
   font-size: 14px !important;
   text-align: center !important;
@@ -550,18 +555,18 @@ nav {
 @media (max-width: 1920px) {
   .landing-page-img {
     height: 400px !important;
-    background-image: url("../img/a_school.jpg");
+    background-image: url("../img/a_school_new.jpg");
     background-size: 1920px;
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
   }
 }
 @media (min-width: 1921px) {
   .landing-page-img {
     height: 400px !important;
-    background-image: url("../img/a_school_xl.jpg");
+    background-image: url("../img/a_school_new_xl.jpg");
     background-size: 100%;
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
   }
 }
@@ -577,6 +582,11 @@ nav {
 
   .landing-card {
     height: 200px !important;
+  }
+
+  .landing-tile {
+    height: 180px;
+    width: 350px;
   }
 
   .landing-tile-header {

@@ -8,6 +8,23 @@
             {% include "views/templates/searchbar_reduce.twig" %}
             <div class="m-5 row ">
                 <div id="left-content" class="col-12 col-md-8">
+                    <div id="spinner" class="cssload-loader-inner htmx-indicator position-fixed">
+                        <div class="cssload-cssload-loader-line-wrap-wrap">
+                            <div class="cssload-loader-line-wrap"></div>
+                        </div>
+                        <div class="cssload-cssload-loader-line-wrap-wrap">
+                            <div class="cssload-loader-line-wrap"></div>
+                        </div>
+                        <div class="cssload-cssload-loader-line-wrap-wrap">
+                            <div class="cssload-loader-line-wrap"></div>
+                        </div>
+                        <div class="cssload-cssload-loader-line-wrap-wrap">
+                            <div class="cssload-loader-line-wrap"></div>
+                        </div>
+                        <div class="cssload-cssload-loader-line-wrap-wrap">
+                            <div class="cssload-loader-line-wrap"></div>
+                        </div>
+                    </div>
                 <div class="card">
                     <div class="card-header bg-fid">
 
@@ -15,7 +32,7 @@
                     <div class="card-body tab-content">
                         <div class="tab-pane container active" id="profile">
                             <h3 class="text-center"><span class="badge badge-fid">Mein Profil</span></h3>
-                            <form method="post"  hx-post="{{ webInfo.baseurl }}me" hx-swap="innerHTML" hx-target="#body_wrapper">
+                            <form method="post"  hx-post="{{ webInfo.baseurl }}me" hx-swap="innerHTML" hx-target="#body_wrapper" hx-indicator="#spinner">
 
                                 <ul class="list-group-flush">
                                     <li class="list-group-item d-flex justify-content-between">
@@ -79,7 +96,7 @@
                         </div>
                         <div class="tab-pane container fade" id="password">
                             <h3 class="text-center"><span class="badge badge-fid">Passwort ändern</span></h3>
-                            <form method="post"  hx-post="{{ webInfo.baseurl }}me" hx-swap="innerHTML" hx-target="#body_wrapper">
+                            <form method="post"  hx-post="{{ webInfo.baseurl }}me" hx-swap="innerHTML" hx-target="#body_wrapper" hx-indicator="#spinner">
 
                                 <ul class="list-group-flush">
                                     <li class="list-group-item d-flex justify-content-between">
