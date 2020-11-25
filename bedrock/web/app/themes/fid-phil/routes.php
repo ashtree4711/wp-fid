@@ -25,6 +25,7 @@ Router::get('/records/{recordId}', 'SearchController@showRecord');
  * User Routes
  */
 Router::get('/me', 'UserController@showProfile');
+Router::post('/me', 'UserController@updateProfile');
 
 
 /**
@@ -35,7 +36,7 @@ Router::post('/login', 'AuthController@login');
 Router::get('/portal/login', 'AuthController@login');
 Router::post('/logout', 'AuthController@logout');
 Router::post('/signup', 'AuthController@signup');
-Router::post('/confirm', 'AuthController@confirm');
+Router::get('/confirm/{registrationkey}', 'AuthController@confirm');
 
 
 /**

@@ -38,7 +38,6 @@ class Authenticator
                 "cookies" => $jar]);
             $res->status_code=$res->getStatusCode();
             error_log(print_r($res, true));
-            unset($_COOKIE["sessionID"]);
             session_unset();
             session_destroy();
             $user["login"]=0;
@@ -57,34 +56,30 @@ class Authenticator
     public static function signup($kugUrl, $params){
         $client = new Client();
         try {
-            $res = $client->request('POST', $kugUrl."/users/registrations",  [
-                RequestOptions::JSON => [
+            $res = $client->request('POST', $kugUrl."users/registrations",  [
+                "form_params" => [
                     "username" => $params["username"],
                     "password1"=>$params["password1"],
                     "password2"=>$params["password2"],
                     "wp_home"=>$params["wp_home"]
                 ]]);
             $res->status_code=$res->getStatusCode();
+            error_log(print_r($res, true));
 
             return $res;
         } catch (ClientException $exception){
+            error_log(print_r($exception->getResponse()->getStatusCode(), true));
+
             $exception->status_code=$exception->getResponse()->getStatusCode();
             return $exception;
         }
     }
 
-    public static function confirm($kugUrl, $params){
+    public static function confirm($kugUrl, $registrationKey){
         $client = new Client();
         try {
-            $res = $client->request('POST', $kugUrl."/users/registrations",  [
-                RequestOptions::JSON => [
-                    "username" => $params["username"],
-                    "password1"=>$params["password1"],
-                    "password2"=>$params["password2"],
-                    "portal_host"=>$params["portal_host"]
-                ]]);
+            $res = $client->request('GET', $kugUrl."users/registrations/id/".$registrationKey);
             $res->status_code=$res->getStatusCode();
-
             return $res;
         } catch (ClientException $exception){
             $exception->status_code=$exception->getResponse()->getStatusCode();
@@ -135,9 +130,6 @@ class Authenticator
 
     private static function requestToKug($params, $kugUrl){
         $client = new Client();
-
-
-
         try {
             $res = $client->request('POST', $kugUrl."login?representation=json",  [
                 RequestOptions::JSON => ["username" => $params["username"], "password"=>$params["password"], "authenticatorid"=>"1"]]);

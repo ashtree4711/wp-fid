@@ -1,8 +1,12 @@
 {% extends "base.twig" %}
 
 {% block content %}
-    <main class="mt-5">
-        <h1 class="mt-5" style="color: green">ACTIVATION</h1>
-        {{ content|raw }}
+    <main class="container-fluid d-flex flex-column" >
+        <div class="jumbotron bg-light">
+            <h1 class="text-center">Aktivierung erfolgreich</h1>
+            <p class="text-dark text-center">
+                <a href="{{ webInfo.baseurl }}me"><button class="btn btn-fid">Jetzt anmelden</button></a>
+            </p>
+        </div>
     </main>
 {% endblock %}

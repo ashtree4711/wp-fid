@@ -121,6 +121,12 @@ nav {
   border-color: #5a2e62;
 }
 
+.btn-outline-fid:hover {
+  color: white;
+  border-color: #5a2e62;
+  background-color: #5a2e62;
+}
+
 .btn-outline-fid-secondary {
   color: #385a71;
   border-color: #385a71;
@@ -173,6 +179,14 @@ nav {
   background-color: #a65db3 !important;
 }
 
+.fid-prepend {
+  width: 200px;
+}
+
+.fid-prepend-item-100 {
+  width: 100px;
+}
+
 .footer-logo-box {
   padding: 2px;
   width: 100%;
@@ -218,6 +232,12 @@ nav {
 .link-fid:hover {
   color: #5a2e62;
   text-decoration: none;
+}
+
+.list-group-item.active {
+  border-color: #5a2e62;
+  color: #5a2e62;
+  background-color: white;
 }
 
 .list-group-facet-item-fid:hover {

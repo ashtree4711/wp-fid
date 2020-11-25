@@ -39,28 +39,31 @@ class AuthController extends BaseController
     public function signup(ServerRequest $request){
         $webInfo=WebManager::get($request);
         $params = $request->getParsedBody();
-        error_log(print_r($request, true));
+        //error_log(print_r($request, true));
         $response=Authenticator::signup($request->getServerParams()["KUG_FID"], $params);
+        $temp=json_decode($response->getBody()->getContents(), true);
+        error_log(print_r($temp, true));
+
 
 
         $success=true;
 
         if ($success){
-            return new TimberResponse('views/templates/auth/success-signup.twig', ["email"=>$params["email"]]);
+            return new TimberResponse('views/templates/auth/success-signup.twig', ["webInfo"=>$webInfo,"email"=>$params["username"], "temp"=>$temp]);
         } else {
             return "success=0";
         }
     }
 
-    public function confirm(ServerRequest $request){
+    public function confirm(ServerRequest $request, $registrationkey){
         $webInfo=WebManager::get($request);
-        $params = $request->getQueryParams();
-        error_log(print_r($request, true));
-        $response=Authenticator::confirm($request->getServerParams()["KUG_FID"], $params);
-        $success=true;
 
+        error_log(print_r($registrationkey, true));
+        $response=Authenticator::confirm($request->getServerParams()["KUG_FID"], $registrationkey);
+        $success=true;
+        //http://localhost:8000/confirm/062253b03f714c1ce120de3197a6832c
         if ($success){
-            return new TimberResponse('views/templates/auth/confirm.twig', ["email"=>""]);
+            return new TimberResponse('views/templates/auth/confirm.twig', ["webInfo"=>$webInfo]);
         } else {
             return "success=0";
         }

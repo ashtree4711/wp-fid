@@ -1,77 +1,270 @@
 {% extends "base.twig" %}
 
 {% block content %}
-<main class="container-fluid d-flex flex-column mt-5">
-    <div class="d-flex justify-content-around mt-5">
+<main class="d-flex flex-column bg-light">
+
+
         {% if user.login %}
-            <div id="left-content">
-                <div id="profile">
-                    <h3>Mein Profil</h3>
-                    <form hx-put="">
-                        <ul class="list-group-flush">
-                            <li class="list-group-item d-flex justify-content-between">
-                                <div><label for="email" class="mr-5">Email address:</label></div>
-                                <div><input type="email" class="form-control" placeholder="Enter email" id="email"></div>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between">
-                                <div><label for="email" class="mr-5">Email address:</label></div>
-                                <div><input type="email" class="form-control" placeholder="Enter email" id="email"></div>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between">
-                                <div><label for="email" class="mr-5">Email address:</label></div>
-                                <div><input type="email" class="form-control" placeholder="Enter email" id="email"></div>
-                            </li>
-                        </ul>
-                    </form>
+            {% include "views/templates/searchbar_reduce.twig" %}
+            <div class="m-5 row ">
+                <div id="left-content" class="col-12 col-md-8">
+                <div class="card">
+                    <div class="card-header bg-fid">
+
+                    </div>
+                    <div class="card-body tab-content">
+                        <div class="tab-pane container active" id="profile">
+                            <h3 class="text-center"><span class="badge badge-fid">Mein Profil</span></h3>
+                            <form method="post"  hx-post="{{ webInfo.baseurl }}me" hx-swap="innerHTML" hx-target="#body_wrapper">
+
+                                <ul class="list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend fid-prepend">
+                                                <span class="input-group-text w-100">Vorname</span>
+                                            </div>
+                                            <input type="text" class="form-control" name="vorname" placeholder="" value="{{ user.user.vorname }}">
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend fid-prepend">
+                                                <span class="input-group-text w-100">Nachname</span>
+                                            </div>
+                                            <input type="text" class="form-control" name="nachname" placeholder="" value="{{ user.user.nachname }}">
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend fid-prepend">
+                                                <span class="input-group-text w-100">Titel</span>
+                                            </div>
+                                            <select name="bag_title" class="custom-select">
+                                                <option value="" {% if user.user.title != "Prof." and user.user.title != "Dr." %}selected{% endif %}>Titel auswählen</option>
+                                                <option value="Prof." {% if user.user.title == "Prof." %}selected{% endif %}>Prof.</option>
+                                                <option value="Dr." {% if user.user.title == "Dr." %}selected{% endif %}>Dr.</option>
+                                            </select>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend fid-prepend">
+                                                <span class="input-group-text w-100">Heimatinstitution</span>
+                                            </div>
+                                            <select name="bag_institution" class="custom-select">
+                                                <option value="">Bitte auswählen</option>
+                                                <option value="1" {% if user.user.institution == "1" %}selected{% endif %}>Universität- und Stadtbibliothek Köln</option>
+                                                <option value="2" {% if user.user.institution == "2" %}selected{% endif %}>Mustermann-Bibliothek</option>
+                                            </select>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend fid-prepend">
+                                                <div class="input-group-text w-50">
+                                                    <input type="radio" name="society" value="dgphil" {% if user.user.society == "dgphil"  %}checked{% endif %}>DG-Phil
+                                                </div>
+                                                <div class="input-group-text w-50">
+                                                    <input type="radio" name="society" value="gap" {% if user.user.society == "gap"  %}checked{% endif %}>GAP
+                                                </div>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Mitgliedsnummer" name="society_no" value="{{ user.user.society_no }}">
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <button class="btn btn-outline-fid btn-block">Änderungen abschicken</button>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+                        <div class="tab-pane container fade" id="password">
+                            <h3 class="text-center"><span class="badge badge-fid">Passwort ändern</span></h3>
+                            <form method="post"  hx-post="{{ webInfo.baseurl }}me" hx-swap="innerHTML" hx-target="#body_wrapper">
+
+                                <ul class="list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend fid-prepend">
+                                                <span class="input-group-text w-100">Passwort</span>
+                                            </div>
+                                            <input id="password1" type="password" class="form-control pwd"  name="password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Passwort eingeben" required>
+                                            <input id="password2" type="password" class="form-control pwd" name="password2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Passwort wiederholen" required>
+                                        </div>
+
+                                        <div class="mb-2" id="message" style="display: none">
+                                            <span id="letter" class="badge badge-secondary invalid">min. 1 Großbuchstabe</span>
+                                            <span id="capital" class="badge badge-secondary invalid">min. 1 Kleinbuchstabe</span>
+                                            <span id="number" class="badge badge-secondary invalid">min. 1 Zahl</span>
+                                            <span id="length" class="badge badge-secondary invalid">min. 8 Zeichen</span>
+                                        </div>
+                                        <div class="mb-2" id="message2" style="display: none">
+                                            <span  id="wrongPassword" class="badge badge-secondary invalid">Passwörter nicht identisch</span>
+                                        </div>
+
+                                    </li>
+
+
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <button type="submit"  id="submitter" class="btn btn-outline-fid btn-block disabled-cursor">Änderungen abschicken</button>
+                                    </li>
+                                    <script>
+                                        var myInput = document.getElementById("password1");
+                                        var myInput2 = document.getElementById("password2");
+                                        var letter = document.getElementById("letter");
+                                        var capital = document.getElementById("capital");
+                                        var number = document.getElementById("number");
+                                        var length = document.getElementById("length");
+                                        var wrongPassword = document.getElementById("wrongPassword");
+
+                                        // When the user clicks on the password field, show the message box
+                                        myInput.onfocus = function() {
+                                            document.getElementById("message").style.display = "block";
+                                        };
+
+                                        // When the user clicks outside of the password field, hide the message box
+                                        myInput.onblur = function() {
+                                            document.getElementById("message").style.display = "none";
+                                        };
+
+                                        myInput2.onfocus = function() {
+                                            document.getElementById("message2").style.display = "block";
+                                        };
+
+                                        myInput2.onblur = function() {
+                                            document.getElementById("message2").style.display = "none";
+                                        };
+
+                                        // When the user starts to type something inside the password field
+                                        myInput.onkeyup = function() {
+                                            // Validate lowercase letters
+                                            var lowerCaseLetters = /[a-z]/g;
+                                            if(myInput.value.match(lowerCaseLetters)) {
+                                                letter.classList.add("bg-fid");
+                                            } else {
+                                                letter.classList.remove("bg-fid");
+                                            }
+
+                                            // Validate capital letters
+                                            var upperCaseLetters = /[A-Z]/g;
+                                            if(myInput.value.match(upperCaseLetters)) {
+                                                capital.classList.add("bg-fid");
+                                            } else {
+                                                capital.classList.remove("bg-fid");
+                                            }
+
+                                            // Validate numbers
+                                            var numbers = /[0-9]/g;
+                                            if(myInput.value.match(numbers)) {
+                                                number.classList.add("bg-fid");
+                                            } else {
+                                                number.classList.remove("bg-fid");
+                                            }
+                                            // Validate length
+                                            if(myInput.value.length >= 8) {
+                                                length.classList.add("bg-fid");
+                                            } else {
+                                                length.classList.remove("bg-fid");
+                                            }
+                                        }
+
+                                        myInput2.onkeyup = function() {
+                                            if(myInput.value===myInput2.value){
+                                                wrongPassword.classList.add("bg-fid");
+                                            } else {
+                                                wrongPassword.classList.remove("bg-fid");
+                                            }
+
+                                        }
+                                        $('.pwd').on('input', function () {
+                                            if ($('#password1').val()!==$('#password2').val()){
+                                                $('#wrongPassword').removeAttr("hidden");
+                                                $('#submitter').attr("disabled", "disabled");
+                                                $('#submitter').addClass("disabled-cursor")
+                                            } else {
+                                                $('#wrongPassword').attr("hidden", "hidden");
+                                                $('#submitter').removeAttr("disabled");
+                                                $('#submitter').removeClass("disabled-cursor");
+                                            }
+                                        })
+
+                                    </script>
+                                </ul>
+                            </form>
+                        </div>
+                        <div class="tab-pane container fade" id="menu2">...</div>
+                    </div>
                 </div>
+
+
             </div>
-            <div id="right-content">
-                {{ user|json_encode }}
+                <div id="right-content" class="col-12 col-md-4">
+                <ul class="list-group">
+                    <li class="fid-list pointer list-group-item bg-fid text-light">Funktionen</li>
+                    <li class="fid-list pointer list-group-item disabled" ><i class="fas fa-clipboard-check mr-2"></i>Merkzettel verwalten</li>
+                    <li class="fid-list pointer list-group-item disabled" ><i class="fas fa-clipboard-list mr-2"></i>Listen verwalten</li>
+                    <li class="fid-list pointer list-group-item disabled" ><i class="fas fa-bullhorn mr-2"></i>Empfehlung aussprechen</li>
+                    <li class="fid-list pointer list-group-item bg-fid text-light">Konto</li>
+                    <li class="fid-list pointer list-group-item" data-toggle="tab" href="#profile"><i class="fas fa-address-card mr-2"></i>Mein Profil</li>
+                    <li class="fid-list pointer list-group-item" data-toggle="tab" href="#password"><i class="fas fa-key mr-2"></i>Passwort ändern</li>
+                    <li class="fid-list pointer list-group-item disabled"><i class="far fa-paper-plane mr-2"></i>Kontakt</li>
+                </ul>
+                <script>
+                    $(".list-group-item").on("click", function () {
+                        $(".list-group-item").removeClass("active");
+                    })
+                </script>
+
             </div>
-
-
-
-
+            </div>
         {% else %}
-            <div class="card">
-                <div class="card-header">
-                    Nicht angemeldet
-                </div>
-                <div class="card-body">
-                    <form  method="post"  hx-post="{{ webInfo.baseurl }}login">
-                        <!--action="http://localhost:20445/portal/fidphil/login"-->
-                        <div class="input-group mb-3">
-                            <input id="redirectTo" type="hidden" name="redirect_to" value="{{ webInfo.currentUrl }}" hx-swap-oob="true">
-                            <input type="hidden" name="authenticatorid" value="1">
+            <div class="jumbotron jumbotron-fluid mb-0 landing-page-img pt-5">
 
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-fid text-white"><i class="fas fa-user"></i></span>
-                            </div>
-                            <input type="email" name="username" class="form-control" placeholder="Benutzername / Email" required>
+                <div class="col-12 d-flex justify-content-center">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            Anmelden
                         </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-fid text-white"><i class="fas fa-key"></i></span>
-                            </div>
-                            <input type="password" name="password" class="form-control" placeholder="Passwort" required>
+                        <div class="card-body">
+                            <form  method="post"  hx-post="{{ webInfo.baseurl }}login">
+                                <!--action="http://localhost:20445/portal/fidphil/login"-->
+                                <div class="input-group mb-3">
+                                    <input id="redirectTo" type="hidden" name="redirect_to" value="{{ webInfo.currentUrl }}" hx-swap-oob="true">
+                                    <input type="hidden" name="authenticatorid" value="1">
+
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-fid text-white"><i class="fas fa-user"></i></span>
+                                    </div>
+                                    <input type="email" name="username" class="form-control" placeholder="Benutzername / Email" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-fid text-white"><i class="fas fa-key"></i></span>
+                                    </div>
+                                    <input type="password" name="password" class="form-control" placeholder="Passwort" required>
+                                </div>
+                                <button id="login-submitter" type="submit" class="btn btn-fid btn-block">Abschicken</button>
+                                <small class="text-fid text-center pointer" data-toggle="modal" data-target="#registerModal">Noch nicht nicht registriert?</small>
+                                {% if status_code %}
+                                    <div class="d-flex justify-content-center">
+                                        {% if status_code == 401 %}
+                                            <span class="badge badge-warning">Benutzername oder Passwort falsch. Versuche es nochmal.</span>
+                                        {% endif %}
+
+                                        {% if status_code == 404 %}
+                                            <span class="badge badge-danger">Server nicht erreichbar</span>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                            </form>
+
                         </div>
-                        <button id="login-submitter" type="submit" class="btn btn-fid btn-block">Abschicken</button>
-                        {% if status_code %}
-                            <div class="d-flex justify-content-center">
-                                {% if status_code == 401 %}
-                                    <span class="badge badge-warning">Benutzername oder Passwort falsch. Versuche es nochmal.</span>
-                                {% endif %}
-
-                                {% if status_code == 404 %}
-                                    <span class="badge badge-danger">Server nicht erreichbar</span>
-                                {% endif %}
-                            </div>
-                        {% endif %}
-                    </form>
-
+                    </div>
                 </div>
             </div>
+            <hr style="height: 3px; margin-top: 0!important; padding-top: 0!important;">
+
+
         {% endif %}
-    </div>
+
 </main>
 {% endblock %}

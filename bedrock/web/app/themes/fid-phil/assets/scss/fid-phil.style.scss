@@ -121,6 +121,11 @@ nav {
   color: $primary;
   border-color: $primary;
 }
+.btn-outline-fid:hover {
+  color: white;
+  border-color: $primary;
+  background-color: $primary;
+}
 
 .btn-outline-fid-secondary {
   color: $secondary;
@@ -174,6 +179,14 @@ nav {
   background-color: lighten($primary, 25)!important;
 }
 
+.fid-prepend {
+  width: 200px;
+}
+
+.fid-prepend-item-100 {
+  width: 100px;
+}
+
 .footer-logo-box {
   padding: 2px;
   width: 100%;
@@ -220,6 +233,12 @@ nav {
 .link-fid:hover{
   color: $primary;
   text-decoration: none;
+}
+
+.list-group-item.active {
+  border-color: $primary;
+  color: $primary;
+  background-color: lighten($primary, 80%);
 }
 
 .list-group-facet-item-fid:hover {
