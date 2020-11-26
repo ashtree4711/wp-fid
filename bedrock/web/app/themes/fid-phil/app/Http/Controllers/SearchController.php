@@ -38,7 +38,7 @@ class SearchController extends BaseController
         $webInfo=WebManager::get($request);
         $user=UserManager::get($request);
         $data=KugCatalog::getResultByUrl($request->getQueryParams()["href"]);
-        return new TimberResponse('views/templates/single-record.twig', ["data"=>$data, "webInfo"=>$webInfo, "user"=>$user]);
+        return new TimberResponse('views/templates/search/single-record.twig', ["data"=>$data, "webInfo"=>$webInfo, "user"=>$user]);
     }
 
 

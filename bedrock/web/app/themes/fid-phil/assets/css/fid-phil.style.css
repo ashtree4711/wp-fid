@@ -116,6 +116,18 @@ nav {
   border-color: #8a4696;
 }
 
+.btn-fid-secondary {
+  color: white;
+  background-color: #385a71;
+  border-color: #385a71;
+}
+
+.btn-fid-secondary:hover {
+  color: white;
+  background-color: #5183a4;
+  border-color: #5183a4;
+}
+
 .btn-outline-fid {
   color: #5a2e62;
   border-color: #5a2e62;
@@ -308,6 +320,11 @@ nav {
 
 .pointer {
   cursor: pointer;
+}
+
+.record-type {
+  width: 200px;
+  min-width: 200px;
 }
 
 .result-content-box {
@@ -591,6 +608,11 @@ nav {
 
   .landing-tile-header {
     font-size: 1.5rem;
+  }
+
+  .record-type {
+    width: 60px;
+    min-width: 60px;
   }
 
   .welcome-box {
