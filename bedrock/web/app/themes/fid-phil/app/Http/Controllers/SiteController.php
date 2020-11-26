@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 use App\Http\Authentication\Authenticator;
-use App\Http\Operations\KugCatalog;
-use App\Http\Operations\UrlBuilder;
 use App\Http\Operations\UserManager;
 use App\Http\Operations\WebManager;
-use GuzzleHttp\Client;
 use Rareloop\Lumberjack\Http\Controller as BaseController;
 use Rareloop\Lumberjack\Http\Responses\TimberResponse;
 use Rareloop\Lumberjack\Http\ServerRequest;
-
 use Rareloop\Lumberjack\Post;
 use Timber\Timber;
+use Wikisource\Api\Wikisource;
+use Wikisource\Api\WikisourceApi;
+
 
 class SiteController extends BaseController
 {
@@ -30,8 +29,11 @@ class SiteController extends BaseController
     public function showKuratorium(ServerRequest $request){
         $webInfo=WebManager::get($request);
         $user=UserManager::get($request);
+        $wsApi = new WikisourceApi();
+        $data = $wsApi->fetchWikisources();
+
         //$user=Authenticator::auth($request->getServerParams()["KUG_FID"]);
-        return new TimberResponse('views/templates/kuratorium.twig', [ "webInfo"=>$webInfo, "user"=>$user]);
+        return new TimberResponse('views/templates/kuratorium.twig', [ "webInfo"=>$webInfo, "user"=>$user, "data"=>$data]);
     }
 
     public function showKuratoriumEntry(ServerRequest $request){
