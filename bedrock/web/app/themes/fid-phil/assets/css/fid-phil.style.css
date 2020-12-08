@@ -231,9 +231,13 @@ nav {
   font-family: Raleway, sans-serif;
 }
 
+.landing-table-tile {
+  width: 1200px;
+}
+
 .landing-tile {
   height: 240px;
-  width: 240px;
+  width: 250px;
 }
 
 .landing-tile-font {
@@ -249,6 +253,11 @@ nav {
 .link-fid:hover {
   color: #5a2e62;
   text-decoration: none;
+}
+
+.list-group-hover:hover {
+  background-color: #f5f5f5;
+  cursor: pointer;
 }
 
 .list-group-item.active {
@@ -358,6 +367,10 @@ nav {
 .story-content {
   font-size: 22px;
   text-align: justify;
+}
+
+.td-fid {
+  width: 10% !important;
 }
 
 .text-fid {
@@ -593,6 +606,19 @@ nav {
   .story-content {
     font-size: 2.3vh;
   }
+
+  .landing-tile {
+    width: 23vw;
+  }
+
+  .landing-table-tile {
+    width: 92vw;
+  }
+}
+@media (max-width: 1100px) {
+  .landing-tile {
+    width: 400px;
+  }
 }
 @media (max-width: 768px) {
   .strong-fid {
@@ -603,9 +629,13 @@ nav {
     height: 200px !important;
   }
 
+  .landing-table-tile {
+    width: 92vw;
+  }
+
   .landing-tile {
     height: 180px;
-    width: 350px;
+    width: 400px;
   }
 
   .landing-tile-header {

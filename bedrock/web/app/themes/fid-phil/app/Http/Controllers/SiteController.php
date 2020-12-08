@@ -9,8 +9,7 @@ use Rareloop\Lumberjack\Http\Responses\TimberResponse;
 use Rareloop\Lumberjack\Http\ServerRequest;
 use Rareloop\Lumberjack\Post;
 use Timber\Timber;
-use Wikisource\Api\Wikisource;
-use Wikisource\Api\WikisourceApi;
+
 
 
 class SiteController extends BaseController
@@ -29,11 +28,10 @@ class SiteController extends BaseController
     public function showKuratorium(ServerRequest $request){
         $webInfo=WebManager::get($request);
         $user=UserManager::get($request);
-        $wsApi = new WikisourceApi();
-        $data = $wsApi->fetchWikisources();
+
 
         //$user=Authenticator::auth($request->getServerParams()["KUG_FID"]);
-        return new TimberResponse('views/templates/kuratorium.twig', [ "webInfo"=>$webInfo, "user"=>$user, "data"=>$data]);
+        return new TimberResponse('views/templates/kuratorium.twig', [ "webInfo"=>$webInfo, "user"=>$user]);
     }
 
     public function showKuratoriumEntry(ServerRequest $request){
