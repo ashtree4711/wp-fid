@@ -19,7 +19,7 @@ class UserController extends BaseController
        if (isset($_SESSION["leaflets"])){
            for ($i=0; $i<count($_SESSION["leaflets"]); $i++) {
 
-               array_push($user["leaflets_full"], KugCatalog::getResultByUrl("httP://localhost:20445/portal/fidphil/users/id/11/databases/id/eds/titles/id/".$_SESSION["leaflets"][$i].".json"));
+               array_push($user["leaflets_full"], KugCatalog::getResultByUrl($request->getServerParams()["KUG_FID"]."users/id/".$_SESSION["userID"]."/databases/id/eds/titles/id/".$_SESSION["leaflets"][$i].".json"));
            }
        }
 
