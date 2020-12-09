@@ -20,7 +20,7 @@ class SiteController extends BaseController
     public function showLandingPage(ServerRequest $request){
 
         $webInfo=WebManager::get($request);
-        $user=Authenticator::auth($request->getServerParams()["KUG_FID"]);
+        $user=UserManager::get($request);
         return new TimberResponse('views/templates/landing.twig', [ "webInfo"=>$webInfo, "user"=>$user]);
     }
 

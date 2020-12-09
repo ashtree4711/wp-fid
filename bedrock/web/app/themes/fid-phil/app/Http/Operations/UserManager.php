@@ -12,6 +12,10 @@ class UserManager
 {
     public static function get(ServerRequest $request){
         $user=Authenticator::auth($request->getServerParams()["KUG_FID"]);
+        if (isset($_SESSION["leaflets"])){
+            $user["leaflets"]=$_SESSION["leaflets"];
+        }
+
         return $user;
     }
 

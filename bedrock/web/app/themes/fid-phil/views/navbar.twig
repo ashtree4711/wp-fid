@@ -1,4 +1,23 @@
-<nav class="navbar navbar-expand-md bg-light navbar-light shadow-sm fixed-top">
+
+<nav id="navbar_wrapper" class="navbar navbar-expand-md bg-light navbar-light shadow-sm fixed-top">
+    <div id="spinner" class="cssload-loader-inner htmx-indicator position-fixed">
+        <div class="cssload-cssload-loader-line-wrap-wrap">
+            <div class="cssload-loader-line-wrap"></div>
+        </div>
+        <div class="cssload-cssload-loader-line-wrap-wrap">
+            <div class="cssload-loader-line-wrap"></div>
+        </div>
+        <div class="cssload-cssload-loader-line-wrap-wrap">
+            <div class="cssload-loader-line-wrap"></div>
+        </div>
+        <div class="cssload-cssload-loader-line-wrap-wrap">
+            <div class="cssload-loader-line-wrap"></div>
+        </div>
+        <div class="cssload-cssload-loader-line-wrap-wrap">
+            <div class="cssload-loader-line-wrap"></div>
+        </div>
+    </div>
+    <div  class="spinner"></div>
     <!-- Brand -->
     <a class="navbar-brand" href="/">
         <div class="row ml-1">
@@ -34,35 +53,39 @@
                 </li>
 
             </ul>
-            <ul class="d-none d-md-inline-flex navbar-nav btn-group" >
+            <ul class="d-none d-md-inline-flex navbar-nav btn-group btn-group-sm" >
                 {% if user.login==1 %}
-                    <button class="btn btn-fid" hx-get="{{ webInfo.baseurl }}/me" hx-target="#body_wrapper" hx-push-url="true">
-                        Profil ({{ user.user.username }})
+                    {% if user.leaflets %}
+                    <button class="btn btn-outline-fid" hx-get="{{ webInfo.baseurl }}me?subroute=leaflets" hx-target="#body_wrapper" hx-push-url="true" hx-indicator="#spinner">
+                        <i class="fas fa-tag"></i> <span class="d-none d-lg-inline">Merkliste <span class="badge badge-fid">{{ user.leaflets|length }}</span></span>
                     </button>
-
-
-
-                    <button class="btn btn-secondary"  hx-post="{{ webInfo.baseurl }}/logout" hx-target="#body_wrapper" hx-push-url="true">
-                        Abmelden
+                    {% endif %}
+                    <button class="btn btn-fid" hx-get="{{ webInfo.baseurl }}me" hx-target="#body_wrapper" hx-push-url="true">
+                        <i class="fas fa-user"></i> <span class="d-none d-lg-inline">Mein Konto</span>
+                    </button>
+                    <button class="btn btn-secondary"  hx-post="{{ webInfo.baseurl }}logout" hx-target="#body_wrapper" hx-push-url="true">
+                        <i class="fas fa-sign-out-alt"></i> <span class="d-none d-lg-inline">Abmelden</span>
                     </button>
 
                 {% else %}
                     <button class="btn btn-fid" data-toggle="modal" data-target="#registerModal">
-                        Registrieren
+                        <i class="fas fa-user-plus"></i> <span class="d-none d-lg-inline">Registrieren</span>
                     </button>
                     <button id="loginButton" class="btn btn-secondary" data-toggle="modal" data-target="#loginModal">
-                        Anmelden
+                        <i class="fas fa-sign-in-alt"></i> <span class="d-none d-lg-inline">Anmelden</span>
                     </button>
                 {% endif %}
             </ul>
-            <ul class="d-inline-flex d-md-none navbar-nav btn-group btn-group-vertical">
+            <ul class="d-inline-flex d-md-none navbar-nav btn-group-vertical">
                 {% if user.login==1 %}
-                    <button class="btn btn-fid">
-                        Hallo {{ userInfo.user.firstname }}
+                    <button class="btn btn-outline-fid" hx-get="{{ webInfo.baseurl }}me?subroute=leaflets" hx-target="#body_wrapper" hx-push-url="true" hx-indicator="#spinner">
+                        <i class="fas fa-tag"></i> Merkzettel
                     </button>
-
-                    <button class="btn btn-secondary" hx-post="{{ webInfo.baseurl }}/logout">
-                        Abmelden
+                    <button class="btn btn-fid" hx-get="{{ webInfo.baseurl }}me" hx-target="#body_wrapper" hx-push-url="true">
+                        <i class="fas fa-user"></i> Mein Konto
+                    </button>
+                    <button class="btn btn-secondary"  hx-post="{{ webInfo.baseurl }}logout" hx-target="#body_wrapper" hx-push-url="true">
+                        <i class="fas fa-sign-out-alt"></i> Abmelden
                     </button>
 
                 {% else %}

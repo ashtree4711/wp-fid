@@ -8,7 +8,7 @@
             <div class="jumbotron jumbotron-fluid pt-4 mb-0" style="background-image: url('{{ webInfo.baseurl }}app/themes/fid-phil/assets/img/a_school.jpg'); background-position: center; min-height: 50px!important; height: 80px">
                 <div class="container d-flex justify-content-center" >
                     <div class="search_box p-0" >
-                        <form hx-get="/search" hx-target="#result_wrapper" hx-select="#result_wrapper "hx-swap="outerHTML" hx-push-url="true" hx-indicator="#spinner">
+                        <form hx-get="{{ webInfo.baseurl }}search" hx-target="#result_wrapper" hx-select="#result_wrapper "hx-swap="outerHTML" hx-push-url="true" hx-indicator="#spinner">
                             <div id="search_wrapper" class="input-group input-group-lg shadow-sm" >
                                 <div class="input-group-prepend">
                                     <button type="submit" class="input-group-text bg-fid border-fid">
@@ -31,27 +31,7 @@
             </div>
             <hr style="height: 3px; margin-top: 0!important; padding-top: 0!important;">
         </div>
-        <div id="spinner" class="cssload-loader-inner htmx-indicator position-fixed">
-            <div class="cssload-cssload-loader-line-wrap-wrap">
-                <div class="cssload-loader-line-wrap"></div>
-            </div>
-            <div class="cssload-cssload-loader-line-wrap-wrap">
-                <div class="cssload-loader-line-wrap"></div>
-            </div>
-            <div class="cssload-cssload-loader-line-wrap-wrap">
-                <div class="cssload-loader-line-wrap"></div>
-            </div>
-            <div class="cssload-cssload-loader-line-wrap-wrap">
-                <div class="cssload-loader-line-wrap"></div>
-            </div>
-            <div class="cssload-cssload-loader-line-wrap-wrap">
-                <div class="cssload-loader-line-wrap"></div>
-            </div>
-        </div>
-
-
-
-        <div  class="spinner"></div>
+        <!-- SPINNER -->
 
         <div id="result_wrapper" class="flex-column" >
             <input type="hidden" id="currentURL" value="{{ webInfo.currentUrl }}">
@@ -60,18 +40,18 @@
                 <div id="allPages" class="collapse bg-fid-secondary" style="margin-left: 96px; width: 50px; padding-top: 15px; border-top-left-radius: 0.25rem; border-top-right-radius: 0.25rem">
                     <ul class="list-group list-group-flush  text-light" style="max-height: 50vh!important; overflow-y: auto; overflow-x: hidden;">
                         {% for page in data.pagination.all %}
-                        <a hx-get="{{ data.pagination.url }}{{ page }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">
+                        <a hx-get="{{ data.pagination.url }}{{ page }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-indicator="#spinner">
                             <li class="list-group-item small bg-fid-secondary text-center pointer pagination-page" style="padding: 0" >{{ page }}</li>
                         </a>
                         {% endfor %}
                     </ul>
                 </div>
                 <ul class="pagination justify-md-content-start" style="margin-left:20px;">
-                    <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary-slightly-brightest border-0 text-light" hx-get="{{ data.pagination.url }}{{ data.pagination.first }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner"><i class="fas fa-fast-backward"></i></a></li>
-                    <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary-slightly-brighter border-0 text-light" hx-get="{{ data.pagination.url }}{{ data.pagination.previous }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner"><i class="fas fa-step-backward"></i></a></li>
+                    <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary-slightly-brightest border-0 text-light" hx-get="{{ data.pagination.url }}{{ data.pagination.first }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true"  hx-indicator="#spinner"><i class="fas fa-fast-backward"></i></a></li>
+                    <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary-slightly-brighter border-0 text-light" hx-get="{{ data.pagination.url }}{{ data.pagination.previous }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true"  hx-indicator="#spinner"><i class="fas fa-step-backward"></i></a></li>
                     <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary border-0 text-light text-center" href="#allPages" data-toggle="collapse" style="width: 50px">{{ data.meta.page }} <i class="fas fa-caret-up" style="font-size: 10px"></i></a></li>
-                    <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary-slightly-brighter border-0 text-light" hx-get="{{ data.pagination.url }}{{ data.pagination.next }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner"><i class="fas fa-step-forward"></i></a></li>
-                    <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary-slightly-brightest border-0 text-light" hx-get="{{ data.pagination.url }}{{ data.pagination.last }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner"><i class="fas fa-fast-forward"></i></a></li>
+                    <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary-slightly-brighter border-0 text-light" hx-get="{{ data.pagination.url }}{{ data.pagination.next }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true"  hx-indicator="#spinner"><i class="fas fa-step-forward"></i></a></li>
+                    <li class="page-item shadow-lg"><a class="page-link bg-fid-secondary-slightly-brightest border-0 text-light" hx-get="{{ data.pagination.url }}{{ data.pagination.last }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true"  hx-indicator="#spinner"><i class="fas fa-fast-forward"></i></a></li>
                 </ul>
 
             </div>
@@ -100,7 +80,7 @@
                                                     <div class="dropdown-menu" style="max-height: 25vh!important; overflow-y: auto">
                                                         <ul class="list-group" >
                                                             {% for f in facet.value %}
-                                                                <li class="list-group-item list-group-facet-item-fid small text-center {% if f.2 %}facet-entry-selected{% endif %}" hx-get="{{ webInfo.noPageUrl }}&{{ facet.key }}[]={{ f.0 }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt>
+                                                                <li class="list-group-item list-group-facet-item-fid small text-center {% if f.2 %}facet-entry-selected{% endif %}" hx-get="{{ webInfo.noPageUrl }}&{{ facet.key }}[]={{ f.0 }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" >
                                                                     {{ f.0 }}<span class="ml-2 badge badge-primary bg-fid">{{ f.1 }}</span>
                                                                 </li>
                                                             {% endfor %}
@@ -125,7 +105,7 @@
                         <div id="small_selected_wrapper" class="d-flex justify-content-center pb-1">
                             {% for facet in data.facets %}
                                 {% for s in facet.selected %}
-                                    <button class="btn btn-sm btn-outline-fid-secondary" hx-get="{{ s.1 }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt>{{ facet.key }}: {{ s.0 }} <i class="ml-1 fas fa-times"></i></button>
+                                    <button class="btn btn-sm btn-outline-fid-secondary" hx-get="{{ s.1 }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" >{{ facet.key }}: {{ s.0 }} <i class="ml-1 fas fa-times"></i></button>
                                 {% endfor %}
                             {% endfor %}
                         </div>
@@ -143,9 +123,9 @@
                                     Treffer pro Seite
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" hx-get="{{ webInfo.noPageUrl }}&hits=20" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">20</a>
-                                    <a class="dropdown-item" hx-get="{{ webInfo.noPageUrl }}&hits=40" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">40</a>
-                                    <a class="dropdown-item" hx-get="{{ webInfo.noPageUrl }}&hits=60" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">60</a>
+                                    <a class="dropdown-item" hx-get="{{ webInfo.noPageUrl }}&hits=20" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true"  hx-indicator="#spinner">20</a>
+                                    <a class="dropdown-item" hx-get="{{ webInfo.noPageUrl }}&hits=40" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true"  hx-indicator="#spinner">40</a>
+                                    <a class="dropdown-item" hx-get="{{ webInfo.noPageUrl }}&hits=60" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true"  hx-indicator="#spinner">60</a>
                                 </div>
                             </div>
                             <div class="btn-group">
@@ -153,9 +133,9 @@
                                     Sortierung
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" hx-get="{{ webInfo.noPageUrl }}&sort=year_asc" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">Jahr ASC</a>
-                                    <a class="dropdown-item" hx-get="{{ webInfo.noPageUrl }}&sort=year_desc" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">Jahr DESC</a>
-                                    <a class="dropdown-item" hx-get="{{ webInfo.noPageUrl }}&sort=relevance_desc" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">Relevanz</a>
+                                    <a class="dropdown-item" hx-get="{{ webInfo.noPageUrl }}&sort=year_asc" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true"  hx-indicator="#spinner">Jahr ASC</a>
+                                    <a class="dropdown-item" hx-get="{{ webInfo.noPageUrl }}&sort=year_desc" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-indicator="#spinner">Jahr DESC</a>
+                                    <a class="dropdown-item" hx-get="{{ webInfo.noPageUrl }}&sort=relevance_desc" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true"  hx-indicator="#spinner">Relevanz</a>
                                 </div>
                             </div>
                         </div>
@@ -216,7 +196,8 @@
                                             <div class="d-flex justify-content-between result-content-box" >
                                                 <div class="p-1" style="max-height: 80px!important">
                                                     <div style="height: 70%; overflow: hidden;">
-                                                        <strong class="strong-fid" style="width: 50%; vertical-align: middle!important; line-height: 1!important;">{% if record.fields.T0331.0.content|length>=250  %}{{ record.fields.T0331.0.content|slice(0,249) }} [...]{% else %}{{ record.fields.T0331.0.content }}{% endif %}, {{ record.fields.T0425.0.content }}</strong><br>
+                                                        <i class="d-none fas fa-tag text-fid {% if record.id in user.leaflets %}d-inline{% endif %}"></i>
+                                                        <strong class="strong-fid" style="width: 50%; vertical-align: middle!important; line-height: 1!important;">{% if record.fields.T0331.0.content|length>=250  %}{{ record.fields.T0331.0.content|slice(0,249) }} [...]{% else %}{{ record.fields.T0331.0.content }}{% endif %}, {{ record.fields.T0425.0.content }} </strong><br>
                                                     </div>
                                                     <div style="height: 30%">
                                                         <small class="italic-font">{{ record.fields.PC0001.0.content }}</small>
@@ -230,11 +211,17 @@
                                                             </div>
                                                         </a>
                                                         <div class="slide-element bg-fid-secondary-brighter text-white" style="height: 100%">
-                                                            <i class="fas fa-tag icon-fid-md align-self-center" ></i>
-                                                        </div>
-                                                        <div class="slide-element bg-fid-secondary-brightest text-white" style="height: 100%">
                                                             <i class="fas fa-quote-right icon-fid-md align-self-center"></i>
                                                         </div>
+                                                        {% if record.id in user.leaflets %}
+                                                            <div id="leaflet_marker" class="slide-element bg-danger text-white" style="height: 100%" hx-delete="{{ webInfo.baseurl }}leaflets/{{ record.id }}" hx-target="#navbar_wrapper" hx-select="#body_wrapper" hx-swap="outerHtml" hx-indicator="#spinner">
+                                                                <i class="fas fa-trash icon-fid-md align-self-center" ></i>
+                                                            </div>
+                                                        {% else %}
+                                                            <div id="leaflet_marker" class="slide-element bg-fid-secondary-brightest text-white" style="height: 100%" hx-post="{{ webInfo.baseurl }}leaflets/{{ record.id }}" hx-target="#navbar_wrapper"  hx-swap="innerHtml" hx-indicator="#spinner">
+                                                                <i class="fas fa-tag icon-fid-md align-self-center" ></i>
+                                                            </div>
+                                                        {% endif %}
 
                                                     </div>
                                                 </div>
@@ -250,6 +237,14 @@
                     </ul>
 
                 </div>
+                <script>
+                    $(document).on("click", "#leaflet_marker", function () {
+                        $(this).parent().parent().parent().find(".text-fid").addClass("d-inline")
+                        $(this).find(".fa-tag").removeClass("fa-tag").addClass("fa-trash")
+                        $(this).removeClass("bg-fid-secondary-brightest").addClass("bg-danger")
+
+                    })
+                </script>
                 <div id="facet_wrapper" class="col-md-3 d-none d-md-block pt-5">
                     <div id="carddate" class="card facet-box mb-3 shadow-sm">
                         <div class="card-body" >
@@ -310,13 +305,13 @@
 
                                             <ul  class="list-group">
                                                 {% for s in facet.selected %}
-                                                    <li class="list-group-item list-group-facet-item-fid small text-center facet-entry-selected" hx-get="{{ s.1 }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">
+                                                    <li class="list-group-item list-group-facet-item-fid small text-center facet-entry-selected" hx-get="{{ s.1 }}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-indicator="#spinner">
                                                         {{ s.0 }}<span class="ml-2 text-white"><i class="fas fa-times"></i></span>
                                                     </li>
                                                 {% endfor %}
 
                                                 {% for f in facet.value %}
-                                                    <li class="list-group-item list-group-facet-item-fid small text-center {% if f.2 %}facet-entry-selected{% endif %}" {% if loop.index > 5 %}hidden{% endif %} hx-get="{% if f.2 %}{{ f.2 }}{% else %}{{ webInfo.noPageUrl }}&{{ facet.key }}[]={{ f.0 }}{% endif %}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true" hx-history-elt hx-indicator="#spinner">
+                                                    <li class="list-group-item list-group-facet-item-fid small text-center {% if f.2 %}facet-entry-selected{% endif %}" {% if loop.index > 5 %}hidden{% endif %} hx-get="{% if f.2 %}{{ f.2 }}{% else %}{{ webInfo.noPageUrl }}&{{ facet.key }}[]={{ f.0 }}{% endif %}" hx-target="#result_wrapper" hx-select="#result_wrapper" hx-push-url="true"  hx-indicator="#spinner">
                                                         {{ f.0 }}<span class="ml-2 badge badge-primary bg-fid">{{ f.1 }}</span>
                                                     </li>
                                                 {% endfor %}

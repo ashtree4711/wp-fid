@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html {{ site.language_attributes }}>
+
+
+    {% include 'html-header.twig' %}
+
+    <body id="body_wrapper">
+    {% include "navbar.twig" %}
+        {% block content %}
+            <main class="d-flex flex-column bg-light">
+                    {% include "views/templates/searchbar_reduce.twig" %}
+                    <div class="m-5 d-flex flex-column">
+
+                        <div id="left-content" class="col-12">
+                            <div id="spinner" class="cssload-loader-inner htmx-indicator position-fixed">
+                                <div class="cssload-cssload-loader-line-wrap-wrap">
+                                    <div class="cssload-loader-line-wrap"></div>
+                                </div>
+                                <div class="cssload-cssload-loader-line-wrap-wrap">
+                                    <div class="cssload-loader-line-wrap"></div>
+                                </div>
+                                <div class="cssload-cssload-loader-line-wrap-wrap">
+                                    <div class="cssload-loader-line-wrap"></div>
+                                </div>
+                                <div class="cssload-cssload-loader-line-wrap-wrap">
+                                    <div class="cssload-loader-line-wrap"></div>
+                                </div>
+                                <div class="cssload-cssload-loader-line-wrap-wrap">
+                                    <div class="cssload-loader-line-wrap"></div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header bg-fid">
+
+                                </div>
+                                <div class="card-body d-flex justify-content-center pb-0" style="border-bottom-right-radius: 0!important; border-bottom-left-radius: 0!important;">
+
+                                    <ul class="list-group list-group-horizontal-lg" style="border-bottom-right-radius: 0!important; border-bottom-left-radius: 0!important;">
+                                        <li class="list-group-item">
+                                            <div class="">
+                                                <div style="height: 120px!important;">
+                                                    <h2 class="text-center"><i class="fas fa-user-graduate"></i></h2>
+                                                    <h3 class="text-center">Gast</h3>
+                                                </div>
+
+                                               <ul class="list-group list-group-flush text-center">
+                                                   <li class="list-group-item"><i class="far fa-check-circle text-success mr-2"></i>Freie Katalogssuche<sup>[2]</sup></li>
+                                                   <li class="list-group-item"><i class="far fa-check-circle text-success mr-2"></i>Digitalisate</li>
+                                                   <li class="list-group-item"><i class="far fa-times-circle text-danger mr-2"></i>Backlist-Titel<sup>[3]</sup></li>
+                                                   <li class="list-group-item"><i class="far fa-times-circle text-danger mr-2"></i>Volltextzugriff auf <i>Philosophers Index<sup>[4]</sup></i> und <i>PDC<sup>[5]</sup></i></li>
+                                               </ul>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <div class="">
+                                                <div style="height: 120px!important;">
+                                                    <h2 class="text-center"><i class="fas fa-user-graduate"></i></h2>
+                                                    <h3 class="text-center">Registrierter Nutzer</h3>
+                                                </div>
+                                                <ul class="list-group list-group-flush text-center">
+                                                    <li class="list-group-item"><i class="far fa-check-circle text-success mr-2"></i>Freie Katalogssuche<sup>[2]</sup></li>
+                                                    <li class="list-group-item"><i class="far fa-check-circle text-success mr-2"></i>Digitalisate</li>
+                                                    <li class="list-group-item"><i class="far fa-check-circle text-success mr-2"></i>Backlist-Titel<sup>[3]</sup></li>
+                                                    <li class="list-group-item"><i class="far fa-times-circle text-danger mr-2"></i>Volltextzugriff auf <i>Philosophers Index<sup>[4]</sup></i> und <i>PDC<sup>[5]</sup></i></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <div class="">
+                                                <div style="height: 120px!important;">
+                                                    <h2 class="text-center"><i class="fas fa-user-graduate"></i></h2>
+                                                    <h3 class="text-center">Mitglied einer Fachgesellschaft<small><sup>[1]</sup></small></h3>
+                                                </div>
+                                                <ul class="list-group list-group-flush text-center">
+                                                    <li class="list-group-item"><i class="far fa-check-circle text-success mr-2"></i>Freie Katalogssuche<sup>[2]</sup></li>
+                                                    <li class="list-group-item"><i class="far fa-check-circle text-success mr-2"></i>Digitalisate</li>
+                                                    <li class="list-group-item"><i class="far fa-check-circle text-success mr-2"></i>Backlist-Titel<sup>[3]</sup></li>
+                                                    <li class="list-group-item"><i class="far fa-check-circle text-success mr-2"></i>Volltextzugriff auf <i>Philosophers Index<sup>[4]</sup></i> und <i>PDC<sup>[5]</sup></i></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+
+
+
+                                </div>
+                                <div class="card-body d-flex justify-content-center pt-0 mt-0">
+                                    <button class="btn btn-block btn-fid m-auto" style="max-width: 1400px!important; border-top-right-radius: 0!important; border-top-left-radius: 0!important;" data-toggle="modal" data-target="#registerModal">Jetzt registrieren</button>
+
+                                </div>
+                                <div class="card-body pt-0 mt-0">
+                                    <span class="font-italic d-flex flex-column pt-2">
+                                        <span class="ml-3 "><sup>[1] </sup>unter Angabe der Mitgliedschaftsnummer einer der folgenden Gesellschaften: DGPhil, GAP</span>
+                                        <span class="ml-3 "><sup>[2] </sup>über 800.000 Datensätzen aus den Katalogen der USB, BSB, OLC</span>
+                                        <span class="ml-3 "><sup>[3] </sup>über 2.000 Backlist-Titel der Verlage Brill, Schöningh, Fink, mentis sowie auf 87 Zeitschriften des PDC</span>
+                                        <span class="ml-3 "><sup>[4] </sup>Volltexte zu 129 Zeitschriften</span>
+                                        <span class="ml-3 "><sup>[5] </sup>über 795.000 Datensätze und Volltexte zu 269 Zeitschriften</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+            </main>
+        {% endblock %}
+    <div class="mt-5"></div>
+    {% include "footer.twig" %}
+    </body>
+</html>

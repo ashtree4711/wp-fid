@@ -26,6 +26,7 @@ Router::get('/records/{recordId}', 'SearchController@showRecord');
  */
 Router::get('/me', 'UserController@showProfile');
 Router::post('/me', 'UserController@updateProfile');
+Router::get('/signup', 'UserController@signup');
 
 
 /**
@@ -42,6 +43,8 @@ Router::get('/confirm/{registrationkey}', 'AuthController@confirm');
 /**
  * Sandbox Routes
  */
+Router::post('/leaflets/{id}', 'TempController@newLeafletEntry');
+Router::delete('/leaflets/{id}', 'TempController@removeLeafletEntry');
 //Router::get('/cookies', 'SiteController@showCookies');
 
 
