@@ -1,5 +1,6 @@
 {% extends "base.twig" %}
 
+
 {% block content %}
 <main class="d-flex flex-column bg-light">
 
@@ -192,6 +193,7 @@
                             </form>
                         </div>
                         <div class="tab-pane container {% if webInfo.subroute == "leaflets" %}active{% else %}fade{% endif %}" id="leaflets">
+                            <h3 class="text-center"><span class="badge badge-fid">Merkliste verwalten</span></h3>
                             <ul class="list-group list-group-flush">
                                 {% if user.leaflets_full %}
                                     {% for record in user.leaflets_full %}

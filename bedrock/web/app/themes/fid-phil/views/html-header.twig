@@ -1,4 +1,5 @@
 <head>
+    {% block head %}
     <title>{{ function('wp_title') }}</title>
     <meta charset="{{ site.charset }}" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -26,8 +27,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js" integrity="sha512-igVQ7hyQVijOUlfg3OmcTZLwYJIBXU63xL9RC12xBHNpmGJAktDnzl9Iw0J4yrSaQtDxTTVlwhY730vphoVqJQ==" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.2/nouislider.min.css" integrity="sha512-O3hRQ2OLCWeTZjAqJzcWMwFGDuv/hzjfwgrKm1Q5+RhyM0Y0rhPF7epp5cdQN39zYNwGeNuixF3fE5AhHOiSzA==" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.2/nouislider.min.js" integrity="sha512-hwgsSKm7cPjNHLACxyMGVRrd7cH+wveyYM1ZxWxxbCZd/pXdMukyuIrrCjt2I7iLsmYDk02B1ZUcarEv1A3RVQ==" crossorigin="anonymous"></script>
+        <script src="{{ webInfo.baseurl }}app/themes/fid-phil/assets/js/bs.js"></script>
 
-    <!-- FID Assets -->
+
+        <!-- FID Assets -->
     <link rel="stylesheet" href="{{ webInfo.baseurl }}app/themes/fid-phil/assets/css/fid-phil.style.min.css">
     <link rel="stylesheet" href="{{ webInfo.baseurl }}app/themes/fid-phil/assets/css/fid-phil.bootstrap.min.css">
 
@@ -49,6 +52,10 @@
     <meta name="msapplication-TileImage" content="{{ webInfo.baseurl }}app/themes/fid-phil/assets/img/favicons/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
+        <script src="{{ webInfo.baseurl }}app/themes/fid-phil/assets/js/records.js"></script>
+
 
     {{ function('wp_head') }}
+    {% endblock %}
 </head>
+

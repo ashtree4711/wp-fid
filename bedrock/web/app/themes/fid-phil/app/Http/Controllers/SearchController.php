@@ -25,7 +25,7 @@ class SearchController extends BaseController
         $data = json_decode(json_encode($data), true);
         $data["params"]=$params;
         $webInfo["noPageUrl"]=UrlBuilder::build($params, $webInfo["baseurl"], true, true, true, true, true, false );
-        return new TimberResponse('views/templates/home.twig', ["data"=>$data, "webInfo"=>$webInfo, "user"=>$user]);
+        return new TimberResponse('views/templates/records.twig', ["data"=>$data, "webInfo"=>$webInfo, "user"=>$user]);
     }
 
     /**

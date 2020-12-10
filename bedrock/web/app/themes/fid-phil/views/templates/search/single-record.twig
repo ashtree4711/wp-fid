@@ -155,8 +155,6 @@
                                     $(this).find(".icon").removeClass("fas fa-minus");
                                     $(this).find(".icon").addClass("fas fa-plus");
                                 }
-
-
                             })
                         </script>
                     </div>
@@ -171,10 +169,15 @@
                     <li class="fid-list pointer list-group-item bg-fid text-light text-center">Verfügbarkeit</li>
                     <li class="fid-list pointer list-group-item" >
                         <h5 class="text-center"><span class=" badge badge-fid">Heimatbibliothek</span></h5>
-                        <p>
-                            Nicht in Ihrer Heimatbibliothek vorhanden.
-                            Ob der Titel per Fernleihe bestellbar ist, kann Ihnen Ihre Heimatbibliothek mitteilen.
-                        </p>
+                        <ul class="list-group">
+                                <li data-toggle="tooltip" title="Zugriff (mit Paywall)">
+                                    <a href="{{ record.eds_source.0.content.Record.Header.PLink }}" class="nav-link text-white" target="_blank">
+                                        <button class="btn btn-block btn-fid-secondary">
+                                            <i class="fas fa-circle mr-2 text-warning"></i>Verfügbarkeit
+                                        </button>
+                                    </a>
+                                </li>
+                        </ul>
                     </li>
                     <!--li class="fid-list pointer list-group-item bg-fid text-light text-center">Volltextzugriff</li-->
                     <li class="fid-list pointer list-group-item" >
@@ -186,7 +189,7 @@
                                 <li class="list-group">
                                     <a href="{{ record.eds_source.0.content.Record.Header.PLink }}" class="nav-link text-white" target="_blank">
                                         <button class="btn btn-block btn-fid-secondary">
-                                            <i class="fas fa-globe-europe mr-2"></i>Philosophers Index
+                                            <i class="fas fa-circle mr-2 text-success"></i>Philosophers Index
                                         </button>
                                     </a>
 

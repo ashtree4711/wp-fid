@@ -1,6 +1,4 @@
 {% extends "base.twig" %}
-
-
 {% block content %}
     <main class="d-flex flex-column">
 
@@ -245,6 +243,40 @@
                     })
                 </script>
                 <div id="facet_wrapper" class="col-md-3 d-none d-md-block pt-5">
+                    {% if data.params.freetext == "kant"  %}
+                        <div id="card" class="card facet-box mb-3 shadow-sm">
+                            <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Kant_foto.jpg/800px-Kant_foto.jpg" alt="Card image" style="width: 100%; height: 350px; object-fit: cover; object-position: top">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Immanuel Kant</h5>
+                                <p class="card-text">
+                                    <table class="table table-bordered table-sm" style="font-size: 14px">
+                                        <tr>
+                                            <td>Geboren</td>
+                                            <td>22.4.1724, Königsberg</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gestorben</td>
+                                            <td>12.2.1804, Königsberg</td>
+                                        </tr>
+                                    <tr>
+                                        <td>Wichtgste Werke</td>
+                                        <td>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item">Beantwortung der Frage: Was ist Aufklärung?</li>
+                                                <li class="list-group-item">Die Metaphysik der Sitten</li>
+                                                <li class="list-group-item">Die Religion innerhalb der Grenzen der bloßen Vernunft</li>
+                                                <li class="list-group-item">Grundlegung zur Metaphysik der Sitten</li>
+                                                <li class="list-group-item">Kritik der reinen Vernunft</li>
+
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    </table>
+                                </p>
+                                <a href="#" class="btn btn-fid-secondary">Zur Autorenseite</a>
+                            </div>
+                        </div>
+                    {% endif %}
                     <div id="carddate" class="card facet-box mb-3 shadow-sm">
                         <div class="card-body" >
                             <span class="facet-box-header" >
@@ -290,6 +322,7 @@
 
                         </div>
                     </div>
+
 
 
                     {% if data.facets %}
@@ -345,41 +378,6 @@
         </div>
 
         <script type="application/javascript">
-            $(document).on("mouseover", ".slide-toggle",function () {
-                $(".slide-menu").removeClass("animate__animated animate__slideInRight");
-                $(this).find(".slide-menu").addClass("animate__animated animate__slideInRight")
-            });
-
-            $(document).on("mouseleave", ".slide-toggle",function () {
-                $(".slide-menu").removeClass("animate__animated animate__slideInRight");
-            });
-
-            $(document).on("click", ".list-group-facet-item-fid", function () {
-                $('#filterModal').modal('hide');
-                $('body').removeClass('modal-open');
-                $('.modal-backdrop').remove();
-
-            })
-
-
-            $(document).on("click", ".more-button", function () {
-                $(this).siblings().prop("hidden", false);
-                $(this).prop("hidden", true)
-            });
-
-            $(document).on("click", ".less-button", function () {
-                var siblings = $(this).siblings();
-                for (i=0; i < siblings.length; i++ ) {
-                    if (i>4){
-                        $(siblings[i]).prop("hidden", true)
-                    }
-                    console.log($(siblings[i]).attr("id"))
-                    $('.more-button').prop("hidden", false);
-                    $(this).prop("hidden", true)
-
-                }
-            })
-
 
         </script>
     </main>
