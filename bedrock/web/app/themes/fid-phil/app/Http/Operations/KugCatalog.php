@@ -28,7 +28,32 @@ class KugCatalog
     public static function getResultByUrl($url){
         $client = new Client();
         $res = $client->request("GET", $url);
-        return json_decode($res->getBody()->getContents());
+        $data = json_decode($res->getBody()->getContents(), true);
+
+        $data["availability"]=self::getAvailability($data);
+        return $data;
+    }
+
+    private static function getAvailability($data){
+        if (isset($data["fields"]["T0585"][0]["content"])){
+            $isxn = $data["fields"]["T0585"][0]["content"];
+        } elseif (isset($data["fields"]["T0540"][0]["content"])) {
+            $isxn = $data["fields"]["T0540"][0]["content"];
+        } else {
+            $isxn = "4711";
+        }
+        error_log($isxn);
+        $url = "https://fernleihe.boss.bsz-bw.de/Holding/Query?isxn=".$isxn."&network=HBZ";
+        $client = new Client();
+        $res = $client->request("GET", $url );
+
+        $response = json_decode($res->getBody()->getContents(), true);
+
+        $holdings=array_values(array_values($response)[0])[0];
+        error_log(print_r($holdings, true));
+
+        return $holdings;
+
     }
 
     private static function buildQueryUrl($params, $kugUrl){
