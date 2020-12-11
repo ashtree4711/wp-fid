@@ -188,7 +188,7 @@
                                 }
                             })
                         </script>
-                        
+
                     </div>
 
                 </div>
@@ -201,28 +201,30 @@
                     <li class="fid-list pointer list-group-item bg-fid text-light text-center">Verfügbarkeit</li>
                     <li class="fid-list pointer list-group-item" >
                         <h5 class="text-center"><span class=" badge badge-fid">Heimatbibliothek</span></h5>
-                        <ul class="list-group">
+                        <ul class="list-group list-group-flush">
                             {% set hit = "false" %}
-                            {% for holding in data.availability %}
+                            {% for holding in data.availability.holdings %}
                                 {% if holding.isil == "DE-38" %}
-                                    <li>
-                                        <a href="#" class="nav-link text-white" target="_blank">
+                                    <li class="list-group-item">
+                                        <a href="{{ data.availability.hbz_link }}" class="nav-link text-white" target="_blank">
                                             <button class="btn btn-block btn-fid-secondary">
-                                                <i class="fas fa-check mr-2"></i>In Ihrer Heimatbibliothek vorhanden
+                                                <i class="fas fa-check mr-2"></i>
                                                 {% if holding.callnumber %}
-                                                    <br>
-                                                <span class="badge badge-light">{{ holding.callnumber }}{% if holding.issue %}, {{ holding.issue }}{% endif %}</span>
+                                                <span class="text-center">{{ holding.callnumber }}{% if holding.issue %}, {{ holding.issue }}{% endif %}</span>
+                                                    {% else %}
+                                                    <span class="text-center">vorhanden, aber Signatur nicht verfügbar</span>
                                                 {% endif %}
                                             </button>
                                         </a>
                                     </li>
+
                                     {% set hit = "true" %}
                                 {% endif %}
                             {% endfor %}
                             {% if hit == "false" %}
-                                <li>
+                                <p class="text-center">
                                     Leider nicht in Ihrer Heimatbibliothek vorhanden.
-                                </li>
+                                </p>
                             {% endif %}
 
                         </ul>
@@ -232,9 +234,9 @@
                         <h5 class="text-center"><span class=" badge badge-fid">FID Philosophie</span></h5>
                         {% set fidvt = true %}
                         {% if fidvt==true %}
-                            <ul class="list-group">
+                            <ul class="list-group list-group-flush">
                                 {% if record.eds_source.0.content.Record.Header.DbLabel == 'Philosophers Index with Full Text' %}
-                                <li class="list-group">
+                                <li class="list-group-item">
                                     <a href="{{ record.eds_source.0.content.Record.Header.PLink }}" class="nav-link text-white" target="_blank">
                                         <button class="btn btn-block btn-fid-secondary">
                                             <i class="fas fa-eye mr-2"></i>Philosophers Index
@@ -246,7 +248,7 @@
                                 {% endif %}
                             </ul>
                         {% else %}
-                        <p>
+                        <p class="text-center">
                             Leider können wir Ihnen keinen Volltextzugriff anbieten
                         </p>
                         {% endif %}

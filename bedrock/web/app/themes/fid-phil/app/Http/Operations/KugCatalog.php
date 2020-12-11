@@ -37,10 +37,13 @@ class KugCatalog
     private static function getAvailability($data){
         if (isset($data["fields"]["T0585"][0]["content"])){
             $isxn = $data["fields"]["T0585"][0]["content"];
+            $isxLink="http://193.30.112.134/F/?func=find-c&ccl_term=ISN=".$isxn;
         } elseif (isset($data["fields"]["T0540"][0]["content"])) {
             $isxn = $data["fields"]["T0540"][0]["content"];
+            $isxLink="http://193.30.112.134/F/?func=find-c&ccl_term=IBN=".$isxn;
         } else {
             $isxn = "4711";
+            $isxLink = "";
         }
         error_log($isxn);
         $url = "https://fernleihe.boss.bsz-bw.de/Holding/Query?isxn=".$isxn."&network=HBZ";
@@ -48,11 +51,21 @@ class KugCatalog
         $res = $client->request("GET", $url );
 
         $response = json_decode($res->getBody()->getContents(), true);
+        error_log(print_r($response, true));
+        if ($response["numfound"]!=0){
+            $holdings=array_values(array_values($response)[0])[0];
 
-        $holdings=array_values(array_values($response)[0])[0];
-        error_log(print_r($holdings, true));
+            error_log(print_r($holdings, true));
+        } else {
+            $holdings=[];
+        }
+        $returnData["holdings"]=$holdings;
+        $returnData["hbz_link"]=$isxLink;
 
-        return $holdings;
+
+
+
+        return $returnData;
 
     }
 
