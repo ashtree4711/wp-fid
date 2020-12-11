@@ -235,15 +235,16 @@
                         {% set fidvt = true %}
                         {% if fidvt==true %}
                             <ul class="list-group list-group-flush">
-                                {% if record.eds_source.0.content.Record.Header.DbLabel == 'Philosophers Index with Full Text' %}
+                                {% if record.eds_source.0.content.Record.FullText.Links.0.Type == 'pdflink' %}
                                 <li class="list-group-item">
-                                    <a href="{{ record.eds_source.0.content.Record.Header.PLink }}" class="nav-link text-white" target="_blank">
+                                    <a href="{{ webInfo.baseurl }}records/{{ data.record_id }}/show" class="nav-link text-white" target="_blank">
                                         <button class="btn btn-block btn-fid-secondary">
-                                            <i class="fas fa-eye mr-2"></i>Philosophers Index
+                                            <i class="far fa-file-pdf mr-2"></i>Philosophers Index
                                         </button>
                                     </a>
 
                                 </li>
+
 
                                 {% endif %}
                             </ul>

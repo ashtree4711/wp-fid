@@ -22,6 +22,12 @@ Router::get('/records/{recordId}', 'SearchController@showRecord');
 
 
 /**
+ * Documents / Viewer
+ */
+Router::get('/records/{recordId}/show', 'DocumentController@showDocument');
+
+
+/**
  * User Routes
  */
 Router::get('/me', 'UserController@showProfile');

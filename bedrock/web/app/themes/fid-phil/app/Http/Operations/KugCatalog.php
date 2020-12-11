@@ -25,12 +25,13 @@ class KugCatalog
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public static function getResultByUrl($url){
+    public static function getResultByUrl($recordId, $kugFid){
         $client = new Client();
-        $res = $client->request("GET", $url);
+        $res = $client->request("GET", $kugFid."databases/id/eds/titles/id/".$recordId.".json");
         $data = json_decode($res->getBody()->getContents(), true);
 
         $data["availability"]=self::getAvailability($data);
+        $data["record_id"]=$recordId;
         return $data;
     }
 

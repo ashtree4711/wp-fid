@@ -37,7 +37,7 @@ class SearchController extends BaseController
     public function showRecord(ServerRequest $request, $recordId){
         $webInfo=WebManager::get($request);
         $user=UserManager::get($request);
-        $data=KugCatalog::getResultByUrl($request->getQueryParams()["href"]);
+        $data=KugCatalog::getResultByUrl($recordId,  $request->getServerParams()["KUG_FID"]);
         return new TimberResponse('views/templates/search/single-record.twig', ["data"=>$data, "webInfo"=>$webInfo, "user"=>$user]);
     }
 
