@@ -53,11 +53,14 @@
                                                 <span class="input-group-text w-100">Heimatinstitution</span>
                                             </div>
                                             <select name="bag_institution" class="custom-select">
-                                                <option value="">Bitte auswählen</option>
-                                                <option value="1" {% if user.user.institution == "1" %}selected{% endif %}>Universität- und Stadtbibliothek Köln</option>
-                                                <option value="2" {% if user.user.institution == "2" %}selected{% endif %}>Mustermann-Bibliothek</option>
+                                                <option {% if holding.h_code == "" %}selected{% endif %}>Bitte auswählen</option>
+                                                {% for holding in user.holdings %}
+                                                    <option value="{{ holding.h_code }}" {% if holding.h_code == user.user.institution %}selected{% endif %}>{{ holding.location }}, {{ holding.name }}</option>
+                                                {% endfor %}
+
                                             </select>
                                         </div>
+
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between">
                                         <div class="input-group mb-3">

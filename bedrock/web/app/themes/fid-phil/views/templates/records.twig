@@ -14,9 +14,9 @@
                                     </button>
                                 </div>
 
-                                <input id="freetext-input" type="text" name="freetext" class="form-control" placeholder="{% if data.params.freetext %}{{ data.params.freetext }}{% else %}Suche...{% endif %}" required>
+                                <input id="freetext-input" type="text" name="freetext" class="form-control" placeholder="{% if data.params.freetext %}{{ data.params.freetext }}{% else %}Suche...{% endif %}">
                                 <div class="input-group-append d-md-none">
-                                    <button  class="input-group-text bg-fid border-fid" data-toggle="modal" data-target="#filterModal">
+                                    <button  type="button" class="input-group-text bg-fid border-fid" data-toggle="modal" data-target="#filterModal">
                                         <i class="fas fa-filter text-white"></i>
                                     </button>
                                 </div>
@@ -259,7 +259,7 @@
                                             <td>12.2.1804, Königsberg</td>
                                         </tr>
                                     <tr>
-                                        <td>Wichtgste Werke</td>
+                                        <td>Wichtigste Werke</td>
                                         <td>
                                             <ul class="list-group list-group-flush">
                                                 <li class="list-group-item">Beantwortung der Frage: Was ist Aufklärung?</li>
@@ -273,7 +273,7 @@
                                     </tr>
                                     </table>
                                 </p>
-                                <a href="#" class="btn btn-fid-secondary">Zur Autorenseite</a>
+                                <a href="{{ webInfo.baseurl }}kuratorium/kant" class="btn btn-fid-secondary" target="_blank">Zur Philosoph<sup>*</sup>in</a>
                             </div>
                         </div>
                     {% endif %}

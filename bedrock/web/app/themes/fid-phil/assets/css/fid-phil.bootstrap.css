@@ -18,4 +18,14 @@
   height: 40vh;
 }
 
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  background-color: unset;
+  color: #5a2e62;
+  border-style: solid;
+  border-width: 0 1px 1px 1px;
+  border-color: #5a2e62;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
 /*# sourceMappingURL=fid-phil.bootstrap.css.map */

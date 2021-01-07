@@ -1,6 +1,14 @@
 @import "fid-phil._variables";
 @import url('https://fonts.googleapis.com/css2?family=Piazzolla:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+a {
+  color: $primary;
+}
+
+a:hover {
+  color: lighten($primary, 20%);
+}
+
 body {
   font-family: Piazzolla, serif;
 }
@@ -41,11 +49,20 @@ nav {
 }
 
 .badge-fid {
-  background-color: white;
-  color: $primary;
+   background-color: white;
+   color: $primary;
+   border: solid;
+   border-width: 1px;
+   border-color: $primary;
+ }
+
+.badge-fid-hover:hover {
+  background-color: $primary;
+  color: white;
   border: solid;
   border-width: 1px;
   border-color: $primary;
+  cursor: pointer;
 }
 
 .bg-fid {
@@ -286,6 +303,8 @@ nav {
 .list-search-setting-item {
   min-width: 25%!important;
 }
+
+
 
 .nav-link-fid {
   color: $primary!important;

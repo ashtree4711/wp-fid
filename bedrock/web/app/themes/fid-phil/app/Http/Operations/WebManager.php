@@ -18,8 +18,6 @@ class WebManager
             $webInfo["currentUrl"]=$request->getServerParams()["WP_HOME"].$request->getServerParams()["REQUEST_URI"];
             setcookie("currentUrl", $request->getServerParams()["WP_HOME"].$request->getServerParams()["REQUEST_URI"]);
         }
-
-
         return $webInfo;
     }
 }

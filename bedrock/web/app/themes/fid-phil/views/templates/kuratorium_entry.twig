@@ -1,63 +1,289 @@
 {% extends "base.twig" %}
 
 {% block content %}
-    <main>
-        <div class="jumbotron jumbotron-fluid mb-0 landing-page-img" style="background-image: url('https://www.cuncti.net/images/aristoteles-66rz55637e76.jpg')">
-
-        </div>
-        <hr style="height: 3px; margin-top: 0!important; padding-top: 0!important;">
-        <div class="flex-column flex-lg-row d-lg-flex justify-content-lg-center text-white">
-            <div class="card p-5 m-5 justify-content-center" style="width: 80vw!important;">
-                <ul class="list-group justify-content-center list-group-horizontal-lg w-100" >
+    <main class="d-flex flex-column bg-light">
 
 
-                    <li class="list-group-item bg-fid-secondary-slightly-brighter w-25">
-                        <h2 class="text-center" target=".">Literatur</h2>
-                        <ul class="list-group-flush m-0 p-0 text-dark collapse" style="width: 100%!important;">
-                            <li class="list-group-item bg-light">Albertus Magnus</li>
-                            <li class="list-group-item ">Anselm von Canterbury</li>
-                            <li class="list-group-item bg-light">Averroes</li>
-                            <li class="list-group-item ">Avicenna</li>
-                            <li class="list-group-item bg-light">Böetius</li>
-                            <li class="list-group-item ">Roger Bacon</li>
-                            <li class="list-group-item bg-light">Thomas von Aquin</li>
+
+            {% include "views/templates/searchbar_reduce.twig" %}
+            <div class="m-2 d-flex flex-column ">
+                <div class="w-100">
+                    <div class="d-flex justify-content-center p-0">
+                        <ul class="list-group list-group-horizontal-lg w-100 justify-content-center" style="height: 400px!important; ">
+                            <li class="list-group-item p-0" style="height: 400px!important; width: 500px!important; background-size: contain!important; background-image: url('{{ webInfo.baseurl }}app/themes/fid-phil/assets/img/kuratorium/kant.jpg')">
+
+                            </li>
+                            <li class="list-group-item p-0"  style="height: 400px!important; width: 500px!important;">
+                                <div class="">
+                                    <h3 class="text-center p-1">Immanuel Kant <img height="25" width="25" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Logo_Gemeinsame_Normdatei_%28GND%29.svg/512px-Logo_Gemeinsame_Normdatei_%28GND%29.svg.png"><img height="25" width="35" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Wikidata-logo-en.svg/800px-Wikidata-logo-en.svg.png"></h3>
+                                    <hr >
+                                    <div style="overflow-y: auto; height: 345px">
+                                        <ul class="list-group list-group-flush">
+                                            <small>
+                                                <li class="list-group-item border-0 p-0">
+                                                    <ul class="list-group list-group-horizontal ">
+                                                        <li class="list-group-item bg-light w-25 rounded-0 p-1"><strong >Geburtsdatum, Ort</strong></li>
+                                                        <li class="list-group-item w-75 rounded-0 p-1">{{ data.gnd.dateOfBirth.0 }}, {{ data.gnd.placeOfBirth.0.label }}</li>
+                                                    </ul>
+                                                </li>
+                                                <li class="list-group-item border-0 p-0">
+                                                    <ul class="list-group list-group-horizontal ">
+                                                        <li class="list-group-item bg-light w-25 rounded-0 p-1"><strong >Sterbedatum, Ort</strong></li>
+                                                        <li class="list-group-item w-75 rounded-0 p-1">{{ data.gnd.dateOfDeath.0 }}, {{ data.gnd.placeOfDeath.0.label }}</li>
+                                                    </ul>
+                                                </li>
+                                                <li class="list-group-item border-0 p-0">
+                                                    <ul class="list-group list-group-horizontal ">
+                                                        <li class="list-group-item bg-light w-25 rounded-0 p-1"><strong >Namensvarianten</strong></li>
+                                                        <li class="list-group-item w-75 rounded-0 p-1">
+                                                            <ul class="list-group list-group-flush">
+                                                                {% for v in data.gnd.variantNameEntityForThePerson %}
+                                                                    <li class="list-group-item p-0 {% if loop.index >= 5 %}d-none{% endif %}">{{ v.forename.0 }} {{ v.surname.0 }}</li>
+                                                                {% endfor %}
+                                                                {% if data.gnd.variantNameEntityForThePerson|length > 5%}
+                                                                    <li class="list-group-item p-0"><span class="badge badge-fid badge-fid-hover">alle anzeigen</span></li>
+                                                                {% endif %}
+                                                            </ul>
+
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="list-group-item border-0 p-0">
+                                                    <ul class="list-group list-group-horizontal ">
+                                                        <li class="list-group-item bg-light w-25 rounded-0 p-1"><strong >Sprach(en)</strong></li>
+                                                        <li class="list-group-item w-75 rounded-0 p-1">Deutsch</li>
+                                                    </ul>
+                                                </li>
+                                                <li class="list-group-item border-0 p-0">
+                                                    <ul class="list-group list-group-horizontal ">
+                                                        <li class="list-group-item bg-light w-25 rounded-0 p-1"><strong >Weitere Angaben</strong></li>
+                                                        <li class="list-group-item w-75 rounded-0 p-1">
+                                                            <ul class="list-group list-group-flush">
+                                                                {% for a in data.gnd.affiliation %}
+                                                                    <li class="list-group-item p-0 {% if loop.index >= 5 %}d-none{% endif %}">{{ a.label }}</li>
+                                                                {% endfor %}
+                                                                {% if data.gnd.affiliation|length > 5%}
+                                                                    <li class="list-group-item p-0"><span class="badge badge-fid badge-fid-hover">alle anzeigen</span></li>
+                                                                {% endif %}
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="list-group-item border-0 p-0">
+                                                    <ul class="list-group list-group-horizontal ">
+                                                        <li class="list-group-item bg-light w-25 rounded-0 p-1"><strong >Wikidata</strong></li>
+                                                        <li class="list-group-item w-75 rounded-0 p-1"><a href="https://www.wikidata.org/wiki/Q9312" target="_blank">Q9312</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="list-group-item border-0 p-0">
+                                                    <ul class="list-group list-group-horizontal ">
+                                                        <li class="list-group-item bg-light w-25 rounded-0 p-1"><strong >GND</strong></li>
+                                                        <li class="list-group-item w-75 rounded-0 p-1"><a href="https://portal.dnb.de/opac.htm?method=simpleSearch&cqlMode=true&query=nid%3D118559796" target="_blank">118559796</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="list-group-item border-0 p-0">
+                                                    <ul class="list-group list-group-horizontal ">
+                                                        <li class="list-group-item bg-light w-25 rounded-0 p-1"><strong >Werke</strong></li>
+                                                        <li class="list-group-item w-75 rounded-0 p-1">
+                                                            <ul class="list-group list-group-flush">
+                                                                {% for p in data.gnd.publication %}
+                                                                    <li class="list-group-item p-0 {% if loop.index >= 5 %}d-none{% endif %}">{{ p }}</li>
+                                                                {% endfor %}
+                                                                {% if data.gnd.publication|length > 5%}
+                                                                    <li class="list-group-item p-0"><span class="badge badge-fid badge-fid-hover">alle anzeigen</span></li>
+                                                                {% endif %}
+                                                            </ul>
+                                                    </ul>
+                                                </li>
+                                            </small>
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item p-0" style="height: 400px!important; width: 500px!important;">
+                                <div >
+                                    <h3 class="text-center p-1">Kuratierte Inhalte <img height="25" width="20" src="{{ webInfo.baseurl }}app/themes/fid-phil/assets/img/fid_logo.png"></h3>
+                                    <hr >
+                                    <div style="overflow-y: auto; height: 345px">
+                                        <ul class="list-group list-group-flush">
+                                            <small>
+                                                <li class="list-group-item border-0 p-0">
+                                                    <ul class="list-group list-group-horizontal ">
+                                                        <li class="list-group-item bg-light w-25 rounded-0 p-1"><strong >Digitale Edition(en)</strong></li>
+                                                        <li class="list-group-item w-75 rounded-0 p-1"><a href="https://korpora.zim.uni-duisburg-essen.de/Kant/">Bonner Kant-Korpus</a> </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="list-group-item border-0 p-0">
+                                                    <ul class="list-group list-group-horizontal ">
+                                                        <li class="list-group-item bg-light w-25 rounded-0 p-1"><strong >Fachgesellschaft(en)</strong></li>
+                                                        <li class="list-group-item w-75 rounded-0 p-1"><a href="http://www.kant-gesellschaft.de/ ">Kant-Gesellschaft</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="list-group-item border-0 p-0">
+                                                    <ul class="list-group list-group-horizontal ">
+                                                        <li class="list-group-item bg-light w-25 rounded-0 p-1"><strong >Reih(en)</strong></li>
+                                                        <li class="list-group-item w-75 rounded-0 p-1"><a href="https://www.degruyter.com/view/journals/kant/kant-overview.xml ">Kant-Studien</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="list-group-item border-0 p-0">
+                                                    <ul class="list-group list-group-horizontal ">
+                                                        <li class="list-group-item bg-light w-25 rounded-0 p-1"><strong >Forschungstell(en) / Institution(en)</strong></li>
+                                                        <li class="list-group-item w-75 rounded-0 p-1"><a href="https://www.philosophie.fb05.uni-mainz.de/forschungsstellen-und-weitere-einrichtungen/fs_kant/">Kant-Forschungsstelle</a> </li>
+                                                    </ul>
+                                                </li>
+
+                                            </small>
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+
+
 
                         </ul>
-                    </li>
-
-                    <li class="list-group-item bg-fid-secondary-slightly-brightest w-25">
-                        <h2 class="text-center">Quellen</h2>
-                        <ul class="list-group-flush m-0 p-0 text-dark" style="width: 100%!important;">
-                            <li class="list-group-item bg-light">René Descartes</li>
-                            <li class="list-group-item ">Thomas Hobbes</li>
-                            <li class="list-group-item bg-light">John Locke</li>
-                            <li class="list-group-item ">Giovanni Pico della Mirandola</li>
-                            <li class="list-group-item bg-light">Niccolò di Bernardo dei Machiavelli</li>
-                            <li class="list-group-item">Thomas Morus</li>
-                            <li class="list-group-item bg-light">Johannes Kepler</li>
+                    </div>
 
 
+                </div>
+                <div class="w-100">
+                    <div-- class="d-flex justify-content-center p-0 w-100">
+                        <ul class="list-group list-group-horizontal-lg w-100 justify-content-center" style="height: 400px!important;">
+
+                            <li class="list-group-item p-0"  style="height: 400px!important; width: 750px!important;">
+                                <div class="">
+                                    <h3 class="text-center p-1">Katalogdaten <img height="25" width="20" src="{{ webInfo.baseurl }}app/themes/fid-phil/assets/img/fid_logo.png"></h3>
+                                    <hr >
+                                    <div style="overflow-y: auto; height: 345px">
+                                        <ul class="list-group list-group-flush">
+                                            <small>
+                                                {% for record in data.records %}
+
+                                                <li class="list-group-item border-0 p-0">
+                                                    <ul class="list-group list-group-horizontal ">
+                                                        <li class="list-group-item w-100 rounded-0 p-1">
+                                                            {% set pubTypeId = data.records.0.fields.eds_source.0.content.Header.PubTypeId %}
+
+                                                            {% if  pubTypeId == "academicJournal" %}
+                                                                <i class="fas fa-newspaper text-fid-tertiary"></i>
+                                                            {% elseif pubTypeId == "book" %}
+                                                                <i class="fas fa-book"></i>
+                                                            {% elseif pubTypeId == "review" %}
+                                                                <i class="fas fa-comment"></i>
+                                                            {% elseif pubTypeId == "unknown" %}
+                                                                <i class="far fa-question-circle"></i>
+                                                            {% endif %}
+                                                            {% if record.fields.T4410|length > 0 %}
+                                                                {% for type in record.fields.T4410 %}
+                                                                    {% if type.content == "Zeitschrift/Serie" %}
+                                                                        <i class="far fa-newspaper" style="color: #4810a5"></i>
+                                                                    {% elseif type.content == "Monographie" %}
+                                                                        <i class="fas fa-book " style="color: #5b14db"></i>
+                                                                    {% elseif type.content == "Aufsatz" %}
+                                                                        <i class="far fa-file-alt r" style="color: #4545db"></i>
+                                                                    {% elseif type.content == "Digital" %}
+                                                                        <i class="fas fa-laptop" style="color: #3f72db"></i>
+                                                                    {% elseif type.content == "Hochschulschrift" %}
+                                                                        <i class="fas fa-university" style="color: #4498db"></i>
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            {% else %}
+                                                                {% if record.locations %}
+                                                                    {% for location in record.locations %}
+                                                                        {% if location.id == "emedien" %}
+                                                                            <i class="fas fa-globe-europe"></i>
+                                                                        {% endif %}
+                                                                    {% endfor %}
+                                                                {% else %}
+                                                                    <i class="far fa-question-circle text-info"></i>
+                                                                {% endif %}
+
+                                                            {% endif %}
+                                                            {% if record.fields.PC0001  %}{% for a in record.fields.PC0001 %}{{ a.content }}. {% endfor %}{% endif %}
+                                                            <i>{{ record.fields.T0331.0.content}}</i>, {{ record.fields.T0425.0.content }}
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                {% endfor %}
+
+
+                                            </small>
+
+
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item p-0" style="height: 400px!important; width: 750px!important;">
+                                <div class="">
+                                    <h3 class="text-center p-1">Wikisource <img height="25" width="25" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Wikisource-logo.svg/1024px-Wikisource-logo.svg.png"></h3>
+                                    <hr >
+                                    <small>
+                                        <ul class="nav nav-pills d-flex justify-content-center mb-1">
+                                            {% for ws in data.wikisource %}
+                                                {% if ws.cat %}
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link {% if loop.first %}active{% endif %} p-1" data-toggle="tab" href="#ws{{ loop.index }}">{{ ws.cat }}</a>
+                                                    </li>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </ul>
+                                        <div class="tab-content">
+
+                                            {% for ws in data.wikisource %}
+                                                {% if ws.cat %}
+                                                    <div class="tab-pane container pl-0 pr-0 {% if loop.first %}active{% endif %}" id="ws{{ loop.index }}">
+                                                        <ul class="list-group list-group-flush" style="max-height: 300px!important; overflow-y: auto">
+                                                            {% for e in ws.entries %}
+                                                                <li class="list-group-item">
+                                                                    {{ e }}
+                                                                </li>
+                                                            {% endfor %}
+                                                        </ul>
+
+                                                    </div>
+
+                                                {% endif %}
+                                            {% endfor %}
+
+
+                                        </div>
+                                    </small>
+
+                                </div>
+                            </li>
+                            <!--li class="list-group-item p-0" style="height: 400px!important; width: 500px!important;">
+                                <div class="">
+                                    <h3 class="text-center p-1">GND</h3>
+                                    <hr >
+                                    <ul class="nav nav-pills d-flex justify-content-center">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-toggle="tab" href="#gnd_primary">Autor*in von</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#gnd_secondary">Sekundärliteratur</a>
+                                        </li>
+
+                                    </ul>
+
+
+                                    <div class="tab-content">
+                                        <div class="tab-pane container active" id="gnd_primary"><code>{{ data.gnd|json_encode}}</code></div>
+                                        <div class="tab-pane container fade" id="gnd_secondary"></div>
+                                    </div>
+                                </div-->
+                            </li>
                         </ul>
-                    </li>
-
-                    <li class="list-group-item bg-fid-secondary-brighter w-25">
-                        <h2 class="text-center">Editionen</h2>
-                        <ul class="list-group-flush m-0 p-0 text-dark" style="width: 100%!important;">
-
-                            <li class="list-group-item bg-light">Søren Aabye Kierkegaard</li>
-                            <li class="list-group-item">Karl Marx</li>
-                            <li class="list-group-item bg-light">Friedrich Nietzsche</li>
-                            <li class="list-group-item">Arthur Schoppenhauer</li>
-                            <li class="list-group-item bg-light">Ludwig Josef Johann Wittgenstein</li>
-
-                        </ul>
-                    </li>
+                    </div>
 
 
-                </ul>
+                </div>
             </div>
 
 
-        </div>
     </main>
 {% endblock %}

@@ -172,6 +172,8 @@
                         </div>
                         {% endif %}
 
+
+
                         <script>
                             $(".card-link").on("click", function () {
 
@@ -200,7 +202,7 @@
 
                     <li class="fid-list pointer list-group-item bg-fid text-light text-center">Verfügbarkeit</li>
                     <li class="fid-list pointer list-group-item" >
-                        <h5 class="text-center"><span class=" badge badge-fid">Heimatbibliothek</span></h5>
+                        <h5 class="text-center"><span class=" badge badge-fid">{% set my_holding = "DE-38" %}{% if my_holding == "DE-38" %}Universitäts- und Stadtbibliothek Köln{% else %}Heimatinstitution{% endif %}</span></h5>
                         <ul class="list-group list-group-flush">
                             {% set hit = "false" %}
                             {% for holding in data.availability.holdings %}
@@ -244,6 +246,11 @@
                                     </a>
 
                                 </li>
+                                    {% else %}
+                                        <p class="text-center">
+                                            Leider können wir Ihnen keinen Volltextzugriff anbieten
+                                        </p>
+
 
 
                                 {% endif %}
